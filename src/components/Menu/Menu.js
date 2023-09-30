@@ -1,8 +1,8 @@
-import './App.css';
+import './Menu.css';
 
 function Menu(){
     return(
-        <div className="menu">
+        <div className="Menu">
             <ul>
                 <li>
                     <a>Processos</a>
