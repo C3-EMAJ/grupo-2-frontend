@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+
 import './index.css';
-//import Menu from './components/Menu/Menu';
-import { Sidebar } from './components/Sidebar/Sidebar';
-
-
+import App from './App/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Sidebar />
-    
+    <App />
   </React.StrictMode>
 );
 
