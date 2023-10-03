@@ -1,13 +1,14 @@
 //import './App.css';
-import PaginaInicial from '../Pages/PaginaInicial';
+import Sidebar from '../Components/Sidebar';
+import Header from '../Components/Header';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        
       </header>
-      <PaginaInicial />
+      <Header />
+      <Sidebar />
     </div>
   );
 }

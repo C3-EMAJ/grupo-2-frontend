@@ -3,10 +3,9 @@ import React from 'react';
 function Sidebar() {
   return (
         <div>
-
-            <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-100 h-screen" aria-label="Sidebar">
+            <aside id="default-sidebar" class="fixed mt-8 left-0 z-40 h-screen" aria-label="Sidebar">
                 <div class="h-full px-3 py-4 overflow-y-auto bg-sidebar_grey">
-                    <ul class="space-y-2 font-medium">
+                    <ul class="space-y-2">
                         <li>
                             <a href="#" class="flex items-center p-1 text-black rounded-lg hover:bg-sidebar_orange group">
                             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -59,8 +58,8 @@ function Sidebar() {
                             </a>
                         </li>
                     </ul>
-                    <div class="fixed bottom-0 left-0 z-40 w-100 px-3 py-4 overflow-y-auto">
-                        <a href="#" class="flex items-center p-1 font-medium text-black rounded-lg hover:bg-sidebar_orange group">
+                    <div class="fixed bottom-0 left-0 z-40 px-3 py-4 overflow-y-auto">
+                        <a href="#" class="flex items-center p-1 text-black rounded-lg hover:bg-sidebar_orange group">
                         <svg class="flex-shrink-0 w-5 h-5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
                         </svg>
