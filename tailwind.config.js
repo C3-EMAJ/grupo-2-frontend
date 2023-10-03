@@ -6,10 +6,10 @@ module.exports = {
   theme: {
     colors: {
       'orange_agenda':'#FF6633',
-      'sidebar_orange':'#FDAE17',
-      'sidebar_grey':'#CDCDCD',
-      'header_grey':'#EEF1F4',
-      'lista_usuarios_grey':'#F8F8F8',
+      'orange':'#FDAE17',
+      'high_grey':'#CDCDCD',
+      'medium_grey':'#EEF1F4',
+      'low_grey':'#F8F8F8',
       'white':'#FFFFFF',
       'blue_search':'#1890FF',
       'blue_enviar_arquivo':'#0F91D2',
