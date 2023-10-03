@@ -1,13 +1,13 @@
-import './App.css';
+//import './App.css';
 import PaginaInicial from '../Pages/PaginaInicial';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <PaginaInicial />
         
       </header>
+      <PaginaInicial />
     </div>
   );
 }
