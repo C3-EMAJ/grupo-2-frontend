@@ -5,7 +5,20 @@ function Sidebar() {
         <div>
             <aside id="default-sidebar" class="fixed left-0 z-40 h-screen" aria-label="Sidebar">
                 <div class="h-full px-3 py-4 overflow-y-auto bg-high_grey">
-                    <ul class="space-y-2">
+                    <div class="mx-auto text-l font-bold">
+                        <a class="text-orange text-lg">I </a>
+                        <a class="text-black">EMAJ</a>
+                    </div>
+                    <div class="mx-auto">
+                        <img src="public\images\foto.png"/>
+                    </div>
+                    <div class="mx-auto text-center text-black font-semibold text-sm">
+                        <a>Nome do Usuário</a>
+                    </div>
+                    <div class="mx-auto text-center text-orange font-medium text-sm">
+                        <a>Aluno</a>
+                    </div>
+                    <ul class="space-y-2 my-10">
                         <li>
                             <a href="#" class="flex items-center p-1 text-black rounded-lg hover:bg-orange group">
                             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -68,7 +81,6 @@ function Sidebar() {
                     </div>
                 </div>
             </aside>
-
         </div>
   );
 }

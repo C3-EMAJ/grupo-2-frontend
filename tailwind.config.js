@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  
   theme: {
     colors: {
       'orange_agenda':'#FF6633',
@@ -17,8 +18,15 @@ module.exports = {
       'green_agendas':'#12BDB2',
       'black':'#000000'
     },
-    extend: {},
+
+    extend: {
+      fontFamily:{
+        Montserrat : ['Montserrat', 'sans-serif']
+      }
+    },
+
   },
+
   plugins: [],
 }
 
