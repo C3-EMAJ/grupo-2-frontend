@@ -12,7 +12,7 @@ function Sidebar() {
   return (
         <div>
             <aside id="default-sidebar" class="fixed left-0 z-40 h-screen" aria-label="Sidebar">
-                <div class="h-full px-2 overflow-y-auto bg-high_grey">
+                <div class="h-full px-2 py-2 overflow-y-auto bg-high_grey">
                     <div class="font-bold">
                         <a class="text-orange text-lg">I </a>
                         <a class="text-l text-black">EMAJ</a>
