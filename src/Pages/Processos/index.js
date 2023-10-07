@@ -5,8 +5,9 @@ import Organizacao from "../../Components/divorganizacao";
 function Processos (){
     return (
         <div>
+            <div class="">
             <Sidebar />
-            <Organizacao />
+            </div>
         </div>
     );
 }

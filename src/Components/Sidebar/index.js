@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from './SidebarItems'
+import Item from './SidebarItems/ItensMenu';
 import foto_perfil from '../../images/foto.png';
 import img_Processos from '../../images/home-lg-alt.png';
 import img_AdicionarUsuario from '../../images/bookmark 1.png';
@@ -8,9 +8,10 @@ import img_Agendamentos from '../../images/usd-square 1.png';
 import img_Pastas from '../../images/file-chart-line 1.png';
 import img_Configuracoes from '../../images/sliders-v-square 1.png';
 import img_Sair from '../../images/sign-out-alt 1.png';
+import InfosUsuario from './SidebarItems/InfosUsuario';
 
 
-function Sidebar({nome}) {
+function Sidebar() {
   return (
         <div>
             <aside id="default-sidebar" class="fixed left-0 z-40 h-screen" aria-label="Sidebar">
@@ -19,19 +20,7 @@ function Sidebar({nome}) {
                         <a class="text-orange text-lg">I </a>
                         <a class="text-l text-black">EMAJ</a>
                     </div>
-                    <div class="my-10">
-                        <div class="flex justify-center items-center">
-                            <img src={foto_perfil} class="rounded-full" alt="foto do perfil"/>
-                        </div>
-                        <div class="my-3">
-                        <div class="mx-auto text-center text-black font-semibold text-sm">
-                            <a>{nome ? nome : "Nome do Usuário"}</a>
-                        </div>
-                        <div class="mx-auto text-center text-orange font-medium text-sm">
-                            <a>Aluno</a>
-                        </div>
-                        </div>
-                    </div>
+                    <InfosUsuario foto={foto_perfil} nome="" />
                     <ul class="space-y-2 mx-3">
                         <Item route="/" img={img_Processos} text="Processos"/>
                         <Item route="/AdicionarUsuario" img={img_AdicionarUsuario} text="Adicionar Usuário" />
