@@ -1,6 +1,5 @@
 import React from "react";
 import Sidebar from "../../Components/Sidebar"
-import Organizacao from "../../Components/divorganizacao";
 
 function Processos (){
     return (
