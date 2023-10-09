@@ -14,16 +14,16 @@ import InfosUsuario from './SidebarItems/InfosUsuario';
 function Sidebar() {
   return (
         <div>
-            <aside id="default-sidebar" class="fixed left-0 z-40 h-screen" aria-label="Sidebar">
-                <div class="h-full px-2 py-2 overflow-y-auto bg-high_grey">
+            <aside class="flex h-screen">
+                <div class=" px-2 py-2 overflow-y-auto w-44 bg-high_grey">
                     <div class="font-bold">
                         <a class="text-orange text-lg">I </a>
                         <a class="text-l text-black">EMAJ</a>
                     </div>
                     <InfosUsuario foto={foto_perfil} nome="" />
-                    <ul class="space-y-2 mx-3">
+                    <ul class="space-y-2 mx-2">
                         <Item route="/" img={img_Processos} text="Processos"/>
-                        <Item route="/AdicionarUsuario" img={img_AdicionarUsuario} text="Adicionar Usuário" />
+                        <Item route="/AdicionarUsuario" img={img_AdicionarUsuario} text="Usuários" />
                         <Item route="/Assistidos" img={img_Assistidos} text="Assistidos" />
                         <Item route="/Agendamentos" img={img_Agendamentos} text="Agendamentos" />
                         <Item route="/Pastas" img={img_Pastas} text="Pastas" />

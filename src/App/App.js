@@ -16,8 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Processos />} />
-          <Route path="/AdicionarUsuario" element={<AdicionarUsuario />} />
-          <Route path="/Assistidos" element={<Assistidos />} />
+          <Route path="/AdicionarUsuario" element={<AdicionarUsuario ListName='Lista Usuários' BtnName='Adicionar Usuário'/>} />
+          <Route path="/Assistidos" element={<Assistidos ListName='Lista Assistidos' BtnName='Adicionar Assistido' />} />
           <Route path="/Agendamentos" element={<Agendamentos />} />
           <Route path="/Pastas" element={<Pastas />} />
           <Route path="/Configuracoes" element={<Configuracoes />} />
