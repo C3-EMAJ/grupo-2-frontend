@@ -11,7 +11,7 @@ function Assistidos ({ListName, BtnName}){
     
     return(
         <div>
-            <Modal isOpen={openModal} />
+            <Modal isOpen={openModal} isClose={() => setOpenModal(!openModal)} />
             <div class="flex h-screen">
                 <Sidebar />
                 <div class="rounded-lg w-full overflow-y-auto">

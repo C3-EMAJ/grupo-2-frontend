@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../Components/Sidebar"
 
-function Processos (){
+function Demandas (){
     return (
         <div>
             <div class="">
@@ -11,4 +11,4 @@ function Processos (){
     );
 }
 
-export default Processos;
+export default Demandas;

@@ -14,7 +14,7 @@ module.exports = {
       'white':'#FFFFFF',
       'blue_search':'#1890FF',
       'blue_enviar_arquivo':'#0F91D2',
-      'alert_red':'#FD1717',
+      'red':'#FD1717',
       'green_agendas':'#12BDB2',
       'black':'#000000'
     },

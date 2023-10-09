@@ -11,9 +11,7 @@ function Header() {
                 <img src={img_Voltar}></img>
               </a>
             </div>
-            <div class="w-1/5 text-black text-sm hover:text-high_grey border-2 border-high_grey rounded-lg">
-              <a href="#" class="ml-2">Buscar...</a>
-            </div>
+            <input className="w-1/5 text-sm border-2 border-high_grey hover:border-black rounded-lg" placeholder="  Buscar..." />
             <div class="">
               <a href="#" class="">
                 <img src={img_Sino}></img>
