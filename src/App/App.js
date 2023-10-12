@@ -1,14 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//import Sidebar from '../Components/Sidebar';
 
 import Demandas from '../Pages/Demandas';
 import AdicionarUsuario from '../Pages/AdicionarUsuario';
 import Assistidos from '../Pages/Assistidos';
 import Agendamentos from '../Pages/Agendamentos';
-//import Pastas from '../Pages/Pastas';
 import Configuracoes from '../Pages/Configurações';
-
-//<Route path="/Pastas" element={<Pastas />} />
 
 function App() {
   return (
