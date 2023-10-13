@@ -3,15 +3,13 @@ import React from "react";
 import Sidebar from "../../Components/Sidebar";
 import Tela from "../../Components/Tela";
 
-function AdicionarUsuario ({ListName, BtnName}){
+export default function Usuarios (){
     return(
         <div>
             <div class="flex h-screen">
                 <Sidebar />
-                <Tela ListName={ListName} BtnName={BtnName}/>
+                <Tela ListName="Lista Usuários" BtnName="Adicionar Usuário" page="Usuarios" />
             </div>
         </div>
     );
 }
-
-export default AdicionarUsuario;
