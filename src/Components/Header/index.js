@@ -6,14 +6,14 @@ function Header() {
       <div>
         <header class="bg-white my-3 mx-6">
           <div class="flex justify-between">
-            <div class="">
-              <a href="#" class="">
+            <div class="hover:scale-125">
+              <a href="">
                 <img src={img_Voltar}></img>
               </a>
             </div>
             <input className="w-1/5 text-sm border-2 border-high_grey hover:border-black rounded-lg" placeholder="  Buscar..." />
-            <div class="">
-              <a href="#" class="">
+            <div class="hover:scale-125">
+              <a href="">
                 <img src={img_Sino}></img>
               </a>
             </div>

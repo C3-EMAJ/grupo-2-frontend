@@ -1,5 +1,6 @@
 import React from 'react';
-import DigitarInfo from './items';
+import DigitarInfo from './ModalItems/Inputs';
+import ButtonCadastrar from './ModalItems/ButtonCadastrar';
 
 export default function Usuario() {
   return (
@@ -15,9 +16,7 @@ export default function Usuario() {
             <DigitarInfo Name="Usuário" />
             <DigitarInfo Name="Senha" />
             <DigitarInfo Name="Confirmar Senha" />
-            <button class="bg-orange text-sm rounded p-1 text-white hover:text-black">
-              Cadastrar
-            </button>
+            <ButtonCadastrar />
           </ul>
           <ul class="space-y-2 w-2/4">
             <DigitarInfo Name="Função" />
