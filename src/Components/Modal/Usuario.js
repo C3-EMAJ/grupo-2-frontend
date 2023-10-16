@@ -7,7 +7,7 @@ export default function Usuario() {
     <div>
       <div class="px-8">
         <div class="">
-          <h2 className="text-2xl p-4 font-semibold">Cadastro Usuário</h2>
+          <h2 className="text-2xl p-4 font-semibold">Cadastrar Usuário</h2>
         </div>
         <div class="flex justify-between p-3">
           <ul class="space-y-2 w-2/4">
