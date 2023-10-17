@@ -1,4 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+
+
+function DigitarInfo({Name}) {
+  return (
+    <div>
+        <li>
+            <div class="text-sm my-1">
+              {Name}
+            </div>
+            <input className="text-sm w-5/6 border hover:border-2 border-black rounded" />
+        </li>
+    </div>
+  );
+}
+
+
+function ButtonCadastrar() {
+  return (
+    <div>
+        <button class="mt-6 bg-orange text-sm rounded p-1 text-white hover:scale-110">
+            Cadastrar
+        </button>
+    </div>
+  );
+}
+
 
 class CheckboxSimNao extends Component {
   constructor(props) {
@@ -30,4 +56,5 @@ class CheckboxSimNao extends Component {
   }
 }
 
-export default CheckboxSimNao;
+
+export {DigitarInfo, ButtonCadastrar, CheckboxSimNao};

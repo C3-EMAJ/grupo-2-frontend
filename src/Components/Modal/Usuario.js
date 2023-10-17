@@ -1,6 +1,5 @@
 import React from 'react';
-import DigitarInfo from './ModalItems/Inputs';
-import ButtonCadastrar from './ModalItems/ButtonCadastrar';
+import { DigitarInfo, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
 
 export default function Usuario() {
   return (

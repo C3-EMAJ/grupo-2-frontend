@@ -1,7 +1,5 @@
 import React from 'react';
-import DigitarInfo from './ModalItems/Inputs';
-import ButtonCadastrar from './ModalItems/ButtonCadastrar';
-import CheckboxSimNao from './ModalItems/CheckBoxSimNao';
+import { DigitarInfo, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
 
 export default function Assistidos() {
   return (
