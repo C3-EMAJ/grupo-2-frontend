@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
 
 
-function DigitarInfo({Name}) {
+function DigitarInfo({id, type}) {
   return (
     <div>
-        <li>
-            <div class="text-sm my-1">
-              {Name}
-            </div>
-            <input className="text-sm w-5/6 border hover:border-2 border-black rounded" />
-        </li>
+        <label>
+            <p class="text-sm my-1">
+              {id}
+            </p>
+            <input type={type} className="text-sm w-5/6 border hover:border-2 border-black rounded" />
+        </label>
     </div>
   );
 }
 
 
-function ButtonCadastrar() {
+function ButtonCadastrar({id}) {
   return (
     <div>
-        <button class="mt-6 bg-orange text-sm rounded p-1 text-white hover:scale-110">
+        <button type="submit" id={id} class="mt-6 bg-orange text-sm rounded p-1 text-white hover:scale-110">
             Cadastrar
         </button>
     </div>
@@ -55,6 +55,5 @@ class CheckboxSimNao extends Component {
     );
   }
 }
-
 
 export {DigitarInfo, ButtonCadastrar, CheckboxSimNao};
