@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import InputField from './ModalItems/inputTeste'; // Importe o componente InputField
+import { InputField, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
 
 export default function Assistidos() {
     function handleSubmit(event){
         event.preventDefault()
-          const data = {name, cpf, rg, email, telefone1, telefone2}
+          const data = {name, cpf, rg, date, email, telefone1, telefone2, profissao, renda, dependentes}
           
           console.log(data)
     
@@ -14,31 +14,37 @@ export default function Assistidos() {
        //       headers: {'Content-Type':'application/json'}
        //   })
       }
+
       //Dados Pessoais
       const [name, setName] = useState("")
       const [cpf, setCpf] = useState("")
       const [rg, setRg] = useState("")
-    
+      const [date, setDate] = useState("")
+      
       //Contato
       const [telefone1, setTelefone1] = useState("")
       const [telefone2, setTelefone2] = useState("")
       const [email, setEmail] = useState("")
+      
+      //Dados Socioeconômicos
+      const [profissao, setProfissao] = useState("")
+      const [renda, setRenda] = useState("")
+      const [dependentes, setDependentes] = useState("")
 
   return (
     <>
-      <main className="flex flex-col px-8 overflow-y-auto">
-        <div>
-          <h1 className="text-2xl font-semibold">Cadastrar Assistido</h1>
-        </div>
-        <form className="" onSubmit={handleSubmit}>
-          <div className="flex justify-beetween">
+      <main className="flex flex-col px-11 overflow-y-auto">
+          <h1 className="py-4 text-2xl font-semibold">Cadastrar Assistido</h1>
+        <form className="flex" onSubmit={handleSubmit}>
+          <div className="flex flex-col space-y-1 w-2/4">
+            <h1 class="font-semibold">Dados Pessoais</h1>
             <InputField
               label="Nome"
               value={name}
               onChange={setName}
               type="text"
               id="name"
-              required
+              //required
             />
             <InputField
               label="CPF"
@@ -46,7 +52,7 @@ export default function Assistidos() {
               onChange={setCpf}
               type="number"
               id="cpf"
-              required
+              //required
             />
             <InputField
               label="RG"
@@ -54,15 +60,25 @@ export default function Assistidos() {
               onChange={setRg}
               type="number"
               id="rg"
-              required
+              //required
             />
+            <InputField
+              label="Data de Nasimento"
+              value={date}
+              onChange={setDate}
+              type="date"
+              id="date"
+              //required
+            />
+
+            <h1 class="font-semibold pt-5">Contato</h1>
             <InputField
               label="Telefone 1"
               value={telefone1}
               onChange={setTelefone1}
               type="number"
               id="telefone1"
-              required
+              //required
             />
             <InputField
               label="Telefone 2"
@@ -70,6 +86,7 @@ export default function Assistidos() {
               onChange={setTelefone2}
               type="number"
               id="telefone2"
+              //required
             />
             <InputField
               label="E-mail"
@@ -77,9 +94,37 @@ export default function Assistidos() {
               onChange={setEmail}
               type="email"
               id="email"
+              //required
             />
           </div>
-          <button type="submit">Enviar</button>
+          <div class="flex flex-col space-y-1 w-2/4">
+          <h1 class="font-semibold">Dados Socioeconômicos</h1>
+          <InputField
+              label="Profissão"
+              value={profissao}
+              onChange={setProfissao}
+              type="text"
+              id="profissao"
+              //required
+            />
+            <InputField
+              label="Renda Familiar"
+              value={renda}
+              onChange={setRenda}
+              type="number"
+              id="renda"
+              //required
+            />
+            <InputField
+              label="Dependentes"
+              value={dependentes}
+              onChange={setDependentes}
+              type="number"
+              id="dependentes"
+              //required
+            />
+          <ButtonCadastrar />
+          </div>
         </form>
       </main>
     </>

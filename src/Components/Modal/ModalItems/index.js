@@ -1,30 +1,30 @@
 import React, { Component } from 'react'
 
-
-function DigitarInfo({id, type}) {
+function InputField({ label, value, onChange, type, id, required }) {
   return (
-    <div>
-        <label>
-            <p class="text-sm my-1">
-              {id}
-            </p>
-            <input type={type} className="text-sm w-5/6 border hover:border-2 border-black rounded" />
-        </label>
+    <div className="flex flex-col text-sm">
+      <label class="" htmlFor={id}>{label}</label>
+      <input
+        className="border rounded-lg w-3/4"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        type={type}
+        id={id}
+        required={required}
+      />
     </div>
   );
 }
 
-
-function ButtonCadastrar({id}) {
+function ButtonCadastrar() {
   return (
-    <div>
-        <button type="submit" id={id} class="mt-6 bg-orange text-sm rounded p-1 text-white hover:scale-110">
-            Cadastrar
-        </button>
+    <div class="pt-5">
+      <button type="submit" class="w-1/3 bg-orange text-sm rounded p-1 text-white hover:scale-110">
+          Cadastrar
+      </button>
     </div>
   );
 }
-
 
 class CheckboxSimNao extends Component {
   constructor(props) {
@@ -56,4 +56,4 @@ class CheckboxSimNao extends Component {
   }
 }
 
-export {DigitarInfo, ButtonCadastrar, CheckboxSimNao};
+export {InputField, ButtonCadastrar, CheckboxSimNao};
