@@ -4,7 +4,7 @@ import { InputField, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
 export default function Assistidos() {
     function handleSubmit(event){
         event.preventDefault()
-          const data = {name, cpf, rg, date, email, telefone1, telefone2, profissao, renda, dependentes}
+          const data = {name, cpf, rg, isChecked, date, email, telefone1, telefone2, profissao, renda, dependentes}
           
           console.log(data)
     
@@ -20,6 +20,7 @@ export default function Assistidos() {
       const [cpf, setCpf] = useState("")
       const [rg, setRg] = useState("")
       const [date, setDate] = useState("")
+      const [isChecked, setIsChecked] = useState(false);
       
       //Contato
       const [telefone1, setTelefone1] = useState("")
@@ -70,8 +71,13 @@ export default function Assistidos() {
               id="date"
               //required
             />
+            <CheckboxSimNao
+                label="Representado:"
+                isChecked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+            />
 
-            <h1 class="font-semibold pt-5">Contato</h1>
+            <h1 class="font-semibold pt-3">Contato</h1>
             <InputField
               label="Telefone 1"
               value={telefone1}
@@ -97,7 +103,9 @@ export default function Assistidos() {
               //required
             />
           </div>
+
           <div class="flex flex-col space-y-1 w-2/4">
+
           <h1 class="font-semibold">Dados Socioeconômicos</h1>
           <InputField
               label="Profissão"
