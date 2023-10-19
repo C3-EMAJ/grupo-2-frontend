@@ -1,11 +1,11 @@
 import React from 'react';
-import Usuario from './Usuario';
+import Usuarios from './Usuario';
 import Assistidos from './Assistidos';
 
 function modalswitch(page){
     if (page == "Usuarios"){
         return(
-            <Usuario />
+            <Usuarios />
         );
     }
     return(

@@ -35,7 +35,7 @@ export default function Assistidos() {
   return (
     <>
       <main className="flex flex-col px-11 overflow-y-auto">
-          <h1 className="py-4 text-2xl font-semibold">Cadastrar Assistido</h1>
+        <h1 className="py-4 text-2xl font-semibold">Cadastrar Assistido</h1>
         <form className="flex" onSubmit={handleSubmit}>
           <div className="flex flex-col space-y-1 w-2/4">
             <h1 class="font-semibold">Dados Pessoais</h1>
