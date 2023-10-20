@@ -5,11 +5,11 @@ export default function Assistidos() {
   //let lista = []
     function handleSubmit(event){
         event.preventDefault()
-          const data = {name, cpf, rg, date, isChecked, email, telefone1, telefone2, profissao, renda, dependentes}
-          
-          console.log(data)
-          //lista.push(data)
-          //console.log(lista)
+        const data = {name, cpf, rg, date, isChecked, email, telefone1, telefone2, profissao, renda, dependentes}
+        
+        console.log(data)
+        //lista.push(data)
+        //console.log(lista)
 
        //   fetch("http://10.230.158.48:3333/form", {
        //       method:"POST",
