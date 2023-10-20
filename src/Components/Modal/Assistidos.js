@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { InputField, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
 
 export default function Assistidos() {
+  //let lista = []
     function handleSubmit(event){
         event.preventDefault()
-          const data = {name, cpf, rg, isChecked, date, email, telefone1, telefone2, profissao, renda, dependentes}
+          const data = {name, cpf, rg, date, isChecked, email, telefone1, telefone2, profissao, renda, dependentes}
           
           console.log(data)
-    
+          //lista.push(data)
+          //console.log(lista)
+
        //   fetch("http://10.230.158.48:3333/form", {
        //       method:"POST",
        //       body: JSON.stringify(data),

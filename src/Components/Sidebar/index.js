@@ -9,7 +9,7 @@ import img_Configuracoes from '../../images/sliders-v-square 1.png';
 import img_Sair from '../../images/sign-out-alt 1.png';
 import InfosUsuario from './SidebarItems/InfosUsuario';
 
-function Sidebar() {
+export default function Sidebar() {
   return (
         <div>
             <aside class="flex h-screen">
@@ -26,11 +26,10 @@ function Sidebar() {
                         <Item route="/Agendamentos" img={img_Agendamentos} text="Agendamentos" />
                         <Item route="/Configuracoes" img={img_Configuracoes} text="Configurações" />
                         <Item route="" img={img_Sair} text="Sair" />
+                        
                     </ul>
                 </div>
             </aside>
         </div>
   );
 }
-
-export default Sidebar;
