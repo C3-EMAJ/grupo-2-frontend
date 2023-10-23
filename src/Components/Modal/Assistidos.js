@@ -3,37 +3,38 @@ import { InputField, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
 
 export default function Assistidos() {
   //let lista = []
-    function handleSubmit(event){
-        event.preventDefault()
-        const data = {name, cpf, rg, date, isChecked, email, telefone1, telefone2, profissao, renda, dependentes}
-        
-        console.log(data)
-        //lista.push(data)
-        //console.log(lista)
+  function handleSubmit(event){
+    event.preventDefault()
+    const data = {name, cpf, rg, date, isChecked, email, telefone1, telefone2, profissao, renda, dependentes}
+    
+    console.log(data)
+    localStorage.setItem(data, 'value');
+    //lista.push(data)
+    //console.log(lista)
 
-       //   fetch("http://10.230.158.48:3333/form", {
-       //       method:"POST",
-       //       body: JSON.stringify(data),
-       //       headers: {'Content-Type':'application/json'}
-       //   })
-      }
+      //   fetch("http://10.230.158.48:3333/form", {
+      //       method:"POST",
+      //       body: JSON.stringify(data),
+      //       headers: {'Content-Type':'application/json'}
+      //   })
+    }
 
-      //Dados Pessoais
-      const [name, setName] = useState("")
-      const [cpf, setCpf] = useState("")
-      const [rg, setRg] = useState("")
-      const [date, setDate] = useState("")
-      const [isChecked, setIsChecked] = useState(false);
-      
-      //Contato
-      const [telefone1, setTelefone1] = useState("")
-      const [telefone2, setTelefone2] = useState("")
-      const [email, setEmail] = useState("")
-      
-      //Dados Socioeconômicos
-      const [profissao, setProfissao] = useState("")
-      const [renda, setRenda] = useState("")
-      const [dependentes, setDependentes] = useState("")
+    //Dados Pessoais
+    const [name, setName] = useState("")
+    const [cpf, setCpf] = useState("")
+    const [rg, setRg] = useState("")
+    const [date, setDate] = useState("")
+    const [isChecked, setIsChecked] = useState(false);
+    
+    //Contato
+    const [telefone1, setTelefone1] = useState("")
+    const [telefone2, setTelefone2] = useState("")
+    const [email, setEmail] = useState("")
+    
+    //Dados Socioeconômicos
+    const [profissao, setProfissao] = useState("")
+    const [renda, setRenda] = useState("")
+    const [dependentes, setDependentes] = useState("")
 
   return (
     <>

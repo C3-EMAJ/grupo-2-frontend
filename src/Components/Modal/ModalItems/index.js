@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 function InputField({ label, value, onChange, type, id, required }) {
   return (

@@ -3,12 +3,12 @@ import { useState } from "react";
 
 import Header from '../Header';
 import Modal from '../Modal';
-import CardAssistido from '../Card';
+import { CardUsuario, CardAssistido } from '../Card';
 
 function CardSwitch(page){
     if (page == "Usuarios"){
         return(
-            <h1>ausdaskudgakus</h1>
+            <CardUsuario />
         );
     }
     return(

@@ -8,9 +8,7 @@ import Configuracoes from '../Pages/Configurações';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
+    <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Demandas />} />
@@ -20,7 +18,7 @@ function App() {
           <Route path="/Configuracoes" element={<Configuracoes />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
