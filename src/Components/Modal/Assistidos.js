@@ -5,18 +5,17 @@ export default function Assistidos() {
   //let lista = []
   function handleSubmit(event){
     event.preventDefault()
-    const data = {name, cpf, rg, date, isChecked, email, telefone1, telefone2, profissao, renda, dependentes}
+    const data = {name}
     
     console.log(data)
-    localStorage.setItem(data, 'value');
     //lista.push(data)
     //console.log(lista)
 
-      //   fetch("http://10.230.158.48:3333/form", {
-      //       method:"POST",
-      //       body: JSON.stringify(data),
-      //       headers: {'Content-Type':'application/json'}
-      //   })
+         fetch("http://127.0.0.1:8000/assistido/", {
+             method:"POST",
+             body: JSON.stringify(data),
+             headers: {'Content-Type':'application/json'}
+         })
     }
 
     //Dados Pessoais
