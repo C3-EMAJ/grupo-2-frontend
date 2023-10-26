@@ -1,5 +1,5 @@
 import React from 'react'
-import PageUsuarios from '../Pages/PageUsuarios'
+import PageUsuarios from '../Pages/Usuarios'
 
 const Usuarios = () => {
   return (

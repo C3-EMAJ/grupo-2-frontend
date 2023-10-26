@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PageConfiguracoes from '../Pages/PageConfiguracoes'
+import PageConfiguracoes from '../Pages/Configurações'
 
 const Configuracoes = () => {
   return (

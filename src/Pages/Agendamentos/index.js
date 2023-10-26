@@ -1,11 +1,9 @@
 import React from "react";
 
-function Agendamentos (){
+export default function PageAgendamentos (){
     return (
         <div>
             Agendamentos
         </div>
     );
 }
-
-export default Agendamentos;

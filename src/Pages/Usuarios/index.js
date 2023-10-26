@@ -1,6 +1,6 @@
 import React from "react";
 
-import Tela from "../Components/Tela";
+import Tela from "../../Components/Tela";
 
 export default function Usuarios (){
     return(

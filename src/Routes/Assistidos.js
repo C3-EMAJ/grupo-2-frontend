@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PageAssistidos from '../Pages/PageAssistidos'
+import PageAssistidos from '../Pages/Assistidos'
 
 const Assistidos = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PageAgendamentos from '../Pages/PageAgendamentos'
+import PageAgendamentos from '../Pages/Agendamentos'
 
 const Agendamentos = () => {
   return (
