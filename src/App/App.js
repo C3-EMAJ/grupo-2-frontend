@@ -1,25 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import Sidebar from '../Components/Sidebar';
 
-import Demandas from '../Pages/Demandas';
-import Usuarios from '../Pages/Usuarios';
-import Assistidos from '../Pages/Assistidos';
-import Agendamentos from '../Pages/Agendamentos';
-import Configuracoes from '../Pages/Configurações';
-
-function App() {
+export default function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Demandas />} />
-          <Route path="/AdicionarUsuario" element={<Usuarios />} />
-          <Route path="/Assistidos" element={<Assistidos />} />
-          <Route path="/Agendamentos" element={<Agendamentos />} />
-          <Route path="/Configuracoes" element={<Configuracoes />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <div className="flex">
+      
+      <Outlet />
+    </div>
   );
 }
-
-export default App;

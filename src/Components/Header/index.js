@@ -1,3 +1,6 @@
+import React from 'react';
+
+//Imagens
 import img_Voltar from '../../images/caret-circle-down 1.png';
 import img_Sino from '../../images/bell 1.png';
 

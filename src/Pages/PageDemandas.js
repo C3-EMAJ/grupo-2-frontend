@@ -1,12 +1,9 @@
 import React from "react";
-import Sidebar from "../../Components/Sidebar"
 
 function Demandas (){
     return (
         <div>
-            <div class="">
-            <Sidebar />
-            </div>
+            Demandas
         </div>
     );
 }

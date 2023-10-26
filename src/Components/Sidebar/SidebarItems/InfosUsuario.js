@@ -1,6 +1,6 @@
 import React from "react";
 
-function InfosUsuario ({foto, nome}){
+export default function InfosUsuario ({foto, nome}){
     return(
         <div>
             <div class="my-10">
@@ -19,5 +19,3 @@ function InfosUsuario ({foto, nome}){
         </div>
     );
 }
-
-export default InfosUsuario;

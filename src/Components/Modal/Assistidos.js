@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { InputField, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
 
 export default function Assistidos() {
-  //let lista = []
+  let lista = []
   function handleSubmit(event){
     event.preventDefault()
-    const data = {name}
+    const data = {name, cpf, rg}
     
     console.log(data)
-    //lista.push(data)
-    //console.log(lista)
+    lista.push(data)
+    localStorage.setItem('lista', JSON.stringify(lista))
+    console.log(lista)
 
-         fetch("http://127.0.0.1:8000/assistido/", {
-             method:"POST",
-             body: JSON.stringify(data),
-             headers: {'Content-Type':'application/json'}
-         })
+        //fetch("http://127.0.0.1:8000/assistido/", {
+        //    method:"POST",
+        //    body: JSON.stringify(data),
+        //     headers: {'Content-Type':'application/json'}
+        // })
     }
 
     //Dados Pessoais
