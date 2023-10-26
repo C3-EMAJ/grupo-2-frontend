@@ -30,9 +30,7 @@ function CardAssistido() {
 }
 
 let lista2 = [
-  {nome: "Samuel Trindade de Lemos", email:'samucalemos9@gmail.com', telefone:'53999004470', cpf:'03508272060', date:'22/08/2000'},
-  {nome: "Samuel Trindade de Lemos", email:'samucalemos9@gmail.com', telefone:'53999004470', cpf:'03508272060', date:'22/08/2000'},
-  {nome: "Samuel de Lemos", email:'samucalemos9@gmail.com', telefone:'53999004470', cpf:'03508272060', date:'22/08/2000'}
+  
 ]
 
 function CardUsuario() {

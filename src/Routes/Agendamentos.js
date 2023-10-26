@@ -4,7 +4,7 @@ import PageAgendamentos from '../Pages/Agendamentos'
 
 const Agendamentos = () => {
   return (
-    <div>
+    <div class="w-full">
         <PageAgendamentos />
     </div>
   )

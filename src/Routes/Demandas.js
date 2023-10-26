@@ -4,7 +4,7 @@ import PageDemandas from '../Pages/Demandas'
 
 const Demandas = () => {
   return (
-    <div>
+    <div class="w-full">
         <PageDemandas />
     </div>
   )

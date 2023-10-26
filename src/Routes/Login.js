@@ -3,7 +3,7 @@ import PageLogin from '../Pages/Login'
 
 const Login = () => {
   return (
-    <div>
+    <div class="w-full">
       <PageLogin />
     </div>
   )

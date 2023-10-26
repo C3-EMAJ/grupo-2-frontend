@@ -4,7 +4,7 @@ import PageAssistidos from '../Pages/Assistidos'
 
 const Assistidos = () => {
   return (
-    <div>
+    <div class="w-full">
         <PageAssistidos />
     </div>
   )

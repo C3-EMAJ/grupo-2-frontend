@@ -3,7 +3,7 @@ import PageUsuarios from '../Pages/Usuarios'
 
 const Usuarios = () => {
   return (
-    <div>
+    <div class="w-full">
       <PageUsuarios />
     </div>
   )

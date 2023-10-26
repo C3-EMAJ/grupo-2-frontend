@@ -4,7 +4,7 @@ import PageConfiguracoes from '../Pages/Configurações'
 
 const Configuracoes = () => {
   return (
-    <div>
+    <div class="w-full">
         <PageConfiguracoes />
     </div>
   )
