@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { InputField, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
 
+
+
+
 export default function Assistidos() {
   let lista = []
   function handleSubmit(event){
     event.preventDefault()
-    const data = {name, cpf, rg}
-    
+    const dadosRepresentado = {nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado}
+    const data = {name, cpf, rg, dadosRepresentado : isChecked ? dadosRepresentado : null}
+    isChecked ? console.log("teste") : delete data.dadosRepresentado
     console.log(data)
     lista.push(data)
     localStorage.setItem('lista', JSON.stringify(lista))
@@ -17,6 +21,54 @@ export default function Assistidos() {
         //    body: JSON.stringify(data),
         //     headers: {'Content-Type':'application/json'}
         // })
+    }
+
+    const [nameRepresentado, setNameRepresentado] = useState("")
+    const [cpfRepresentado, setCpfRepresentado] = useState("")
+    const [rgRepresentado, setRgRepresentado] = useState("")
+    const [dateRepresentado, setDateRepresentado] = useState("")
+
+    function representado(isChecked) {
+      if (isChecked === true){
+        return (
+          <div class="flex flex-col space-y-1 py-5">
+            <h1 class="font-semibold">Dados do Representado</h1>
+            <InputField
+              label="Nome"
+              value={nameRepresentado}
+              onChange={setNameRepresentado}
+              type="text"
+              id="nameRepresentado"
+              //required
+            />
+            <InputField
+              label="CPF"
+              value={cpfRepresentado}
+              onChange={setCpfRepresentado}
+              type="number"
+              id="cpfRepresentado"
+              //required
+            />
+            <InputField
+              label="RG"
+              value={rgRepresentado}
+              onChange={setRgRepresentado}
+              type="number"
+              id="rgRepresentado"
+              //required
+            />
+            <InputField
+              label="Data de Nasimento"
+              value={dateRepresentado}
+              onChange={setDateRepresentado}
+              type="date"
+              id="dateRepresentado"
+              //required
+            />
+          </div>
+        ); 
+      }
+      return null
     }
 
     //Dados Pessoais
@@ -39,9 +91,15 @@ export default function Assistidos() {
   return (
     <>
       <main className="flex flex-col px-11 overflow-y-auto">
-        <h1 className="py-4 text-2xl font-semibold">Cadastrar Assistido</h1>
+        <h1 className="pt-4 pb-3 text-2xl font-semibold">Cadastrar Assistido</h1>
         <form className="flex" onSubmit={handleSubmit}>
           <div className="flex flex-col space-y-1 w-2/4">
+          <CheckboxSimNao
+                label="Cadastrar Dependente"
+                isChecked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+            />
+            
             <h1 class="font-semibold">Dados Pessoais</h1>
             <InputField
               label="Nome"
@@ -75,11 +133,7 @@ export default function Assistidos() {
               id="date"
               //required
             />
-            <CheckboxSimNao
-                label="Representado:"
-                isChecked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
-            />
+            
 
             <h1 class="font-semibold pt-3">Contato</h1>
             <InputField
@@ -135,6 +189,7 @@ export default function Assistidos() {
               id="dependentes"
               //required
             />
+          {representado(isChecked)}
           <ButtonCadastrar />
           </div>
         </form>
