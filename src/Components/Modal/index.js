@@ -1,5 +1,5 @@
 import React from 'react';
-import Usuarios from './Usuario';
+import Usuarios from './Usuarios';
 import Assistidos from './Assistidos';
 
 function modalswitch(page){
@@ -13,19 +13,29 @@ function modalswitch(page){
     )
 }
 
+const tituloModal = "pb-3 text-2xl font-semibold"
+
+function qualPag(page){
+    if (page == "Assistidos"){
+        return <h1 class={tituloModal}>Cadastrar Assistido</h1>
+    }
+    else if (page == "Usuarios"){
+        return <h1 class={tituloModal}>Cadastrar Usuario</h1>
+    }
+}
+
 function Modal({isOpen, isClose, page}) {
     if(isOpen){
         return (
-        <div>
             <div className="fixed inset-0 flex bg-[rgba(0,0,0,0.1)] backdrop-blur-sm items-center justify-center">
-                <div className="bg-white overflow-y-auto w-2/4 h-5/6 rounded-lg shadow-2xl z-40">
-                    <div class="flex justify-end items-end pt-4 pr-4">
+                <div className="bg-white w-1/2 max-h-full overflow-y-auto rounded-lg shadow-2xl z-40">
+                    <div class="flex justify-between pt-4 px-16 ">
+                    {qualPag(page)}
                         <button className="bg-orange text-white font-black w-7 h-7 hover:scale-110 duration-75 rounded" onClick={isClose} >X</button>
                     </div>
                     {modalswitch(page)}
                 </div>
             </div>
-        </div>
         );
     }
     return null;

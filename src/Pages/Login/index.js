@@ -32,9 +32,9 @@ export default function PageLogin() {
           </div>
 
           <div className="flex flex-col items-center w-full px-2 space-y-2">
-            <button type="submit" className="bg-orange text-white font-semibold w-full rounded shadow-lg hover:scale-105 py-1 duration-75">
-              Entrar
-            </button>
+              <button type="submit" className="bg-orange text-white text-center font-semibold w-full rounded shadow-lg hover:scale-105 py-1 duration-75">
+                Entrar
+              </button>
             <button className="border-b w-1/2 text-high_grey text-xs hover:scale-105 py-1 duration-75">
               Esqueci minha senha
             </button>

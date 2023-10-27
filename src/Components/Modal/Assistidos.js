@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputField, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
+import { InputField, ButtonCadastrar, CheckboxSimNao, cadastroRepresentado } from './ModalItems';
 
 
 
@@ -8,30 +8,51 @@ export default function Assistidos() {
   let lista = []
   function handleSubmit(event){
     event.preventDefault()
-    const dadosRepresentado = {nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado}
-    const data = {name, cpf, rg, dadosRepresentado : isChecked ? dadosRepresentado : null}
-    isChecked ? console.log("teste") : delete data.dadosRepresentado
-    console.log(data)
-    lista.push(data)
+    const dadosRepresentado = {nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado}
+    const dados = {name, cpf, rg, date,estadoCivil ,telefone1, telefone2, email, profissao, renda, dependentes, dadosRepresentado : isChecked ? dadosRepresentado : null}
+    isChecked ? console.log("possui representado") : delete dados.dadosRepresentado
+    console.log(dados)
+    lista.push(dados)
     localStorage.setItem('lista', JSON.stringify(lista))
     console.log(lista)
 
-        //fetch("http://127.0.0.1:8000/assistido/", {
-        //    method:"POST",
-        //    body: JSON.stringify(data),
-        //     headers: {'Content-Type':'application/json'}
-        // })
-    }
+  }
+  
+  //Dados Pessoais
+  const [name, setName] = useState("")
+  const [cpf, setCpf] = useState("")
+  const [rg, setRg] = useState("")
+  const [date, setDate] = useState("")
+  const [isChecked, setIsChecked] = useState(false);
+  const [estadoCivil, setEstadoCivil] = useState("")
+  
+  //Contato
+  const [telefone1, setTelefone1] = useState("")
+  const [telefone2, setTelefone2] = useState("")
+  const [email, setEmail] = useState("")
+  
+  //Dados Socioeconômicos
+  const [profissao, setProfissao] = useState("")
+  const [renda, setRenda] = useState("")
+  const [dependentes, setDependentes] = useState("")
+  
+  //Dados pessoais do representado (caso tenha)
+  const [nameRepresentado, setNameRepresentado] = useState("")
+  const [cpfRepresentado, setCpfRepresentado] = useState("")
+  const [rgRepresentado, setRgRepresentado] = useState("")
+  const [dateRepresentado, setDateRepresentado] = useState("")
+  const [estadoCivilRepresentado, setEstadoCivilRepresentado] = useState("")
 
-    const [nameRepresentado, setNameRepresentado] = useState("")
-    const [cpfRepresentado, setCpfRepresentado] = useState("")
-    const [rgRepresentado, setRgRepresentado] = useState("")
-    const [dateRepresentado, setDateRepresentado] = useState("")
+  //fetch("http://127.0.0.1:8000/assistido/", {
+  //    method:"POST",
+  //    body: JSON.stringify(dados),
+  //     headers: {'Content-Type':'application/json'}
+  // })
 
-    function representado(isChecked) {
-      if (isChecked === true){
+    function cadastroRepresentado(isChecked) {
+      if (isChecked){
         return (
-          <div class="flex flex-col space-y-1 py-5">
+          <div class="flex flex-col space-y-1">
             <h1 class="font-semibold">Dados do Representado</h1>
             <InputField
               label="Nome"
@@ -65,41 +86,31 @@ export default function Assistidos() {
               id="dateRepresentado"
               //required
             />
+            <InputField
+                label="Estado Civil"
+                value={estadoCivilRepresentado}
+                onChange={setEstadoCivilRepresentado}
+                type="text"
+                id="estadoCivilRepresentado"
+                //required
+              />
           </div>
         ); 
       }
       return null
     }
 
-    //Dados Pessoais
-    const [name, setName] = useState("")
-    const [cpf, setCpf] = useState("")
-    const [rg, setRg] = useState("")
-    const [date, setDate] = useState("")
-    const [isChecked, setIsChecked] = useState(false);
-    
-    //Contato
-    const [telefone1, setTelefone1] = useState("")
-    const [telefone2, setTelefone2] = useState("")
-    const [email, setEmail] = useState("")
-    
-    //Dados Socioeconômicos
-    const [profissao, setProfissao] = useState("")
-    const [renda, setRenda] = useState("")
-    const [dependentes, setDependentes] = useState("")
-
   return (
     <>
-      <main className="flex flex-col px-11 overflow-y-auto">
-        <h1 className="pt-4 pb-3 text-2xl font-semibold">Cadastrar Assistido</h1>
-        <form className="flex" onSubmit={handleSubmit}>
-          <div className="flex flex-col space-y-1 w-2/4">
-          <CheckboxSimNao
-                label="Cadastrar Dependente"
-                isChecked={isChecked}
-                onChange={() => setIsChecked(!isChecked)}
+      
+        <form className="grid grid-rows-2 grid-cols-2 gap-y-5 pl-16" onSubmit={handleSubmit}>
+          <div className="flex flex-col space-y-1">
+            <CheckboxSimNao
+              label="Cadastrar Representado?"
+              isChecked={isChecked}
+              onChange={() => setIsChecked(!isChecked)}
             />
-            
+
             <h1 class="font-semibold">Dados Pessoais</h1>
             <InputField
               label="Nome"
@@ -133,67 +144,79 @@ export default function Assistidos() {
               id="date"
               //required
             />
-            
-
-            <h1 class="font-semibold pt-3">Contato</h1>
             <InputField
-              label="Telefone 1"
-              value={telefone1}
-              onChange={setTelefone1}
-              type="number"
-              id="telefone1"
-              //required
-            />
-            <InputField
-              label="Telefone 2"
-              value={telefone2}
-              onChange={setTelefone2}
-              type="number"
-              id="telefone2"
-              //required
-            />
-            <InputField
-              label="E-mail"
-              value={email}
-              onChange={setEmail}
-              type="email"
-              id="email"
-              //required
-            />
-          </div>
-
-          <div class="flex flex-col space-y-1 w-2/4">
-
-          <h1 class="font-semibold">Dados Socioeconômicos</h1>
-          <InputField
-              label="Profissão"
-              value={profissao}
-              onChange={setProfissao}
+              label="Estado Civil"
+              value={estadoCivil}
+              onChange={setEstadoCivil}
               type="text"
-              id="profissao"
+              id="estadoCivil"
               //required
             />
-            <InputField
-              label="Renda Familiar"
-              value={renda}
-              onChange={setRenda}
-              type="number"
-              id="renda"
-              //required
-            />
-            <InputField
-              label="Dependentes"
-              value={dependentes}
-              onChange={setDependentes}
-              type="number"
-              id="dependentes"
-              //required
-            />
-          {representado(isChecked)}
-          <ButtonCadastrar />
           </div>
+
+          <div className="justify-center flex flex-col space-y-1">
+            <h1 class="font-semibold">Dados Socioeconômicos</h1>
+            <InputField
+                label="Profissão"
+                value={profissao}
+                onChange={setProfissao}
+                type="text"
+                id="profissao"
+                //required
+              />
+              <InputField
+                label="Renda Familiar"
+                value={renda}
+                onChange={setRenda}
+                type="number"
+                id="renda"
+                //required
+              />
+              <InputField
+                label="Dependentes"
+                value={dependentes}
+                onChange={setDependentes}
+                type="number"
+                id="dependentes"
+                //required
+              />
+              <ButtonCadastrar />
+            </div>
+            
+            <div className="flex flex-col space-y-1">
+              <h1 class="font-semibold">Contato</h1>
+              <InputField
+                label="Telefone 1"
+                value={telefone1}
+                onChange={setTelefone1}
+                type="number"
+                id="telefone1"
+                //required
+              />
+              <InputField
+                label="Telefone 2"
+                value={telefone2}
+                onChange={setTelefone2}
+                type="number"
+                id="telefone2"
+                //required
+              />
+              <InputField
+                label="E-mail"
+                value={email}
+                onChange={setEmail}
+                type="email"
+                id="email"
+                //required
+              />
+              
+            </div>
+
+            {cadastroRepresentado(isChecked)}
+            
         </form>
-      </main>
+
+      
     </>
   );
 }
