@@ -3,28 +3,26 @@ import Usuarios from './Usuarios';
 import Assistidos from './Assistidos';
 
 function modalswitch(page){
-    if (page == "Usuarios"){
-        return(
-            <Usuarios />
-        );
+    if (page === "Usuarios"){
+        return <Usuarios />
     }
-    return(
-        <Assistidos />
-    )
+    else if (page === "Assistidos"){
+        return <Assistidos />
+    }
 }
 
 const tituloModal = "pb-3 text-2xl font-semibold"
 
 function qualPag(page){
-    if (page == "Assistidos"){
+    if (page === "Assistidos"){
         return <h1 class={tituloModal}>Cadastrar Assistido</h1>
     }
-    else if (page == "Usuarios"){
-        return <h1 class={tituloModal}>Cadastrar Usuario</h1>
+    else if (page === "Usuarios"){
+        return <h1 class={tituloModal}>Cadastrar Usuário</h1>
     }
 }
 
-function Modal({isOpen, isClose, page}) {
+export default function Modal({isOpen, isClose, page}) {
     if(isOpen){
         return (
             <div className="fixed inset-0 flex bg-[rgba(0,0,0,0.1)] backdrop-blur-sm items-center justify-center">
@@ -40,5 +38,3 @@ function Modal({isOpen, isClose, page}) {
     }
     return null;
 }
-
-export default Modal;
