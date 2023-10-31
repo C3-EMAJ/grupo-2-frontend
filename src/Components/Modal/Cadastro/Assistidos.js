@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputField, ButtonCadastrar, CheckboxSimNao } from './ModalItems';
+import { InputField, ButtonCadastrar, CheckboxSimNao } from './Items';
 
 export default function Assistidos() {
 

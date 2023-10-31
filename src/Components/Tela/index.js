@@ -2,11 +2,11 @@ import React from 'react';
 import { useState } from "react";
 
 import Header from '../Header';
-import Modal from '../Modal';
+import Modal from '../Modal/Cadastro';
 import { CardUsuario, CardAssistido } from '../Card';
 
 function CardSwitch(page){
-    if (page == "Usuarios"){
+    if (page === "Usuarios"){
         return(
             <CardUsuario />
         );
