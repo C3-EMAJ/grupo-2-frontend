@@ -11,9 +11,12 @@ function CardAssistido() {
     {nome:"Samuel Lemos", email:"aaaaaaa@bbbbb"}
   ]
   function deleteAssistido(id) {
+    const jsonId = {
+      "id": id
+    }
     fetch("http://127.0.0.1:8000/deleteAssistido/", {
       method:"POST",
-      body: JSON.stringify(id),
+      body: JSON.stringify(jsonId),
       headers: {'Content-Type':'application/json'}
     })
     return console.log("tomaaaaaaa")
