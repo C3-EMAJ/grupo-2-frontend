@@ -45,8 +45,8 @@ export default function Assistidos() {
   function cadastroRepresentado(isChecked) {
     if (isChecked){
       return (
-        <div class="flex flex-col space-y-1">
-          <h1 class="font-semibold">Dados do Representado</h1>
+        <div className="flex flex-col space-y-1">
+          <h1 className="font-semibold">Dados do Representado</h1>
           <InputField
             label="Nome"
             value={nameRepresentado}
@@ -103,7 +103,7 @@ export default function Assistidos() {
             onChange={() => setIsChecked(!isChecked)}
           />
 
-          <h1 class="font-semibold">Dados Pessoais</h1>
+          <h1 className="font-semibold">Dados Pessoais</h1>
           <InputField
             label="Nome"
             value={name}
@@ -147,7 +147,7 @@ export default function Assistidos() {
         </div>
 
         <div className="justify-center flex flex-col space-y-1">
-          <h1 class="font-semibold">Dados Socioeconômicos</h1>
+          <h1 className="font-semibold">Dados Socioeconômicos</h1>
           <InputField
               label="Profissão"
               value={profissao}
@@ -176,7 +176,7 @@ export default function Assistidos() {
         </div>
           
         <div className="flex flex-col space-y-1">
-          <h1 class="font-semibold">Contato</h1>
+          <h1 className="font-semibold">Contato</h1>
           <InputField
             label="Telefone 1"
             value={telefone1}

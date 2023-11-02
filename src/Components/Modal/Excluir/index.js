@@ -32,7 +32,7 @@ function modalswitch(page, assistido, usuario) {
         return (
             <div className="flex flex-col">
                 <p className="text-sm">
-                    Você realmente deseja excluir o assistido <span class="font-semibold text-red">{assistido.nome}</span>? Ao excluir o assistido você exclui todos os processos vinculados a ele.
+                    Você realmente deseja excluir o assistido <span className="font-semibold text-red">{assistido.nome}</span>? Ao excluir o assistido você exclui todos os processos vinculados a ele.
                 </p>
                 <div className="flex justify-end">
                     <ButtonExcluir cpf={assistido.cpf} />

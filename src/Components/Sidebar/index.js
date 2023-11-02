@@ -9,7 +9,7 @@ import img_Agendamentos from '../../images/usd-square 1.png';
 import img_Configuracoes from '../../images/sliders-v-square 1.png';
 import img_Sair from '../../images/sign-out-alt 1.png';
 
-//Comonentes
+//Componentes
 import InfosUsuario from './SidebarItems/InfosUsuario';
 import Item from './SidebarItems/ItensMenu';
 
@@ -17,13 +17,13 @@ export default function Sidebar() {
     return (
     <>
         <aside className="flex h-screen">
-        <div class=" px-2 py-2 overflow-y-auto w-40 bg-high_grey">
-            <div class="flex font-bold text-sm">
-                <p class="text-orange">I </p>
-                <p class="text-black">EMAJ</p>
+        <div className=" px-2 py-2 overflow-y-auto w-40 bg-high_grey">
+            <div className="flex font-bold text-sm">
+                <p className="text-orange">I </p>
+                <p className="text-black">EMAJ</p>
             </div>
             <InfosUsuario foto={foto_perfil} nome="" />
-            <ul class="space-y-2 mx-2">
+            <ul className="space-y-2 mx-2">
                 <Item route="/Demandas" img={img_Demandas} text="Demandas"/>
                 <Item route="/Usuarios" img={img_AdicionarUsuario} text="Usuários" />
                 <Item route="/Assistidos" img={img_Assistidos} text="Assistidos" />

@@ -3,7 +3,7 @@ import React from 'react'
 function InputField({ label, value, onChange, type, id, required }) {
   return (
     <div className="flex flex-col text-sm">
-      <label class="" htmlFor={id}>{label}</label>
+      <label className="" htmlFor={id}>{label}</label>
       <input
         className="border rounded-lg w-3/4"
         value={value}
@@ -18,8 +18,8 @@ function InputField({ label, value, onChange, type, id, required }) {
 
 function ButtonCadastrar() {
   return (
-    <div class="pt-5">
-      <button type="submit" class="w-1/3 bg-orange text-sm rounded p-1 text-white hover:scale-105 duration-75">
+    <div className="pt-5">
+      <button type="submit" className="w-1/3 bg-orange text-sm rounded p-1 text-white hover:scale-105 duration-75">
           Cadastrar
       </button>
     </div>
