@@ -4,7 +4,7 @@ function deleteAssistido(cpf) {
     //const jsonId = {
     //  "cpf": cpf
     //}
-    console.log("foi excluído o assistido de id", cpf)
+    console.log("foi excluído o assistido de cpf", cpf)
     //fetch("http://127.0.0.1:8000/deleteAssistido/", {
     //  method:"POST",
     //  body: JSON.stringify(jsonId),
@@ -12,30 +12,44 @@ function deleteAssistido(cpf) {
     //})
 }
 
-function ButtonExcluir(cpf) {
-    return (
-        <button className="bg-red text-white text-sm font-semibold rounded hover:scale-105 w-16 h-8" onClick={() => deleteAssistido(cpf)}>
-            Excluir
-        </button>
-    );
+function deleteUsuario(cpf) {
+    //const jsonId = {
+    //  "cpf": cpf
+    //}
+    console.log("foi excluído o usuário de cpf", cpf)
+    //fetch("http://127.0.0.1:8000/deleteUsuario/", {
+    //  method:"POST",
+    //  body: JSON.stringify(jsonId),
+    //  headers: {'Content-Type':'application/json'}
+    //})
 }
 
-function modalswitch(page, assistido, usuario) {
-    
-
-    if (page === "Usuarios") {
-        return (
-            // Renderize informações do usuário aqui
-            null
-        );
-    } else if (page === "Assistidos") {
+function modalswitch(page, usuario, assistido) {    
+    if (page === "Usuarios" && usuario && usuario.name) {
         return (
             <div className="flex flex-col">
                 <p className="text-sm">
-                    Você realmente deseja excluir o assistido <span className="font-semibold text-red">{assistido.nome}</span>? Ao excluir o assistido você exclui todos os processos vinculados a ele.
+                    Você realmente deseja excluir o Usuário <span className="font-semibold text-red">{usuario.name}</span>? Ao excluir o usuário você exclui todo o histórico de alterações do mesmo.
                 </p>
                 <div className="flex justify-end">
-                    <ButtonExcluir cpf={assistido.cpf} />
+                <button className="bg-red text-white text-sm font-semibold rounded hover:scale-105 w-16 h-8" onClick={() => deleteUsuario(usuario.cpf)}>
+                    Excluir
+                </button>
+                </div>
+            </div>
+        );
+    }
+    
+    else if (page === "Assistidos" && assistido && assistido.name) {
+        return (
+            <div className="flex flex-col">
+                <p className="text-sm">
+                    Você realmente deseja excluir o assistido <span className="font-semibold text-red">{assistido.name}</span>? Ao excluir o assistido você exclui todos os processos vinculados a ele.
+                </p>
+                <div className="flex justify-end">
+                <button className="bg-red text-white text-sm font-semibold rounded hover:scale-105 w-16 h-8" onClick={() => deleteAssistido(assistido.cpf)}>
+                    Excluir
+                </button>
                 </div>
             </div>
         );
@@ -51,7 +65,7 @@ function qualPag(page) {
     }
 }
 
-export default function ModalExcluir({ isOpen, isClose, page, assistido, usuario }) {
+export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido }) {
     if (isOpen) {
         return (
             <div className="fixed inset-0 flex bg-[rgba(0,0,0,0.1)] backdrop-blur-sm items-center justify-center">
@@ -60,10 +74,9 @@ export default function ModalExcluir({ isOpen, isClose, page, assistido, usuario
                         {qualPag(page)}
                         <button className="bg-red text-white text-sm font-bold w-5 h-5 hover:scale-110 duration-75 rounded" onClick={isClose}>X</button>
                     </div>
-                    {modalswitch(page, assistido, usuario)}
+                    {modalswitch(page, usuario, assistido)}
                 </div>
             </div>
         );
     }
-    return null;
 }

@@ -10,14 +10,17 @@ export default function Tela({ListName, BtnName, page}) {
     
     function CardSwitch(page, search){
         if (page === "Usuarios"){
-          return <CardUsuario />;
+          return <CardUsuario search={search}/>;
         }
-        return <CardAssistido search={search} />;
+        else if (page === "Assistidos"){
+          return <CardAssistido search={search} />;
+        }
       }
     
     const [openModal, setOpenModal] = useState(false);
     const [search, setSearch] = useState(""); // Estado para a pesquisa
     console.log("teste na tela",search)
+    
     return (
         <div className="rounded-lg w-full overflow-y-auto">
             <Header search={search} setSearch={setSearch}/>

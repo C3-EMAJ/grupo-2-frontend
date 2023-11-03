@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import ModalExcluir from '../Modal/Excluir';
 import Loader from '../Loader';
 import { useAssistidos } from '../../Data/getAssistidos';
+import { useUsuarios } from '../../Data/getUsuarios';
 
 //Imagens
 import profile from '../../images/profile.png';
@@ -69,44 +70,62 @@ function CardAssistido({search}) {
 }
 
 
-
-
-
-
-
-function CardUsuario() {
-  let lista = [
-    {nome:"Samuel Lemos", email:"aaaaaaa@bbbbb"}
-  ]
+function CardUsuario({search}) {
 
   const [openModal, setOpenModal] = useState(false);
+  const [selectedUsuario, setSelectedUsuario] = useState(null);
+  const { listaUsuarios, loading } = useUsuarios();
 
-  return(
-    <>
-      <ModalExcluir isOpen={openModal} isClose={() => setOpenModal(!openModal)} page={'Usuarios'}/>
+  const loader = () => {
+    if (loading) {
+      return <Loader />;
+    }
+  };
+
+  const openDeleteModal = (usuario) => {
+    setSelectedUsuario(usuario);
+    setOpenModal(true);
+  };
+
+  // Função para filtrar Usuarios com base na pesquisa
+  const filteredUsuarios = listaUsuarios.filter((usuario) => {
+    if (!search) {
+      return true; // Retorna todos os Usuarios se a pesquisa estiver vazia
+    }
+    if (usuario && usuario.name && typeof usuario.name === 'string') {
+      return usuario.name.toLowerCase().includes(search.toLowerCase());
+    }
+    return false;
+  });
+  //console.log("teste no card",search)
+  return (
+    <div>
+      {loader()}
       <div className="grid grid-cols-6 mx-3 my-3 font-semibold text-sm text-black">
         <div className=" col-start-2">Nome</div>
         <div>E-mail</div>
         <div>Função</div>
         <div>Usuário</div>
       </div>
-
-      {lista.map((user, index) => (
-        <div key={index} className="grid grid-cols-6 h-20 mx-3 my-1 rounded-lg bg-white hover:border text-xs">
-          <div className=" flex items-center">
-            <img src={profile} className="rounded-full" alt="foto do perfil" />
+      {filteredUsuarios &&
+        filteredUsuarios.map((usuario, id) => (
+          <div key={id} className="grid grid-cols-6 h-20 mx-3 my-1 rounded-lg bg-white hover:border text-xs">
+            <div className=" flex items-center">
+              <img src={profile} className="rounded-full" alt="foto do perfil" />
+            </div>
+            <div className=" flex items-center">{usuario.name}</div>
+            <div className=" flex items-center">{usuario.email}</div>
+            <div className=" flex items-center">{usuario.funcao}</div>
+            <div className=" flex items-center">{usuario.user}</div>
+            <div className=" flex items-center justify-end pr-16">
+              <img onClick={() => openDeleteModal(usuario)} className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} />
+            </div>
           </div>
-          <div className=" flex items-center">{user.name}</div>
-          <div className=" flex items-center">{user.email}</div>
-          <div className=" flex items-center">{user.funcao}</div>
-          <div className=" flex items-center">{user.usuario}</div>
-          <div className=" flex items-center justify-end pr-16">
-            <img type="button" onClick={() => setOpenModal(true)} className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} />
-          </div>
-        </div>
-      ))}
-    </>
-  )
+        ))}
+      <ModalExcluir isOpen={openModal} isClose={() => setOpenModal(false)} page={'Usuarios'} Usuario={selectedUsuario} />
+    </div>
+  );
 }
+
 
 export {CardUsuario, CardAssistido}

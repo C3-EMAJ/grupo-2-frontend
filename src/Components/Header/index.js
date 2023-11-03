@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 //Imagens
 import img_Voltar from '../../images/caret-circle-down 1.png';
