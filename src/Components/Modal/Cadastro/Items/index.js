@@ -5,7 +5,7 @@ function InputField({ label, value, onChange, type, id, required }) {
     <div className="flex flex-col text-sm">
       <label className="" htmlFor={id}>{label}</label>
       <input
-        className="border rounded-lg w-3/4"
+        className="border rounded w-3/4"
         value={value}
         onChange={(event) => onChange(event.target.value)}
         type={type}
@@ -16,6 +16,7 @@ function InputField({ label, value, onChange, type, id, required }) {
   );
 }
 
+
 function ButtonCadastrar() {
   return (
     <div className="pt-5">
@@ -25,6 +26,7 @@ function ButtonCadastrar() {
     </div>
   );
 }
+
 
 function CheckboxSimNao({ label, isChecked, onChange }) {
   return (
@@ -40,4 +42,25 @@ function CheckboxSimNao({ label, isChecked, onChange }) {
   );
 }
 
-export {InputField, ButtonCadastrar, CheckboxSimNao};
+
+function ImageUpload({ label, onChange }) {
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    onChange(file);
+  };
+
+  return (
+    <div className="flex flex-col text-sm">
+      <label htmlFor="upload-image">{label}</label>
+      <input
+        type="file"
+        id="upload-image"
+        accept="image/*"
+        onChange={handleImageChange}
+      />
+    </div>
+  );
+}
+
+
+export {InputField, ButtonCadastrar, CheckboxSimNao, ImageUpload};

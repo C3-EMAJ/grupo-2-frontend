@@ -57,7 +57,9 @@ function modalswitch(page, usuario, assistido) {
 }
 
 function qualPag(page) {
+    
     const tituloModal = "pb-3 text-xl font-semibold";
+
     if (page === "Assistidos") {
         return <h1 className={tituloModal}>Excluir Assistido</h1>;
     } else if (page === "Usuarios") {

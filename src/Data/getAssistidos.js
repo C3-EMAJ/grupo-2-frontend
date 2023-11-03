@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// Criar um hook personalizado para buscar os assistidos
+// Criar um hook personalizado para buscar todos os assistidos
 export const useAssistidos = () => {
   const [listaAssistidos, setListaAsstidos] = useState([]);
   const [loading, setLoading] = useState(true);

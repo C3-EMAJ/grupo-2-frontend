@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// Criar um hook personalizado para buscar os Usuarios
+// Criar um hook personalizado para buscar todos os Usuarios
 export const useUsuarios = () => {
   const [listaUsuarios, setListaUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
