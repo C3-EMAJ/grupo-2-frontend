@@ -1,5 +1,6 @@
 import React from 'react'
 
+//Componente de input dos dados
 function InputField({ label, value, onChange, type, id, required }) {
   return (
     <div className="flex flex-col text-sm">
@@ -16,7 +17,7 @@ function InputField({ label, value, onChange, type, id, required }) {
   );
 }
 
-
+//Componente de botão para submeter o formulário
 function ButtonCadastrar() {
   return (
     <div className="pt-5">
@@ -27,7 +28,7 @@ function ButtonCadastrar() {
   );
 }
 
-
+//Componente de checkbox
 function CheckboxSimNao({ label, isChecked, onChange }) {
   return (
     <div className="py-2 flex space-x-2 text-sm">
@@ -42,7 +43,7 @@ function CheckboxSimNao({ label, isChecked, onChange }) {
   );
 }
 
-
+//Componente para fazer o upload de imagem (foto do usuário)
 function ImageUpload({ label, onChange }) {
   const handleImageChange = (event) => {
     const file = event.target.files[0];

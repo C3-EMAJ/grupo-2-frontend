@@ -1,17 +1,46 @@
 import React, { useState } from 'react';
-import { InputField, ButtonCadastrar, ImageUpload } from './Items';
 
+//Componentes
+import { InputField, ButtonCadastrar, ImageUpload } from './Items';
+import Loader from '../../Loader';
+
+//Hooks personalizados
+import {useCadastrarUsuario} from '../../../Data/cadastrarUsuario'
+
+
+//Função contendo os componentes necessários para o cadastro de usuários
 export default function Usuarios() {
+
+  const {cadastrarUsuario, cadastrando, erro} = useCadastrarUsuario(); // Use o hook de cadastro
 
   function handleSubmit(event){
     event.preventDefault()
     const data = {name, email, username, password, confirmPassword, funcao, image}
     console.log(data)
-    //fetch("http://127.0.0.1:8000/assistido/", {
-    //    method:"POST",
-    //    body: JSON.stringify(dados),
-    //     headers: {'Content-Type':'application/json'}
-    // })
+    
+    //Dados do usuário verificados se foram preenchidos
+    const camposAValidar = ["name", "email", "username", "password", "confirmPassword", "funcao"]
+    const valoresAValidar = camposAValidar.map((campo) => data[campo]);
+    if (valoresAValidar.some((value) => typeof value === 'string' && value.trim() === '')) {
+      // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
+      return alert("Todos os dados do usuário, exceto a imagem, são obrigatórios!")
+    }
+
+    else{
+      cadastrarUsuario(data);
+    }
+    if (cadastrando) {
+      return(
+      <div>
+        {Loader()}
+      </div>
+      );
+    }
+  
+    else if (erro) {
+      return alert("Ocorreu um erro ao cadastrar o Usuário\n\n" + "Código do erro: " + erro.message);
+    }
+
   }
   
   //Dados do Usuário
@@ -26,8 +55,8 @@ export default function Usuarios() {
   return (
     <>
       <form className="grid grid-cols-2 pt-10 pl-16 pb-16" onSubmit={handleSubmit}>
-        <div className="flex flex-col space-y-2">
 
+        <div className="flex flex-col space-y-2">
           <InputField
             label="Nome"
             value={name}
@@ -86,7 +115,7 @@ export default function Usuarios() {
           
           <ButtonCadastrar />
         </div>
-          
+
       </form>
     </>
   );

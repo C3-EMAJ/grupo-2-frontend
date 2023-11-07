@@ -2,6 +2,8 @@ import React from 'react';
 import Usuarios from './Usuarios';
 import Assistidos from './Assistidos';
 
+
+//Função que retorna o modal de cadastro de acordo com a página em que o usuário se encontra (pagina de usuários ou assistidos)
 function modalswitch(page){
     if (page === "Usuarios"){
         return <Usuarios />
@@ -13,6 +15,7 @@ function modalswitch(page){
 
 const tituloModal = "pb-3 text-2xl font-semibold"
 
+//Função para definir qual o título do modal de acordo com a página em que o usuário sem encontra
 function qualPag(page){
     if (page === "Assistidos"){
         return <h1 className={tituloModal}>Cadastrar Assistido</h1>
@@ -22,6 +25,7 @@ function qualPag(page){
     }
 }
 
+//Função do modal em si, onde são renderizados os componentes de acordo com a página em que o usuário sem encontra
 export default function Modal({isOpen, isClose, page}) {
     if(isOpen){
         return (
@@ -36,5 +40,4 @@ export default function Modal({isOpen, isClose, page}) {
             </div>
         );
     }
-    return null;
 }

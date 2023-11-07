@@ -1,28 +1,53 @@
 import React, { useState } from 'react';
+
+//Componentes
 import { InputField, ButtonCadastrar, CheckboxSimNao } from './Items';
+import Loader from '../../Loader';
+
+//Hooks personalizados
+import {useCadastrarAssistido} from '../../../Data/cadastrarAssistido'
 
 export default function Assistidos() {
 
+  const {cadastrarAssistido, cadastrando, erro} = useCadastrarAssistido(); // Use o hook de cadastro
+
   function handleSubmit(event) {
     event.preventDefault();
-    const dadosRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
-    const dados = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dadosRepresentado: isChecked ? dadosRepresentado : null };
-    isChecked ? console.log("possui representado") : delete dados.dadosRepresentado;
-    console.log(dados);
+    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+    const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
+    isChecked ? console.log("possui representado") : delete data.dataRepresentado;
+    //console.log(data);
     
+    //Dados do usuário verificados se foram preenchidos
     const camposAValidar = ["name", "cpf", "rg", "date", "estadoCivil"]
-    const valoresAValidar = camposAValidar.map((campo) => dados[campo]);
+    const valoresAValidar = camposAValidar.map((campo) => data[campo]);
     if (valoresAValidar.some((value) => typeof value === 'string' && value.trim() === '')) {
       // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-      alert("Todos os dados pessoais são necessários!");
+      return alert("Todos os dados pessoais são necessários!")  
     }
+
+    //Dados do representado (caso tenha) verificados se foram preenchidos
     const camposAValidarRepresentado = ["nameRepresentado", "cpfRepresentado", "rgRepresentado", "dateRepresentado", "estadoCivilRepresentado"]
-    const valoresAValidarRepresentado = camposAValidarRepresentado.map((campo) => dadosRepresentado[campo]);
+    const valoresAValidarRepresentado = camposAValidarRepresentado.map((campo) => dataRepresentado[campo]);
     if (isChecked) {
       if (valoresAValidarRepresentado.some((value) => typeof value === 'string' && value.trim() === '')) {
         // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-        alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado");
+        return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado");
       }
+    }
+    else{
+      cadastrarAssistido(data);
+    }
+    if (cadastrando) {
+      return(
+      <div>
+        {Loader()}
+      </div>
+      );
+    }
+  
+    else if (erro) {
+      return alert("Ocorreu um erro ao cadastrar o Assistido\n\n" + "Código do erro: " + erro.message);
     }
   }
   
@@ -51,12 +76,8 @@ export default function Assistidos() {
   const [dateRepresentado, setDateRepresentado] = useState("")
   const [estadoCivilRepresentado, setEstadoCivilRepresentado] = useState("")
 
-  //fetch("http://127.0.0.1:8000/assistido/", {
-  //    method:"POST",
-  //    body: JSON.stringify(dados),
-  //     headers: {'Content-Type':'application/json'}
-  // })
 
+  //Função para exibir o formulário de cadastrar um representado no modal
   function cadastroRepresentado(isChecked) {
     if (isChecked){
       return (
@@ -105,12 +126,13 @@ export default function Assistidos() {
         </div>
       ); 
     }
-    return null
   }
 
+  //Componentes referentes ao cadastro de assistidos
   return (
     <>
       <form className="grid grid-rows-2 grid-cols-2 gap-y-5 pl-16" onSubmit={handleSubmit}>
+
         <div className="flex flex-col space-y-1">
           <CheckboxSimNao
             label="Cadastrar Representado?"

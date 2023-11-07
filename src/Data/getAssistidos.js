@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import geralFetch from "./config";
 
 // Criar um hook personalizado para buscar todos os assistidos
 export const useAssistidos = () => {
@@ -9,8 +9,8 @@ export const useAssistidos = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          "https://jsonplaceholder.typicode.com/users"
+        const response = await geralFetch.get(
+          "/users"
         );
 
         const data = response.data;

@@ -38,6 +38,7 @@ function CardAssistido({search}) {
     return false;
   });
   //console.log("teste no card",search)
+  
   return (
     <div>
       {loader()}
