@@ -3,12 +3,27 @@ import { InputField, ButtonCadastrar, CheckboxSimNao } from './Items';
 
 export default function Assistidos() {
 
-  function handleSubmit(event){
-    event.preventDefault()
-    const dadosRepresentado = {nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado}
-    const dados = {name, cpf, rg, date,estadoCivil ,telefone1, telefone2, email, profissao, renda, dependentes, dadosRepresentado : isChecked ? dadosRepresentado : null}
-    isChecked ? console.log("possui representado") : delete dados.dadosRepresentado
-    console.log(dados)
+  function handleSubmit(event) {
+    event.preventDefault();
+    const dadosRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+    const dados = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dadosRepresentado: isChecked ? dadosRepresentado : null };
+    isChecked ? console.log("possui representado") : delete dados.dadosRepresentado;
+    console.log(dados);
+    
+    const camposAValidar = ["name", "cpf", "rg", "date", "estadoCivil"]
+    const valoresAValidar = camposAValidar.map((campo) => dados[campo]);
+    if (valoresAValidar.some((value) => typeof value === 'string' && value.trim() === '')) {
+      // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
+      alert("Todos os dados pessoais são necessários!");
+    }
+    const camposAValidarRepresentado = ["nameRepresentado", "cpfRepresentado", "rgRepresentado", "dateRepresentado", "estadoCivilRepresentado"]
+    const valoresAValidarRepresentado = camposAValidarRepresentado.map((campo) => dadosRepresentado[campo]);
+    if (isChecked) {
+      if (valoresAValidarRepresentado.some((value) => typeof value === 'string' && value.trim() === '')) {
+        // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
+        alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado");
+      }
+    }
   }
   
   //Dados Pessoais

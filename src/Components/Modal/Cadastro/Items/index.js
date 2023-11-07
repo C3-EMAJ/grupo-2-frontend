@@ -53,6 +53,7 @@ function ImageUpload({ label, onChange }) {
     <div className="flex flex-col text-sm">
       <label htmlFor="upload-image">{label}</label>
       <input
+        className="text-xs"
         type="file"
         id="upload-image"
         accept="image/*"
