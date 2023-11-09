@@ -9,7 +9,7 @@ import {useCadastrarUsuario} from '../../../Data/cadastrarUsuario'
 
 
 //Função contendo os componentes necessários para o cadastro de usuários
-export default function Usuarios() {
+export default function Usuarios({usuario}) {
 
   const {cadastrarUsuario, cadastrando, erro} = useCadastrarUsuario(); // Use o hook de cadastro
 
@@ -26,9 +26,6 @@ export default function Usuarios() {
       return alert("Todos os dados do usuário, exceto a imagem, são obrigatórios!")
     }
 
-    else{
-      cadastrarUsuario(data);
-    }
     if (cadastrando) {
       <>
         {Loader()}
@@ -36,6 +33,13 @@ export default function Usuarios() {
     }
     else if (erro) {
       return alert("Ocorreu um erro ao cadastrar o Usuário\n\n" + "Código do erro: " + erro.message);
+    }
+    else if (usuario) {
+      alert("Usuário Editado")
+    }
+    else{
+      alert("Usuário cadastrado")
+      cadastrarUsuario(data);
     }
 
   }
@@ -56,7 +60,7 @@ export default function Usuarios() {
         <div className="flex flex-col space-y-2">
           <InputField
             label="Nome"
-            value={name}
+            value={usuario? usuario.name : null}
             onChange={setName}
             type="text"
             id="name"
@@ -64,7 +68,7 @@ export default function Usuarios() {
           />
           <InputField
             label="E-mail"
-            value={email}
+            value={usuario? usuario.email : null}
             onChange={setEmail}
             type="email"
             id="email"
@@ -72,7 +76,7 @@ export default function Usuarios() {
           />
           <InputField
             label="Usuário"
-            value={username}
+            value={usuario? usuario.username : null}
             onChange={setUsername}
             type="text"
             id="username"
@@ -99,7 +103,7 @@ export default function Usuarios() {
         <div className="flex flex-col space-y-1">
           <InputField
               label="Função"
-              value={funcao}
+              value={usuario? usuario.funcao : null}
               onChange={setFuncao}
               type="text"
               id="funcao"
@@ -110,7 +114,7 @@ export default function Usuarios() {
             onChange={setImage}
           />
           
-          <ButtonCadastrar />
+          <ButtonCadastrar label={usuario ? "Editar" : "Cadastrar"}/>
         </div>
 
       </form>

@@ -18,11 +18,11 @@ function InputField({ label, value, onChange, type, id, required }) {
 }
 
 //Componente de botão para submeter o formulário
-function ButtonCadastrar() {
+function ButtonCadastrar({label}) {
   return (
     <div className="pt-5">
       <button type="submit" className="w-1/3 bg-orange text-sm rounded p-1 text-white hover:scale-105 duration-75">
-          Cadastrar
+          {label}
       </button>
     </div>
   );

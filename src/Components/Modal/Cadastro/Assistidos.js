@@ -7,7 +7,7 @@ import Loader from '../../Loader';
 //Hooks personalizados
 import {useCadastrarAssistido} from '../../../Data/cadastrarAssistido'
 
-export default function Assistidos() {
+export default function Assistidos({assistido}) {
 
   const {cadastrarAssistido, cadastrando, erro} = useCadastrarAssistido();
 
@@ -43,7 +43,11 @@ export default function Assistidos() {
     if (erro) {
       return alert("Ocorreu um erro ao cadastrar o Assistido\n\n" + "Código do erro: " + erro.message);
     }
+    if (assistido) {
+      return alert("Assistido editado")
+    }
     else{
+      alert("Assistido cadastrado")
       cadastrarAssistido(data);
     }
   }
@@ -140,7 +144,7 @@ export default function Assistidos() {
           <h1 className="font-semibold">Dados Pessoais</h1>
           <InputField
             label="Nome"
-            value={name}
+            value={assistido ? assistido.name : null}
             onChange={setName}
             type="text"
             id="name"
@@ -148,7 +152,7 @@ export default function Assistidos() {
           />
           <InputField
             label="CPF"
-            value={cpf}
+            value={assistido ? assistido.cpf : null}
             onChange={setCpf}
             type="number"
             id="cpf"
@@ -156,7 +160,7 @@ export default function Assistidos() {
           />
           <InputField
             label="RG"
-            value={rg}
+            value={assistido ? assistido.rg : null}
             onChange={setRg}
             type="number"
             id="rg"
@@ -164,7 +168,7 @@ export default function Assistidos() {
           />
           <InputField
             label="Data de Nasimento"
-            value={date}
+            value={assistido ? assistido.date : null}
             onChange={setDate}
             type="date"
             id="date"
@@ -172,7 +176,7 @@ export default function Assistidos() {
           />
           <InputField
             label="Estado Civil"
-            value={estadoCivil}
+            value={assistido ? assistido.estadoCivil : null}
             onChange={setEstadoCivil}
             type="text"
             id="estadoCivil"
@@ -184,7 +188,7 @@ export default function Assistidos() {
           <h1 className="font-semibold">Dados Socioeconômicos</h1>
           <InputField
               label="Profissão"
-              value={profissao}
+              value={assistido ? assistido.profissao : null}
               onChange={setProfissao}
               type="text"
               id="profissao"
@@ -192,7 +196,7 @@ export default function Assistidos() {
           />
           <InputField
             label="Renda Familiar"
-            value={renda}
+            value={assistido ? assistido.renda : null}
             onChange={setRenda}
             type="number"
             id="renda"
@@ -200,20 +204,20 @@ export default function Assistidos() {
           />
           <InputField
             label="Dependentes"
-            value={dependentes}
+            value={assistido ? assistido.dependentes : null}
             onChange={setDependentes}
             type="number"
             id="dependentes"
             //required
           />
-          <ButtonCadastrar />
+          <ButtonCadastrar label={assistido ? "Editar" : "Cadastrar"}/>
         </div>
           
         <div className="flex flex-col space-y-1">
           <h1 className="font-semibold">Contato</h1>
           <InputField
             label="Telefone 1"
-            value={telefone1}
+            value={assistido ? assistido.telefone1 : null}
             onChange={setTelefone1}
             type="number"
             id="telefone1"
@@ -221,7 +225,7 @@ export default function Assistidos() {
           />
           <InputField
             label="Telefone 2"
-            value={telefone2}
+            value={assistido ? assistido.telefone2 : null}
             onChange={setTelefone2}
             type="number"
             id="telefone2"
@@ -229,7 +233,7 @@ export default function Assistidos() {
           />
           <InputField
             label="E-mail"
-            value={email}
+            value={assistido ? assistido.email : null}
             onChange={setEmail}
             type="email"
             id="email"
