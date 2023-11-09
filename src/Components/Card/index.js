@@ -37,7 +37,6 @@ function CardAssistido({search}) {
     }
     return false;
   });
-  //console.log("teste no card",search)
   
   return (
     <div>
@@ -123,7 +122,7 @@ function CardUsuario({search}) {
             </div>
           </div>
         ))}
-      <ModalExcluir isOpen={openModal} isClose={() => setOpenModal(false)} page={'Usuarios'} Usuario={selectedUsuario} />
+      <ModalExcluir isOpen={openModal} isClose={() => setOpenModal(false)} page={'Usuarios'} usuario={selectedUsuario} />
     </div>
   );
 }

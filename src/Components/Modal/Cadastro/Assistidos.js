@@ -9,7 +9,7 @@ import {useCadastrarAssistido} from '../../../Data/cadastrarAssistido'
 
 export default function Assistidos() {
 
-  const {cadastrarAssistido, cadastrando, erro} = useCadastrarAssistido(); // Use o hook de cadastro
+  const {cadastrarAssistido, cadastrando, erro} = useCadastrarAssistido();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -35,19 +35,16 @@ export default function Assistidos() {
         return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado");
       }
     }
+    if (cadastrando) {
+      <>
+        {Loader()}
+      </>
+    }
+    if (erro) {
+      return alert("Ocorreu um erro ao cadastrar o Assistido\n\n" + "Código do erro: " + erro.message);
+    }
     else{
       cadastrarAssistido(data);
-    }
-    if (cadastrando) {
-      return(
-      <div>
-        {Loader()}
-      </div>
-      );
-    }
-  
-    else if (erro) {
-      return alert("Ocorreu um erro ao cadastrar o Assistido\n\n" + "Código do erro: " + erro.message);
     }
   }
   

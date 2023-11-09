@@ -30,13 +30,10 @@ export default function Usuarios() {
       cadastrarUsuario(data);
     }
     if (cadastrando) {
-      return(
-      <div>
+      <>
         {Loader()}
-      </div>
-      );
+      </>
     }
-  
     else if (erro) {
       return alert("Ocorreu um erro ao cadastrar o Usuário\n\n" + "Código do erro: " + erro.message);
     }

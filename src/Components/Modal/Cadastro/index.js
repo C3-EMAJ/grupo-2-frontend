@@ -2,7 +2,6 @@ import React from 'react';
 import Usuarios from './Usuarios';
 import Assistidos from './Assistidos';
 
-
 //Função que retorna o modal de cadastro de acordo com a página em que o usuário se encontra (pagina de usuários ou assistidos)
 function modalswitch(page){
     if (page === "Usuarios"){
