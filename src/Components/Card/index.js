@@ -56,7 +56,7 @@ function CardAssistido({search}) {
       </div>
       {filteredAssistidos &&
         filteredAssistidos.map((assistido, id) => (
-          <div key={id} onClick={() => openEditModal(assistido)} className="grid grid-cols-7 h-20 mx-3 my-1 rounded-lg bg-white hover:border text-xs">
+          <div key={id} onClick={() => openEditModal(assistido)} className="grid grid-cols-7 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs cursor-pointer">
             <div className=" flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
@@ -66,7 +66,11 @@ function CardAssistido({search}) {
             <div className=" flex items-center">{assistido.cpf}</div>
             <div className=" flex items-center">{assistido.date}</div>
             <div className=" flex items-center justify-end pr-16">
-              <img onClick={() => openDeleteModal(assistido)} className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} />
+              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira}  
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openDeleteModal(assistido);
+                  }} />
             </div>
           </div>
         ))}
@@ -130,7 +134,11 @@ function CardUsuario({search}) {
             <div className=" flex items-center">{usuario.funcao}</div>
             <div className=" flex items-center">{usuario.username}</div>
             <div className=" flex items-center justify-end pr-16">
-              <img onClick={() => openDeleteModal(usuario)} className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} />
+              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openDeleteModal(usuario)
+                  }} />
             </div>
           </div>
         ))}
