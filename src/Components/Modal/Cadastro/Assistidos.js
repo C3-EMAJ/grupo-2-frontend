@@ -53,22 +53,22 @@ export default function Assistidos({assistido}) {
   }
   
   //Dados Pessoais
-  const [name, setName] = useState("")
-  const [cpf, setCpf] = useState("")
-  const [rg, setRg] = useState("")
-  const [date, setDate] = useState("")
+  const [name, setName] = useState(assistido ? assistido.name : "")
+  const [cpf, setCpf] = useState(assistido ? assistido.cpf : "")
+  const [rg, setRg] = useState(assistido ? assistido.rg : "")
+  const [date, setDate] = useState(assistido ? assistido.date : "")
   const [isChecked, setIsChecked] = useState(false);
-  const [estadoCivil, setEstadoCivil] = useState("")
+  const [estadoCivil, setEstadoCivil] = useState(assistido ? assistido.estadoCivil : "")
   
   //Contato
-  const [telefone1, setTelefone1] = useState("")
-  const [telefone2, setTelefone2] = useState("")
-  const [email, setEmail] = useState("")
+  const [telefone1, setTelefone1] = useState(assistido ? assistido.telefone1 : "")
+  const [telefone2, setTelefone2] = useState(assistido ? assistido.telefone2 : "")
+  const [email, setEmail] = useState(assistido ? assistido.email : "")
   
   //Dados Socioeconômicos
-  const [profissao, setProfissao] = useState("")
-  const [renda, setRenda] = useState("")
-  const [dependentes, setDependentes] = useState("")
+  const [profissao, setProfissao] = useState(assistido ? assistido.profissao : "")
+  const [renda, setRenda] = useState(assistido ? assistido.renda : "")
+  const [dependentes, setDependentes] = useState(assistido ? assistido.dependentes : "")
   
   //Dados pessoais do representado (caso tenha)
   const [nameRepresentado, setNameRepresentado] = useState("")
@@ -144,7 +144,7 @@ export default function Assistidos({assistido}) {
           <h1 className="font-semibold">Dados Pessoais</h1>
           <InputField
             label="Nome"
-            value={assistido ? assistido.name : null}
+            value={name}
             onChange={setName}
             type="text"
             id="name"
@@ -152,7 +152,7 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="CPF"
-            value={assistido ? assistido.cpf : null}
+            value={cpf}
             onChange={setCpf}
             type="number"
             id="cpf"
@@ -160,7 +160,7 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="RG"
-            value={assistido ? assistido.rg : null}
+            value={rg}
             onChange={setRg}
             type="number"
             id="rg"
@@ -168,7 +168,7 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="Data de Nasimento"
-            value={assistido ? assistido.date : null}
+            value={date}
             onChange={setDate}
             type="date"
             id="date"
@@ -176,7 +176,7 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="Estado Civil"
-            value={assistido ? assistido.estadoCivil : null}
+            value={estadoCivil}
             onChange={setEstadoCivil}
             type="text"
             id="estadoCivil"
@@ -188,7 +188,7 @@ export default function Assistidos({assistido}) {
           <h1 className="font-semibold">Dados Socioeconômicos</h1>
           <InputField
               label="Profissão"
-              value={assistido ? assistido.profissao : null}
+              value={profissao}
               onChange={setProfissao}
               type="text"
               id="profissao"
@@ -196,7 +196,7 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="Renda Familiar"
-            value={assistido ? assistido.renda : null}
+            value={renda}
             onChange={setRenda}
             type="number"
             id="renda"
@@ -204,7 +204,7 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="Dependentes"
-            value={assistido ? assistido.dependentes : null}
+            value={dependentes}
             onChange={setDependentes}
             type="number"
             id="dependentes"
@@ -217,7 +217,7 @@ export default function Assistidos({assistido}) {
           <h1 className="font-semibold">Contato</h1>
           <InputField
             label="Telefone 1"
-            value={assistido ? assistido.telefone1 : null}
+            value={telefone1}
             onChange={setTelefone1}
             type="number"
             id="telefone1"
@@ -225,7 +225,7 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="Telefone 2"
-            value={assistido ? assistido.telefone2 : null}
+            value={telefone2}
             onChange={setTelefone2}
             type="number"
             id="telefone2"
@@ -233,7 +233,7 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="E-mail"
-            value={assistido ? assistido.email : null}
+            value={email}
             onChange={setEmail}
             type="email"
             id="email"

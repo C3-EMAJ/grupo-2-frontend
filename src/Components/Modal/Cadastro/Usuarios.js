@@ -45,13 +45,13 @@ export default function Usuarios({usuario}) {
   }
   
   //Dados do Usuário
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [funcao, setFuncao] = useState("");
-  const [image, setImage] = useState("");
+  const [name, setName] = useState(usuario ? usuario.name : "");
+  const [email, setEmail] = useState(usuario ? usuario.email : "");
+  const [username, setUsername] = useState(usuario ? usuario.username : "");
+  const [password, setPassword] = useState(usuario ? usuario.password : "");
+  const [confirmPassword, setConfirmPassword] = useState(usuario ? usuario.confirmPassword : "");
+  const [funcao, setFuncao] = useState(usuario ? usuario.funcao : "");
+  const [image, setImage] = useState(usuario ? usuario.image : "");
 
   return (
     <>
@@ -60,7 +60,7 @@ export default function Usuarios({usuario}) {
         <div className="flex flex-col space-y-2">
           <InputField
             label="Nome"
-            value={usuario? usuario.name : null}
+            value={name}
             onChange={setName}
             type="text"
             id="name"
@@ -68,7 +68,7 @@ export default function Usuarios({usuario}) {
           />
           <InputField
             label="E-mail"
-            value={usuario? usuario.email : null}
+            value={email}
             onChange={setEmail}
             type="email"
             id="email"
@@ -76,7 +76,7 @@ export default function Usuarios({usuario}) {
           />
           <InputField
             label="Usuário"
-            value={usuario? usuario.username : null}
+            value={username}
             onChange={setUsername}
             type="text"
             id="username"
@@ -103,7 +103,7 @@ export default function Usuarios({usuario}) {
         <div className="flex flex-col space-y-1">
           <InputField
               label="Função"
-              value={usuario? usuario.funcao : null}
+              value={funcao}
               onChange={setFuncao}
               type="text"
               id="funcao"
