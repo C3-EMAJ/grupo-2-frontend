@@ -6,10 +6,21 @@ import Loader from '../../Loader';
 
 //Hooks personalizados
 import {useCadastrarAssistido} from '../../../Data/cadastrarAssistido'
+import { useEditarAssistido } from '../../../Data/editarAssistido';
 
+
+//Função contendo os componentes necessários para o cadastro de assistidos
 export default function Assistidos({assistido}) {
 
   const {cadastrarAssistido, cadastrando} = useCadastrarAssistido();
+  const {editarAssistido, editando} = useEditarAssistido();
+
+  //const para exibir o loader
+  const loader = () => {
+    if (cadastrando || editando) {
+      return <Loader />;
+    }
+  };
 
   //Dados Pessoais
   const [name, setName] = useState(assistido ? assistido.name : "")
@@ -36,15 +47,19 @@ export default function Assistidos({assistido}) {
   const [dateRepresentado, setDateRepresentado] = useState("")
   const [estadoCivilRepresentado, setEstadoCivilRepresentado] = useState("")
 
-
+  //função que faz a requisição para submeter o formulário
   function handleSubmit(event) {
     event.preventDefault();
-    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+
+    //objeto contendo ad informações do assistido
     const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
+    //objeto contendo as informações do representado (caso tenha)
+    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+    //se caso não for marcada a opção de cadastrar representado então dataRepresentado não é enviado no objeto
     isChecked ? console.log("possui representado") : delete data.dataRepresentado;
     //console.log(data);
     
-    //Dados do usuário verificados se foram preenchidos
+    //Dados do assistido verificados se foram preenchidos
     if (!data.name || !data.cpf || !data.rg || !data.date || !data.estadoCivil || !data.telefone1) {
       return alert("Todos os dados pessoais e pelo menos um número de telefone são necessários!")
     }
@@ -58,11 +73,13 @@ export default function Assistidos({assistido}) {
     
     //Se o assistido foi selecionado para edição então chama o hook de edição de assistido
     if (assistido) {
-      return alert("Assistido editado")
+      //console.log(data)
+      editarAssistido(data)
     }
 
-    //Se não, então chama o hook de cadastrar assistido
+    //Se não, então chama o hook de cadastrar um novo assistido
     else{
+      //console.log(data)
       cadastrarAssistido(data);
     }
   }
@@ -121,6 +138,7 @@ export default function Assistidos({assistido}) {
   //Componentes referentes ao cadastro de assistidos
   return (
     <>
+      {loader()}
       <form className="grid grid-rows-2 grid-cols-2 gap-y-5 pl-16" onSubmit={handleSubmit}>
 
         <div className="flex flex-col space-y-1">

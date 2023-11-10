@@ -4,6 +4,7 @@ import React from 'react';
 import Assistidos from './Assistidos';
 import Usuarios from './Usuarios';
 
+//função para definir o título do modal
 function qualPag(page) {
 
     const tituloModal = "pb-3 text-xl font-semibold";
@@ -15,6 +16,7 @@ function qualPag(page) {
     }
 }
 
+//função para exibir ou o modal de assistidos ou de usuários
 function modalswitch(page, usuario, assistido) {
 
     if (page === "Usuarios" && usuario && usuario.name) {

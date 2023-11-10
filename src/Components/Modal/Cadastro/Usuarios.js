@@ -5,12 +5,22 @@ import { InputField, ButtonCadastrar, ImageUpload } from './Items';
 import Loader from '../../Loader';
 
 //Hooks personalizados
-import {useCadastrarUsuario} from '../../../Data/cadastrarUsuario'
+import { useCadastrarUsuario } from '../../../Data/cadastrarUsuario'
+import { useEditarUsuario } from '../../../Data/editarUsuario';
 
 
 //Função contendo os componentes necessários para o cadastro de usuários
 export default function Usuarios({ usuario }) {
+
   const { cadastrarUsuario, cadastrando } = useCadastrarUsuario();
+  const { editarUsuario, editando } = useEditarUsuario();
+
+  //const para exibir o loader
+  const loader = () => {
+    if (cadastrando || editando) {
+      return <Loader />;
+    }
+  };
 
   // Dados do Usuário
   const [name, setName] = useState(usuario ? usuario.name : "");
@@ -21,17 +31,15 @@ export default function Usuarios({ usuario }) {
   const [funcao, setFuncao] = useState(usuario ? usuario.funcao : "");
   const [image, setImage] = useState(usuario ? usuario.image : "");
 
-  function handleSubmit(event) {
+  //função que faz a requisição para submeter o formulário
+  function handleSubmit(event) { 
     event.preventDefault();
+
+    //objeto contendo as informações do usuário
     const data = { name, email, username, password, confirmPassword, funcao, image };
 
-    // Dados do usuário verificados se foram preenchidos
-    //const camposAValidar = ["name", "email", "username", "password", "confirmPassword", "funcao"];
-    //const valoresAValidar = camposAValidar.map((campo) => data[campo]);
-
-    if (!data.name || !data.email || !data.username || !data.password || !data.confirmPassword || !data.funcao){//(valoresAValidar.some((value) => (typeof value === 'string' && value.trim() == '') || value == null)) {
-      // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-      //console.log(valoresAValidar);
+    // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
+    if (!data.name || !data.email || !data.username || !data.password || !data.confirmPassword || !data.funcao){
       return alert("Todos os dados do usuário, exceto a imagem, são obrigatórios!");
     }
 
@@ -40,10 +48,15 @@ export default function Usuarios({ usuario }) {
       return alert("As senhas não coincidem!");
     }
 
+    //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
     if (usuario) {
-      return alert("Usuário editado");
+      //console.log(data)
+      editarUsuario(data);
     }
+
+    //Se não, então chama o hook de cadastrar um novo usuário
     else{
+      //console.log(data)
       cadastrarUsuario(data);
     }
   }
@@ -52,6 +65,7 @@ export default function Usuarios({ usuario }) {
 
   return (
     <>
+      {loader()}
       <form className="grid grid-cols-2 pt-10 pl-16 pb-16" onSubmit={handleSubmit}>
 
         <div className="flex flex-col space-y-2">

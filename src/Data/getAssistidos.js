@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+
+//BaseURL da API
 import geralFetch from "./config";
 
 // Criar um hook personalizado para buscar todos os assistidos
@@ -18,8 +20,8 @@ export const useAssistidos = () => {
         setListaAsstidos(data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
         setLoading(false);
+        alert("Ocorreu um erro ao carregar a lista de Assistidos\n\n" + "Código do erro: " + error.message);
       }
     }
 

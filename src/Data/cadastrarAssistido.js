@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+//BaseURL da API
 import geralFetch from "./config";
 
 export const useCadastrarAssistido = () => {
@@ -16,8 +18,8 @@ export const useCadastrarAssistido = () => {
       setCadastrando(false);
     } catch (error) {
       //console.log(error);
-      alert("Ocorreu um erro ao cadastrar o Assistido\n\n" + "Código do erro: " + error.message);
       setCadastrando(false);
+      alert("Ocorreu um erro ao cadastrar o Assistido\n\n" + "Código do erro: " + error.message);
     }
   };
 
