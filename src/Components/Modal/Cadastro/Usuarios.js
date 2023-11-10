@@ -9,42 +9,10 @@ import {useCadastrarUsuario} from '../../../Data/cadastrarUsuario'
 
 
 //Função contendo os componentes necessários para o cadastro de usuários
-export default function Usuarios({usuario}) {
+export default function Usuarios({ usuario }) {
+  const { cadastrarUsuario, cadastrando } = useCadastrarUsuario();
 
-  const {cadastrarUsuario, cadastrando, erro} = useCadastrarUsuario(); // Use o hook de cadastro
-
-  function handleSubmit(event){
-    event.preventDefault()
-    const data = {name, email, username, password, confirmPassword, funcao, image}
-    console.log(data)
-    
-    //Dados do usuário verificados se foram preenchidos
-    const camposAValidar = ["name", "email", "username", "password", "confirmPassword", "funcao"]
-    const valoresAValidar = camposAValidar.map((campo) => data[campo]);
-    if (valoresAValidar.some((value) => typeof value === 'string' && value.trim() === '')) {
-      // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-      return alert("Todos os dados do usuário, exceto a imagem, são obrigatórios!")
-    }
-
-    if (cadastrando) {
-      <>
-        {Loader()}
-      </>
-    }
-    else if (erro) {
-      return alert("Ocorreu um erro ao cadastrar o Usuário\n\n" + "Código do erro: " + erro.message);
-    }
-    else if (usuario) {
-      alert("Usuário Editado")
-    }
-    else{
-      alert("Usuário cadastrado")
-      cadastrarUsuario(data);
-    }
-
-  }
-  
-  //Dados do Usuário
+  // Dados do Usuário
   const [name, setName] = useState(usuario ? usuario.name : "");
   const [email, setEmail] = useState(usuario ? usuario.email : "");
   const [username, setUsername] = useState(usuario ? usuario.username : "");
@@ -52,6 +20,35 @@ export default function Usuarios({usuario}) {
   const [confirmPassword, setConfirmPassword] = useState(usuario ? usuario.confirmPassword : "");
   const [funcao, setFuncao] = useState(usuario ? usuario.funcao : "");
   const [image, setImage] = useState(usuario ? usuario.image : "");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const data = { name, email, username, password, confirmPassword, funcao, image };
+
+    // Dados do usuário verificados se foram preenchidos
+    //const camposAValidar = ["name", "email", "username", "password", "confirmPassword", "funcao"];
+    //const valoresAValidar = camposAValidar.map((campo) => data[campo]);
+
+    if (!data.name || !data.email || !data.username || !data.password || !data.confirmPassword || !data.funcao){//(valoresAValidar.some((value) => (typeof value === 'string' && value.trim() == '') || value == null)) {
+      // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
+      //console.log(valoresAValidar);
+      return alert("Todos os dados do usuário, exceto a imagem, são obrigatórios!");
+    }
+
+    // Verificar se as senhas coincidem
+    if (password !== confirmPassword) {
+      return alert("As senhas não coincidem!");
+    }
+
+    if (usuario) {
+      return alert("Usuário editado");
+    }
+    else{
+      cadastrarUsuario(data);
+    }
+  }
+  
+  
 
   return (
     <>

@@ -9,49 +9,8 @@ import {useCadastrarAssistido} from '../../../Data/cadastrarAssistido'
 
 export default function Assistidos({assistido}) {
 
-  const {cadastrarAssistido, cadastrando, erro} = useCadastrarAssistido();
+  const {cadastrarAssistido, cadastrando} = useCadastrarAssistido();
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
-    const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
-    isChecked ? console.log("possui representado") : delete data.dataRepresentado;
-    //console.log(data);
-    
-    //Dados do usuário verificados se foram preenchidos
-    const camposAValidar = ["name", "cpf", "rg", "date", "estadoCivil"]
-    const valoresAValidar = camposAValidar.map((campo) => data[campo]);
-    if (valoresAValidar.some((value) => typeof value === 'string' && value.trim() === '')) {
-      // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-      return alert("Todos os dados pessoais são necessários!")  
-    }
-
-    //Dados do representado (caso tenha) verificados se foram preenchidos
-    const camposAValidarRepresentado = ["nameRepresentado", "cpfRepresentado", "rgRepresentado", "dateRepresentado", "estadoCivilRepresentado"]
-    const valoresAValidarRepresentado = camposAValidarRepresentado.map((campo) => dataRepresentado[campo]);
-    if (isChecked) {
-      if (valoresAValidarRepresentado.some((value) => typeof value === 'string' && value.trim() === '')) {
-        // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-        return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado");
-      }
-    }
-    if (cadastrando) {
-      <>
-        {Loader()}
-      </>
-    }
-    if (erro) {
-      return alert("Ocorreu um erro ao cadastrar o Assistido\n\n" + "Código do erro: " + erro.message);
-    }
-    if (assistido) {
-      return alert("Assistido editado")
-    }
-    else{
-      alert("Assistido cadastrado")
-      cadastrarAssistido(data);
-    }
-  }
-  
   //Dados Pessoais
   const [name, setName] = useState(assistido ? assistido.name : "")
   const [cpf, setCpf] = useState(assistido ? assistido.cpf : "")
@@ -77,6 +36,36 @@ export default function Assistidos({assistido}) {
   const [dateRepresentado, setDateRepresentado] = useState("")
   const [estadoCivilRepresentado, setEstadoCivilRepresentado] = useState("")
 
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+    const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
+    isChecked ? console.log("possui representado") : delete data.dataRepresentado;
+    //console.log(data);
+    
+    //Dados do usuário verificados se foram preenchidos
+    if (!data.name || !data.cpf || !data.rg || !data.date || !data.estadoCivil || !data.telefone1) {
+      return alert("Todos os dados pessoais e pelo menos um número de telefone são necessários!")
+    }
+
+    //Dados do representado (caso tenha) verificados se foram preenchidos
+    if (isChecked) {
+      if (!dataRepresentado.nameRepresentado || !dataRepresentado.cpfRepresentado || !dataRepresentado.rgRepresentado || !dataRepresentado.dateRepresentado || !dataRepresentado.estadoCivilRepresentado) {
+        return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado");
+      }
+    }
+    
+    //Se o assistido foi selecionado para edição então chama o hook de edição de assistido
+    if (assistido) {
+      return alert("Assistido editado")
+    }
+
+    //Se não, então chama o hook de cadastrar assistido
+    else{
+      cadastrarAssistido(data);
+    }
+  }
 
   //Função para exibir o formulário de cadastrar um representado no modal
   function cadastroRepresentado(isChecked) {

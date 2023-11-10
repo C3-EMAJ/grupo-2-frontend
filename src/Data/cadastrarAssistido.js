@@ -3,12 +3,10 @@ import geralFetch from "./config";
 
 export const useCadastrarAssistido = () => {
   const [cadastrando, setCadastrando] = useState(false);
-  const [erro, setErro] = useState(null);
 
   const cadastrarAssistido = async (data) => {
     try {
       setCadastrando(true);
-      setErro(null);
 
       const response = await geralFetch.post("/MinhaRotaDeCadastro", data);
 
@@ -18,10 +16,10 @@ export const useCadastrarAssistido = () => {
       setCadastrando(false);
     } catch (error) {
       //console.log(error);
-      setErro(error);
+      alert("Ocorreu um erro ao cadastrar o Assistido\n\n" + "Código do erro: " + error.message);
       setCadastrando(false);
     }
   };
 
-  return { cadastrarAssistido, cadastrando, erro };
+  return { cadastrarAssistido, cadastrando };
 };

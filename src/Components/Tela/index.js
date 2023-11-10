@@ -19,7 +19,6 @@ export default function Tela({ListName, BtnName, page}) {
     
     const [openModal, setOpenModal] = useState(false);
     const [search, setSearch] = useState(""); // Estado para a pesquisa
-    console.log("teste na tela",search)
     
     return (
         <div className="rounded-lg w-full overflow-y-auto">
