@@ -5,8 +5,8 @@ import { InputField, ButtonCadastrar, ImageUpload } from './Items';
 import Loader from '../../Loader';
 
 //Hooks personalizados
-import { useCadastrarUsuario } from '../../../Data/cadastrarUsuario'
-import { useEditarUsuario } from '../../../Data/editarUsuario';
+import { useCadastrarUsuario } from '../../../Services/cadastrarUsuario'
+import { useEditarUsuario } from '../../../Services/editarUsuario';
 
 
 //Função contendo os componentes necessários para o cadastro de usuários

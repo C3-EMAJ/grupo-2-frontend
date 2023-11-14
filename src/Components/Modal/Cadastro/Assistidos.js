@@ -5,8 +5,8 @@ import { InputField, ButtonCadastrar, CheckboxSimNao } from './Items';
 import Loader from '../../Loader';
 
 //Hooks personalizados
-import { useCadastrarAssistido } from '../../../Data/cadastrarAssistido'
-import { useEditarAssistido } from '../../../Data/editarAssistido';
+import { useCadastrarAssistido } from '../../../Services/cadastrarAssistido'
+import { useEditarAssistido } from '../../../Services/editarAssistido';
 
 
 //Função contendo os componentes necessários para o cadastro de assistidos

@@ -4,7 +4,7 @@ import React from "react";
 import Loader from "../../Loader";
 
 //Hooks personalizados
-import { useExcluirAssistido } from "../../../Data/excluirAssistido";
+import { useExcluirAssistido } from "../../../Services/excluirAssistido";
 import ButtonExcluir from "./Items";
 
 export default function Assistidos ({assistido}){

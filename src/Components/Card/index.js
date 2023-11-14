@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import Modal from '../Modal/Cadastro/index'
 import ModalExcluir from '../Modal/Excluir';
 import Loader from '../Loader';
-import { useAssistidos } from '../../Data/getAssistidos';
-import { useUsuarios } from '../../Data/getUsuarios';
+import { useAssistidos } from '../../Services/getAssistidos';
+import { useUsuarios } from '../../Services/getUsuarios';
 
 //Imagens
 import profile from '../../images/profile.png';

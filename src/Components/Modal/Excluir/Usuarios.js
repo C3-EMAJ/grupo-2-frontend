@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import Loader from "../../Loader";
 
 //Hooks personalizados
-import { useExcluirUsuario } from '../../../Data/excluirUsuario';
+import { useExcluirUsuario } from '../../../Services/excluirUsuario';
 import ButtonExcluir from "./Items";
 
 export default function Usuarios({usuario}){
