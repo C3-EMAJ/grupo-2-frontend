@@ -5,7 +5,22 @@ import img_Login from '../../images/img_Login.png';
 import ocultar from '../../images/ocultar.png'
 import ver from '../../images/ver.png'
 
+//Components
+import Loader from '../../Components/Loader';
+
+//Hooks personalizados
+import { useLogin } from '../../Services/login';
+
 export default function PageLogin() {
+
+  const {login, loading} = useLogin();
+
+  const loader = () => {
+    if (loading) {
+      return <Loader />;
+    }
+  };
+
   const [showPassword, setShowPassword] = useState(false);
   
   const [email, setEmail] = useState('');
@@ -24,12 +39,13 @@ export default function PageLogin() {
       return alert("Todos os campos precisam ser preenchidos!")
     }
     else{
-      return alert("usuário logado")
+      login()
     }
   }
 
   return (
     <div className="fixed inset-0 flex bg-white justify-center items-center">
+      {loader()}
       <div className="flex">
         <form onSubmit={(e) => {handleSubmit(e)}} className="flex flex-col space-y-4 items-center">
           <img src={img_Login} alt="EMAJ Image" />
