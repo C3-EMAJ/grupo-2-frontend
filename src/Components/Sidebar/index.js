@@ -23,11 +23,11 @@ export default function Sidebar() {
             </div>
             <InfosUsuario foto={foto_perfil} nome="" />
             <ul className="space-y-2 mx-2">
-                <Button route="/Demandas" img={img_Demandas} text="Demandas"/>
-                <Button route="/Usuarios" img={img_AdicionarUsuario} text="Usuários" />
-                <Button route="/Assistidos" img={img_Assistidos} text="Assistidos" />
-                <Button route="/Agendamentos" img={img_Agendamentos} text="Agendamentos" />
-                <Button route="/Configuracoes" img={img_Configuracoes} text="Configurações" />
+                <Button route="/demandas" img={img_Demandas} text="Demandas"/>
+                <Button route="/usuarios" img={img_AdicionarUsuario} text="Usuários" />
+                <Button route="/assistidos" img={img_Assistidos} text="Assistidos" />
+                <Button route="/agendamentos" img={img_Agendamentos} text="Agendamentos" />
+                <Button route="/configuracoes" img={img_Configuracoes} text="Configurações" />
                 <Button route="/" img={img_Sair} text="Sair" /> 
             </ul>
         </div>

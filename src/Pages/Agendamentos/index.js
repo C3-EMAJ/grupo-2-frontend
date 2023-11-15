@@ -1,8 +1,10 @@
 import React from "react";
+import Sidebar from '../../Components/Sidebar'
 
-export default function PageAgendamentos (){
+export default function Agendamentos (){
     return (
-        <div>
+        <div className="flex">
+            <Sidebar />
             Agendamentos
         </div>
     );
