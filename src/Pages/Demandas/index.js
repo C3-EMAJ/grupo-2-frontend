@@ -1,8 +1,10 @@
 import React from "react";
+import Sidebar from "../../Components/Sidebar";
 
 function Demandas (){
     return (
-        <div>
+        <div className="flex">
+            <Sidebar />
             Demandas
         </div>
     );

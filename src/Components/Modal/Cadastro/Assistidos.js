@@ -1,33 +1,44 @@
 import React, { useState } from 'react';
+
+//Componentes
 import { InputField, ButtonCadastrar, CheckboxSimNao } from './Items';
+import Loader from '../../Loader';
 
-export default function Assistidos() {
+//Hooks personalizados
+import { useCadastrarAssistido } from '../../../Services/cadastrarAssistido'
+import { useEditarAssistido } from '../../../Services/editarAssistido';
 
-  function handleSubmit(event){
-    event.preventDefault()
-    const dadosRepresentado = {nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado}
-    const dados = {name, cpf, rg, date,estadoCivil ,telefone1, telefone2, email, profissao, renda, dependentes, dadosRepresentado : isChecked ? dadosRepresentado : null}
-    isChecked ? console.log("possui representado") : delete dados.dadosRepresentado
-    console.log(dados)
-  }
-  
+
+//Função contendo os componentes necessários para o cadastro de assistidos
+export default function Assistidos({assistido}) {
+
+  const {cadastrarAssistido, cadastrando} = useCadastrarAssistido();
+  const {editarAssistido, editando} = useEditarAssistido();
+
+  //const para exibir o loader
+  const loader = () => {
+    if (cadastrando || editando) {
+      return <Loader />;
+    }
+  };
+
   //Dados Pessoais
-  const [name, setName] = useState("")
-  const [cpf, setCpf] = useState("")
-  const [rg, setRg] = useState("")
-  const [date, setDate] = useState("")
+  const [name, setName] = useState(assistido ? assistido.name : "")
+  const [cpf, setCpf] = useState(assistido ? assistido.cpf : "")
+  const [rg, setRg] = useState(assistido ? assistido.rg : "")
+  const [date, setDate] = useState(assistido ? assistido.date : "")
   const [isChecked, setIsChecked] = useState(false);
-  const [estadoCivil, setEstadoCivil] = useState("")
+  const [estadoCivil, setEstadoCivil] = useState(assistido ? assistido.estadoCivil : "")
   
   //Contato
-  const [telefone1, setTelefone1] = useState("")
-  const [telefone2, setTelefone2] = useState("")
-  const [email, setEmail] = useState("")
+  const [telefone1, setTelefone1] = useState(assistido ? assistido.telefone1 : "")
+  const [telefone2, setTelefone2] = useState(assistido ? assistido.telefone2 : "")
+  const [email, setEmail] = useState(assistido ? assistido.email : "")
   
   //Dados Socioeconômicos
-  const [profissao, setProfissao] = useState("")
-  const [renda, setRenda] = useState("")
-  const [dependentes, setDependentes] = useState("")
+  const [profissao, setProfissao] = useState(assistido ? assistido.profissao : "")
+  const [renda, setRenda] = useState(assistido ? assistido.renda : "")
+  const [dependentes, setDependentes] = useState(assistido ? assistido.dependentes : "")
   
   //Dados pessoais do representado (caso tenha)
   const [nameRepresentado, setNameRepresentado] = useState("")
@@ -36,12 +47,44 @@ export default function Assistidos() {
   const [dateRepresentado, setDateRepresentado] = useState("")
   const [estadoCivilRepresentado, setEstadoCivilRepresentado] = useState("")
 
-  //fetch("http://127.0.0.1:8000/assistido/", {
-  //    method:"POST",
-  //    body: JSON.stringify(dados),
-  //     headers: {'Content-Type':'application/json'}
-  // })
+  //função que faz a requisição para submeter o formulário
+  function handleSubmit(event) {
+    event.preventDefault();
 
+    //objeto contendo ad informações do assistido
+    const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
+    //objeto contendo as informações do representado (caso tenha)
+    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+    //se caso não for marcada a opção de cadastrar representado então dataRepresentado não é enviado no objeto
+    isChecked ? console.log("possui representado") : delete data.dataRepresentado;
+    //console.log(data);
+    
+    //Dados do assistido verificados se foram preenchidos
+    if (!data.name || !data.cpf || !data.rg || !data.date || !data.estadoCivil || !data.telefone1) {
+      return alert("Todos os dados pessoais e pelo menos um número de telefone são necessários!")
+    }
+
+    //Dados do representado (caso tenha) verificados se foram preenchidos
+    if (isChecked) {
+      if (!dataRepresentado.nameRepresentado || !dataRepresentado.cpfRepresentado || !dataRepresentado.rgRepresentado || !dataRepresentado.dateRepresentado || !dataRepresentado.estadoCivilRepresentado) {
+        return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado");
+      }
+    }
+    
+    //Se o assistido foi selecionado para edição então chama o hook de edição de assistido
+    if (assistido) {
+      //console.log(data)
+      editarAssistido(data)
+    }
+
+    //Se não, então chama o hook de cadastrar um novo assistido
+    else{
+      //console.log(data)
+      cadastrarAssistido(data);
+    }
+  }
+
+  //Função para exibir o formulário de cadastrar um representado no modal
   function cadastroRepresentado(isChecked) {
     if (isChecked){
       return (
@@ -90,12 +133,14 @@ export default function Assistidos() {
         </div>
       ); 
     }
-    return null
   }
 
+  //Componentes referentes ao cadastro de assistidos
   return (
     <>
+      {loader()}
       <form className="grid grid-rows-2 grid-cols-2 gap-y-5 pl-16" onSubmit={handleSubmit}>
+
         <div className="flex flex-col space-y-1">
           <CheckboxSimNao
             label="Cadastrar Representado?"
@@ -172,7 +217,7 @@ export default function Assistidos() {
             id="dependentes"
             //required
           />
-          <ButtonCadastrar />
+          <ButtonCadastrar label={assistido ? "Editar" : "Cadastrar"}/>
         </div>
           
         <div className="flex flex-col space-y-1">

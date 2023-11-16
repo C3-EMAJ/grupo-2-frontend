@@ -19,7 +19,6 @@ export default function Tela({ListName, BtnName, page}) {
     
     const [openModal, setOpenModal] = useState(false);
     const [search, setSearch] = useState(""); // Estado para a pesquisa
-    console.log("teste na tela",search)
     
     return (
         <div className="rounded-lg w-full overflow-y-auto">
@@ -28,7 +27,7 @@ export default function Tela({ListName, BtnName, page}) {
             <div className="mx-1.5 bg-medium_grey rounded">
                 <div className="flex justify-between p-3 mx-4 border-b border-black">
                     <h1 className="font-bold text-2xl">{ListName}</h1>
-                    <button onClick={() => setOpenModal(true)} className="bg-orange text-white hover:scale-105 duration-75 font-semibold rounded-md w-40 text-center text-sm">{BtnName}</button>
+                    <button onClick={() => setOpenModal(true)} className="bg-orange text-white hover:scale-105 duration-75 font-semibold rounded w-40 text-center text-sm">{BtnName}</button>
                 </div>
                 {CardSwitch(page, search)}
             </div>

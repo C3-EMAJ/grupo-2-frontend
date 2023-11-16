@@ -1,33 +1,74 @@
 import React, { useState } from 'react';
+
+//Componentes
 import { InputField, ButtonCadastrar, ImageUpload } from './Items';
+import Loader from '../../Loader';
 
-export default function Usuarios() {
+//Hooks personalizados
+import { useCadastrarUsuario } from '../../../Services/cadastrarUsuario'
+import { useEditarUsuario } from '../../../Services/editarUsuario';
 
-  function handleSubmit(event){
-    event.preventDefault()
-    const data = {name, email, username, password, confirmPassword, funcao, image}
-    console.log(data)
-    //fetch("http://127.0.0.1:8000/assistido/", {
-    //    method:"POST",
-    //    body: JSON.stringify(dados),
-    //     headers: {'Content-Type':'application/json'}
-    // })
+
+//Função contendo os componentes necessários para o cadastro de usuários
+export default function Usuarios({ usuario }) {
+
+  const { cadastrarUsuario, cadastrando } = useCadastrarUsuario();
+  const { editarUsuario, editando } = useEditarUsuario();
+
+  //const para exibir o loader
+  const loader = () => {
+    if (cadastrando || editando) {
+      return <Loader />;
+    }
+  };
+
+  // Dados do Usuário
+  const [name, setName] = useState(usuario ? usuario.name : "");
+  const [email, setEmail] = useState(usuario ? usuario.email : "");
+  const [username, setUsername] = useState(usuario ? usuario.username : "");
+  const [password, setPassword] = useState(usuario ? usuario.password : "");
+  const [confirmPassword, setConfirmPassword] = useState(usuario ? usuario.confirmPassword : "");
+  const [funcao, setFuncao] = useState(usuario ? usuario.funcao : "");
+  const [image, setImage] = useState(usuario ? usuario.image : "");
+
+  //função que faz a requisição para submeter o formulário
+  function handleSubmit(event) { 
+    event.preventDefault();
+
+    //objeto contendo as informações do usuário
+    const data = { name, email, username, password, confirmPassword, funcao, image };
+
+    // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
+    if (!data.name || !data.email || !data.username || !data.password || !data.confirmPassword || !data.funcao){
+      return alert("Todos os dados do usuário, exceto a imagem, são obrigatórios!");
+    }
+
+    // Verificar se as senhas coincidem
+    if (password !== confirmPassword) {
+      return alert("As senhas não coincidem!");
+    }
+
+    //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
+    if (usuario) {
+      //console.log(data)
+      editarUsuario(data);
+    }
+
+    //Se não, então chama o hook de cadastrar um novo usuário
+    else{
+      //console.log(data)
+      cadastrarUsuario(data);
+    }
   }
   
-  //Dados do Usuário
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [funcao, setFuncao] = useState("");
-  const [image, setImage] = useState("");
+  
 
   return (
     <>
+      {loader()}
       <form className="grid grid-cols-2 pt-10 pl-16 pb-16" onSubmit={handleSubmit}>
-        <div className="flex flex-col space-y-2">
 
+        <div className="flex flex-col space-y-2">
           <InputField
             label="Nome"
             value={name}
@@ -84,9 +125,9 @@ export default function Usuarios() {
             onChange={setImage}
           />
           
-          <ButtonCadastrar />
+          <ButtonCadastrar label={usuario ? "Editar" : "Cadastrar"}/>
         </div>
-          
+
       </form>
     </>
   );
