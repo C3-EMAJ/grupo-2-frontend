@@ -14,7 +14,9 @@ export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido
     
         if (page === "Assistidos") {
             return <h1 className={tituloModal}>Excluir Assistido</h1>;
-        } else if (page === "Usuarios") {
+        } 
+        
+        else if (page === "Usuarios") {
             return <h1 className={tituloModal}>Excluir Usuário</h1>;
         }
     }

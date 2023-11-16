@@ -1,7 +1,10 @@
 import React from 'react'
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+//Proteção das rotas
+import ProtectedRoutes from './protectedRoutes';
+
+//Páginas
 import PageLogin from '../Pages/Login';
 import Demandas from '../Pages/Demandas';
 import Usuarios from '../Pages/Usuarios';
@@ -13,12 +16,12 @@ const Routering = () => {
   return (
     <Router>
         <Routes>
-            <Route path="*" element={<PageLogin />} />
-            <Route path="/demandas" element={<Demandas />} />
-            <Route path="/usuarios" element={<Usuarios />} />
-            <Route path="/assistidos" element={<Assistidos />} />
-            <Route path="/agendamentos" element={<Agendamentos />} />
-            <Route path="/configuracoes" element={<Configuracoes />} />
+            <Route path="/" element={<PageLogin />} />
+            <Route path="/demandas" element={<ProtectedRoutes> <Demandas /> </ProtectedRoutes>} />
+            <Route path="/usuarios" element={<ProtectedRoutes> <Usuarios /> </ProtectedRoutes>} />
+            <Route path="/assistidos" element={<ProtectedRoutes> <Assistidos /> </ProtectedRoutes>} />
+            <Route path="/agendamentos" element={<ProtectedRoutes> <Agendamentos /> </ProtectedRoutes>} />
+            <Route path="/configuracoes" element={<ProtectedRoutes> <Configuracoes /> </ProtectedRoutes>} />
         </Routes>
     </Router>
   );

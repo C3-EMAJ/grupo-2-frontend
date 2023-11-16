@@ -8,3 +8,6 @@ const geralFetch  = axios.create({
 });
 
 export default geralFetch;
+
+//API com a lista e usuários: https://jsonplaceholder.typicode.com
+//API de login: https://reqres.in/api/

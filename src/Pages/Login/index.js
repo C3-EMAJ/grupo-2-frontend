@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Imagens
 import img_Login from '../../images/img_Login.png';
@@ -11,9 +12,13 @@ import Loader from '../../Components/Loader';
 //Hooks personalizados
 import { useLogin } from '../../Services/login';
 
+//Autenticação do usuário
+import { autenticado } from '../../Services/login';
+
 export default function PageLogin() {
 
   const {login, loading} = useLogin();
+  const navigate = useNavigate()
 
   const loader = () => {
     if (loading) {
@@ -30,16 +35,21 @@ export default function PageLogin() {
     setShowPassword(!showPassword);
   };
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const data = {email, password}
+    console.log(data)
 
     if (!data.email || !data.password){
       return alert("Todos os campos precisam ser preenchidos!")
     }
     else{
-      login()
+      await login(data)
+      console.log("Autenticado:", autenticado())
+      autenticado() ? navigate("/demandas") : navigate("/")
+      
+      //autenticado === true ? navigate("/demandas") : null
     }
   }
 
