@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //BaseURL da API
-import geralFetch from "./config";
+import Api from "./config";
 
 export const useExcluirUsuario = () => {
   const [excluindo, setExcluindo] = useState(false);
@@ -10,7 +10,7 @@ export const useExcluirUsuario = () => {
     try {
       setExcluindo(true);
 
-      const response = await geralFetch.delete("/MinhaRotaDeExclusao/", userId);
+      const response = await Api.post("/MinhaRotaDeExclusao/", userId);
 
       // Aqui a resposta do servidor pode ser tratada
       // pode verificar se o usuário foi excluído com sucesso

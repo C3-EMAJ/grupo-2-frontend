@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //BaseURL da API
-import geralFetch from "./config";
+import Api from "./config";
 
 export const useCadastrarAssistido = () => {
   const [cadastrando, setCadastrando] = useState(false);
@@ -10,7 +10,7 @@ export const useCadastrarAssistido = () => {
     try {
       setCadastrando(true);
 
-      const response = await geralFetch.post("/MinhaRotaDeCadastro", data);
+      const response = await Api.post("/MinhaRotaDeCadastro", data);
 
       // Aqui a resposta do servidor pode ser tratada
       // Por exemplo, se o servidor retornar um ID após o cadastro, pode ser feito algo com ele

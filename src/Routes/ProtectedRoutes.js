@@ -1,7 +1,7 @@
 import React from "react";
 
 //Autenticação
-import { autenticado } from "../Services/login";
+import { autenticado } from "../Utils/validadores";
 
 //Páginas
 import PageLogin from "../Pages/Login";

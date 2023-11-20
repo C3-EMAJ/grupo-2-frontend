@@ -12,8 +12,8 @@ import Loader from '../../Components/Loader';
 //Hooks personalizados
 import { useLogin } from '../../Services/login';
 
-//Autenticação do usuário
-import { autenticado } from '../../Services/login';
+//Validadores
+import { autenticado, validarEmailFurg, validarData } from '../../Utils/validadores';
 
 export default function PageLogin() {
 
@@ -41,15 +41,15 @@ export default function PageLogin() {
     const data = {email, password}
     console.log(data)
 
-    if (!data.email || !data.password){
-      return alert("Todos os campos precisam ser preenchidos!")
-    }
-    else{
-      await login(data)
-      console.log("Autenticado:", autenticado())
-      autenticado() ? navigate("/demandas") : navigate("/")
-      
-      //autenticado === true ? navigate("/demandas") : null
+    //dados que são obrigatórios o preenchimento
+    const required = ['email', 'password']
+
+    if (validarData(data, required)){
+      if (validarEmailFurg(data.email)) {
+        await login(data)
+        console.log("Autenticado:", autenticado())
+        autenticado() === true ? navigate("/demandas") : navigate("/")
+      }
     }
   }
 

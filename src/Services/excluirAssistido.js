@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //BaseURL da API
-import geralFetch from "./config";
+import Api from "./config";
 
 export const useExcluirAssistido = () => {
   const [excluindo, setExcluindo] = useState(false);
@@ -10,7 +10,7 @@ export const useExcluirAssistido = () => {
     try {
       setExcluindo(true);
 
-      const response = await geralFetch.delete("/MinhaRotaDeExclusao/", assistidoId);
+      const response = await Api.post("/MinhaRotaDeExclusao/", assistidoId);
 
       // Aqui a resposta do servidor pode ser tratada
       // pode verificar se o assistido foi excluído com sucesso

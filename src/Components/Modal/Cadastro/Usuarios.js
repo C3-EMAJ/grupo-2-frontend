@@ -8,6 +8,9 @@ import Loader from '../../Loader';
 import { useCadastrarUsuario } from '../../../Services/cadastrarUsuario'
 import { useEditarUsuario } from '../../../Services/editarUsuario';
 
+//validadores
+import { validarData, validarSenha } from '../../../Utils/validadores';
+
 
 //Função contendo os componentes necessários para o cadastro de usuários
 export default function Usuarios({ usuario }) {
@@ -38,30 +41,35 @@ export default function Usuarios({ usuario }) {
     //objeto contendo as informações do usuário
     const data = { name, email, username, password, confirmPassword, funcao, image };
 
+    const required = [ 'name', 'email', 'username', 'password', 'confirmPassword', 'funcao' ]
+
     // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-    if (!data.name || !data.email || !data.username || !data.password || !data.confirmPassword || !data.funcao){
-      return alert("Todos os dados do usuário, exceto a imagem, são obrigatórios!");
+    if (validarData(data, required)){
+
+      // Verificar se as senhas coincidem
+      if (password !== confirmPassword) {
+        return alert("As senhas não coincidem!");
+      }
+
+      if (validarSenha(password)) {
+
+        //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
+        if (usuario) {
+          //console.log(data)
+          editarUsuario(data);
+        }
+    
+        //Se não, então chama o hook de cadastrar um novo usuário
+        else{
+          //console.log(data)
+          cadastrarUsuario(data);
+        }
+
+      }
+
     }
 
-    // Verificar se as senhas coincidem
-    if (password !== confirmPassword) {
-      return alert("As senhas não coincidem!");
-    }
-
-    //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
-    if (usuario) {
-      //console.log(data)
-      editarUsuario(data);
-    }
-
-    //Se não, então chama o hook de cadastrar um novo usuário
-    else{
-      //console.log(data)
-      cadastrarUsuario(data);
-    }
   }
-  
-  
 
   return (
     <>
