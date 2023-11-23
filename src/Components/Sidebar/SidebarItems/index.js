@@ -8,7 +8,7 @@ function Button ({route, img, text}){
         <div>
             <li>
                 <Link to={route} className="flex items-center p-1 text-xs text-black rounded hover:bg-orange group">
-                    <img src={img}></img>
+                    <img src={img} alt=""></img>
                     <span className="ml-1.5">{text}</span>
                 </Link>
             </li>
@@ -20,14 +20,14 @@ function InfosUsuario ({foto, nome, funcao}){
     return( 
         <div className="my-10">
             <div className="flex justify-center items-center">
-                <img src={foto ? foto : foto_perfil} class="rounded-full scale-75" alt="foto do perfil"/>
+                <img src={foto ? foto : foto_perfil} class="rounded-full scale-75" alt=""/>
             </div>
             <div className="my-3">
                 <div className="text-center text-black font-semibold text-xs">
-                    <a>{nome && nome !== undefined ? nome : "Nome do Usuário"}</a>
+                    <p>{nome && nome !== undefined ? nome : "Nome do Usuário"}</p>
                 </div>
                 <div className="text-center text-orange font-medium text-xs">
-                    <a>{funcao && funcao !== undefined ? funcao : "Função"}</a>
+                    <p>{funcao && funcao !== undefined ? funcao : "Função"}</p>
                 </div>
             </div>
         </div>

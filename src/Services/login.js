@@ -30,7 +30,7 @@ export const useLogin = () => {
     } catch (error) {
       //console.log(error);
       setLoading(false);
-      alert("Ocorreu um erro ao fazer login\n\n" + "Código do erro: " + error.message);
+      alert("Ocorreu um erro ao fazer login\n\n", "Código do erro: ", error.message);
     }
   };
 

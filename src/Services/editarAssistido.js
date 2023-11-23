@@ -19,7 +19,7 @@ export const useEditarAssistido = () => {
     } catch (error) {
       //console.log(error);
       setEditando(false);
-      alert("Ocorreu um erro ao editar o Assistido\n\n" + "Código do erro: " + error.message);
+      alert("Ocorreu um erro ao editar o Assistido\n\n", "Código do erro: ", error.message);
     }
   };
 

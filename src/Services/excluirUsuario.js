@@ -18,7 +18,7 @@ export const useExcluirUsuario = () => {
       setExcluindo(false);
     } catch (error) {
       setExcluindo(false);
-      alert("Ocorreu um erro ao excluir o Usuário\n\n" + "Código do erro: " + error.message);
+      alert("Ocorreu um erro ao excluir o Usuário\n\n", "Código do erro: ", error.message);
     }
   };
 

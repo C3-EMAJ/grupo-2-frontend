@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const Api  = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com",
+    baseURL: process.env.REACT_APP_API,
     headers:{
         "Content-Type":"application/json",
+        //Authorization: localStorage.getItem("token")
     },
 });
 

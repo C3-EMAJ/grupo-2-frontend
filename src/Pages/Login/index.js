@@ -21,9 +21,7 @@ export default function PageLogin() {
   const navigate = useNavigate()
 
   const loader = () => {
-    if (loading) {
-      return <Loader />;
-    }
+    return loading === true ? <Loader /> : null
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -47,7 +45,7 @@ export default function PageLogin() {
     if (validarData(data, required)){
       if (validarEmailFurg(data.email)) {
         await login(data)
-        console.log("Autenticado:", autenticado())
+        //console.log("Autenticado:", autenticado())
         autenticado() === true ? navigate("/demandas") : navigate("/")
       }
     }
@@ -58,7 +56,7 @@ export default function PageLogin() {
       {loader()}
       <div className="flex">
         <form onSubmit={(e) => {handleSubmit(e)}} className="flex flex-col space-y-4 items-center">
-          <img src={img_Login} alt="EMAJ Image" />
+          <img src={img_Login} alt="" />
           <div className="flex flex-col w-full px-2">
             <label className="text-xs">Email</label>
             <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className="border py-1 rounded" />
@@ -68,7 +66,7 @@ export default function PageLogin() {
             <label className="text-xs">Senha</label>
             <div className="flex justify-between space-x-1.5 items-center">
               <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="border py-1 w-full rounded" />
-              <img src={showPassword ? ocultar : ver} className="w-5 h-5 hover:scale-110 cursor-pointer" onClick={handlePasswordToggle} />
+              <img src={showPassword ? ocultar : ver} alt="" className="w-5 h-5 hover:scale-110 cursor-pointer" onClick={handlePasswordToggle} />
             </div>
           </div>
 
