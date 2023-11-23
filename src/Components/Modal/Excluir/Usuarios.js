@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 //Componentes
 import Loader from "../../Loader";

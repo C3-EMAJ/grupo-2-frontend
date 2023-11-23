@@ -66,7 +66,7 @@ function CardAssistido({search}) {
             <div className=" flex items-center">{assistido.cpf}</div>
             <div className=" flex items-center">{assistido.date}</div>
             <div className=" flex items-center justify-end pr-16">
-              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira}  
+              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
                 onClick={(e) => {
                   e.stopPropagation();
                   openDeleteModal(assistido);
@@ -125,7 +125,7 @@ function CardUsuario({search}) {
       </div>
       {filteredUsuarios &&
         filteredUsuarios.map((usuario, id) => (
-          <div key={id} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1 rounded-lg bg-white hover:border text-xs">
+          <div key={id} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs">
             <div className=" flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
@@ -134,7 +134,7 @@ function CardUsuario({search}) {
             <div className=" flex items-center">{usuario.funcao}</div>
             <div className=" flex items-center">{usuario.username}</div>
             <div className=" flex items-center justify-end pr-16">
-              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} 
+              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
                 onClick={(e) => {
                   e.stopPropagation();
                   openDeleteModal(usuario)

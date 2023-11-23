@@ -51,10 +51,10 @@ export default function Assistidos({assistido}) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    //objeto contendo ad informações do assistido
-    const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
     //objeto contendo as informações do representado (caso tenha)
     const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+    //objeto contendo ad informações do assistido
+    const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
     //se caso não for marcada a opção de cadastrar representado então dataRepresentado não é enviado no objeto
     isChecked ? console.log("possui representado") : delete data.dataRepresentado;
     //console.log(data);

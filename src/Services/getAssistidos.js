@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 //BaseURL da API
-import geralFetch from "./config";
+import Api from "./config";
 
 // Criar um hook personalizado para buscar todos os assistidos
 export const useAssistidos = () => {
@@ -11,9 +11,7 @@ export const useAssistidos = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await geralFetch.get(
-          "/users"
-        );
+        const response = await Api.get("/users");
 
         const data = response.data;
 
@@ -21,7 +19,7 @@ export const useAssistidos = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        alert("Ocorreu um erro ao carregar a lista de Assistidos\n\n" + "Código do erro: " + error.message);
+        alert("Ocorreu um erro ao carregar a lista de Assistidos\n\n", "Código do erro: ", error.message);
       }
     }
 
