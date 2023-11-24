@@ -19,7 +19,7 @@ export const useEditarUsuario = () => {
     } catch (error) {
       //console.log(error);
       setEditando(false);
-      alert("Ocorreu um erro ao editar o Usuário\n\n", "Código do erro: ", error.message);
+      alert(`Ocorreu um erro ao editar o Usuário\n\n Código do erro: ${error.message}`);
     }
   };
 

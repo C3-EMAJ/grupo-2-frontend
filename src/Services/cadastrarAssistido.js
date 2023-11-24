@@ -19,7 +19,7 @@ export const useCadastrarAssistido = () => {
     } catch (error) {
       //console.log(error);
       setCadastrando(false);
-      alert("Ocorreu um erro ao cadastrar o Assistido\n\n", "Código do erro: ", error.message);
+      alert(`Ocorreu um erro ao cadastrar o Assistido\n\n Código do erro: ${error.message}`);
     }
   };
 

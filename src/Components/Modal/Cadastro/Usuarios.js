@@ -44,13 +44,18 @@ export default function Usuarios({ usuario }) {
     const required = [ 'name', 'email', 'username', 'password', 'confirmPassword', 'funcao' ]
 
     // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-    if (validarData(data, required)){
+    if (!validarData(data, required)){
+      return alert("Todos os campos, exceto a imagem são obrigatórios")
+    }
 
+    //Caso todos os campos necessários estiverem preenchidos, então parte para as validações individuais
+    else {
       // Verificar se as senhas coincidem
       if (password !== confirmPassword) {
         return alert("As senhas não coincidem!");
       }
 
+      //Validar se a senha possui um mínimo de 8 caracteres
       if (validarSenha(password)) {
 
         //Se o usuário foi selecionado para edição então chama o hook de edição de usuário

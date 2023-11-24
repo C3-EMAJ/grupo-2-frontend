@@ -19,7 +19,7 @@ export const useCadastrarUsuario = () => {
     } catch (error) {
       //console.log(error);
       setCadastrando(false);
-      alert("Ocorreu um erro ao cadastrar o Usuário\n\n", "Código do erro: ", error.message);
+      alert(`Ocorreu um erro ao cadastrar o Usuário\n\n Código do erro: ${error.message}`);
     }
   };
 
