@@ -22,16 +22,16 @@ export default function Assistidos ({assistido}){
     function handleDeleteAssistido(e, id) {
         e.preventDefault();
 
-        const jsonId = {"id": id};
+        const data = {"id_uuid": id};
         console.log("selecionado o assistido de id: ", id, " e nome: ", assistido.name)
         
-        excluirAssistido(jsonId);
+        excluirAssistido(data);
     }
 
     return (
         <>
             {loader()}
-            <form onSubmit={(e) => handleDeleteAssistido(e, assistido.id)} className="flex flex-col">
+            <form onSubmit={(e) => handleDeleteAssistido(e, assistido.id_uuid)} className="flex flex-col">
                 <p className="text-sm">
                     Você realmente deseja excluir o assistido <span className="font-semibold text-red">{assistido.name}</span>? Ao excluir o assistido você exclui todos os processos vinculados a ele.
                 </p>
