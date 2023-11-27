@@ -6,11 +6,11 @@ import Api from "./config";
 export const useExcluirUsuario = () => {
   const [excluindo, setExcluindo] = useState(false);
 
-  const excluirUsuario = async (userId) => {
+  const excluirUsuario = async (data) => {
     try {
       setExcluindo(true);
 
-      const response = await Api.post("/deleteUser", userId);
+      const response = await Api.post("/deleteUser", data);
 
       // Aqui a resposta do servidor pode ser tratada
       // pode verificar se o usuário foi excluído com sucesso

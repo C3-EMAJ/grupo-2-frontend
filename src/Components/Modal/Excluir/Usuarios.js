@@ -22,10 +22,10 @@ export default function Usuarios({usuario}){
     function handleDeleteUsuario(e, id) {
         e.preventDefault();
 
-        const jsonId = {"id": id};
+        const data = {"id_uuid": id};
         console.log("selecionado o usuário de id", id, " e nome: ", usuario.name)
 
-        excluirUsuario(jsonId);
+        excluirUsuario(data);
     }
 
     return (
