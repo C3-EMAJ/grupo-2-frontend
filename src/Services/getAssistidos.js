@@ -11,7 +11,7 @@ export const useAssistidos = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await Api.get("/users");
+        const response = await Api.get("/getAssitido");
 
         const data = response.data;
 
