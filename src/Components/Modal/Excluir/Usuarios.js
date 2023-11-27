@@ -31,7 +31,7 @@ export default function Usuarios({usuario}){
     return (
         <>
             {loader()}
-            <form onSubmit={(e) => handleDeleteUsuario(e, usuario.id)} className="flex flex-col">
+            <form onSubmit={(e) => handleDeleteUsuario(e, usuario.id_uuid)} className="flex flex-col">
                 <p className="text-sm">
                     Você realmente deseja excluir o Usuário <span className="font-semibold text-red">{usuario.name}</span>? Ao excluir o usuário você exclui todo o histórico de alterações do mesmo.
                 </p>

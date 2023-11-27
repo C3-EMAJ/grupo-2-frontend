@@ -11,6 +11,7 @@ export const useEditarUsuario = () => {
       setEditando(true);
 
       const response = await Api.put("/editUser", data);
+      console.log(response)
 
       // Aqui a resposta do servidor pode ser tratada
       // Por exemplo, se o servidor retornar um ID após o cadastro, pode ser feito algo com ele
