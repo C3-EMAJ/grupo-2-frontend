@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //Componentes
-import { InputField, ButtonCadastrar, CheckboxSimNao } from './Items';
+import { InputField, ButtonCadastrar, CheckboxSimNao, SelectEstadoCivil } from './Items';
 import Loader from '../../Loader';
 
 //Hooks personalizados
@@ -59,7 +59,7 @@ export default function Assistidos({assistido}) {
     const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
     //se caso não for marcada a opção de cadastrar representado então dataRepresentado não é enviado no objeto
     isChecked ? console.log("possui representado") : delete data.dataRepresentado;
-    //console.log(data);
+    console.log(data);
 
     //dados para comparar o que está preenchido
     const required = ['name', 'cpf', 'rg', 'date', 'estadoCivil', 'telefone1']
@@ -70,6 +70,10 @@ export default function Assistidos({assistido}) {
       return alert("Todos os dados pessoais e pelo menos o Telefone 1 são necessários!")
     }
 
+    if (estadoCivil === "Selecione"){
+      return alert("É necessário informar o Estado Civil!")
+    }
+
     //Caso todos os campos necessários estiverem preenchidos, então parte para as validações individuais
     else {
 
@@ -77,6 +81,9 @@ export default function Assistidos({assistido}) {
       if (isChecked) {
         if (!validarData(dataRepresentado, requiredRepresentado)) {
           return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado!");
+        }
+        if (estadoCivilRepresentado === "Selecione") {
+          return alert ("É necessário informar o Estado Civil do Representado!")
         }
       }
       
@@ -132,14 +139,11 @@ export default function Assistidos({assistido}) {
             id="dateRepresentado"
             //required
           />
-          <InputField
+          <SelectEstadoCivil
             label="Estado Civil"
-            value={estadoCivilRepresentado}
             onChange={setEstadoCivilRepresentado}
-            type="text"
             id="estadoCivilRepresentado"
-            //required
-          />
+            />
         </div>
       ); 
     }
@@ -191,14 +195,12 @@ export default function Assistidos({assistido}) {
             id="date"
             //required
           />
-          <InputField
+          <SelectEstadoCivil
             label="Estado Civil"
-            value={estadoCivil}
             onChange={setEstadoCivil}
-            type="text"
             id="estadoCivil"
             //required
-          />
+            />
         </div>
 
         <div className="justify-center flex flex-col space-y-1">
