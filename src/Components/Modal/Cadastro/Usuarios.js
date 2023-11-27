@@ -28,9 +28,9 @@ export default function Usuarios({ usuario }) {
   // Dados do Usuário
   const [name, setName] = useState(usuario ? usuario.name : "");
   const [email, setEmail] = useState(usuario ? usuario.email : "");
-  const [usuario, setUsuario] = useState(usuario ? usuario.usuario : "");
-  const [senha, setSenha] = useState(usuario ? usuario.senha : "");
-  const [confirmSenha, setConfirmSenha] = useState(usuario ? usuario.confirmSenha : "");
+  const [username, setUsername] = useState(usuario ? usuario.username : "");
+  const [password, setPassword] = useState(usuario ? usuario.password : "");
+  const [confirmPassword, setConfirmPassword] = useState(usuario ? usuario.confirmPassword : "");
   const [role, setRole] = useState(usuario ? usuario.role : "");
   const [image, setImage] = useState(usuario ? usuario.image : "");
 
@@ -39,9 +39,9 @@ export default function Usuarios({ usuario }) {
     event.preventDefault();
 
     //objeto contendo as informações do usuário
-    const data = { name, email, usuario, senha, confirmSenha, role, image };
+    const data = { name, email, username, password, confirmPassword, role, image };
 
-    const required = [ 'name', 'email', 'usuario', 'senha', 'confirmsenha', 'role' ]
+    const required = [ 'name', 'email', 'username', 'password', 'confirmPassword', 'role' ]
 
     // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
     if (!validarData(data, required)){
@@ -51,12 +51,12 @@ export default function Usuarios({ usuario }) {
     //Caso todos os campos necessários estiverem preenchidos, então parte para as validações individuais
     else {
       // Verificar se as senhas coincidem
-      if (senha !== confirmSenha) {
+      if (password !== confirmPassword) {
         return alert("As senhas não coincidem!");
       }
 
       //Validar se a senha possui um mínimo de 8 caracteres
-      if (validarSenha(senha)) {
+      if (validarSenha(password)) {
         
         if (role === "Selecione") {
           return alert ("É necessário informar a função do usuário!")
@@ -103,26 +103,26 @@ export default function Usuarios({ usuario }) {
           />
           <InputField
             label="Usuário"
-            value={usuario}
-            onChange={setUsuario}
+            value={username}
+            onChange={setUsername}
             type="text"
-            id="usuario"
+            id="username"
             //required
           />
           <InputField
             label="Senha"
-            value={senha}
-            onChange={setSenha}
-            type="senha"
-            id="senha"
+            value={password}
+            onChange={setPassword}
+            type="password"
+            id="password"
             //required
           />
           <InputField
             label="Confirmar Senha"
-            value={confirmSenha}
-            onChange={setConfirmSenha}
-            type="senha"
-            id="confirmsenha"
+            value={confirmPassword}
+            onChange={setConfirmPassword}
+            type="password"
+            id="confirmPassword"
             //required
           />
         </div>
