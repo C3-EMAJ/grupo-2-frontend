@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //Componentes
-import { InputField, ButtonCadastrar, ImageUpload } from './Items';
+import { InputField, ButtonCadastrar, ImageUpload, SelectFuncao } from './Items';
 import Loader from '../../Loader';
 
 //Hooks personalizados
@@ -31,7 +31,7 @@ export default function Usuarios({ usuario }) {
   const [username, setUsername] = useState(usuario ? usuario.username : "");
   const [password, setPassword] = useState(usuario ? usuario.password : "");
   const [confirmPassword, setConfirmPassword] = useState(usuario ? usuario.confirmPassword : "");
-  const [funcao, setFuncao] = useState(usuario ? usuario.funcao : "");
+  const [role, setRole] = useState(usuario ? usuario.role : "");
   const [image, setImage] = useState(usuario ? usuario.image : "");
 
   //função que faz a requisição para submeter o formulário
@@ -39,20 +39,28 @@ export default function Usuarios({ usuario }) {
     event.preventDefault();
 
     //objeto contendo as informações do usuário
-    const data = { name, email, username, password, confirmPassword, funcao, image };
+    const data = { name, email, username, password, confirmPassword, role, image };
 
-    const required = [ 'name', 'email', 'username', 'password', 'confirmPassword', 'funcao' ]
+    const required = [ 'name', 'email', 'username', 'password', 'confirmPassword', 'role' ]
 
     // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-    if (validarData(data, required)){
+    if (!validarData(data, required)){
+      return alert("Todos os campos, exceto a imagem são obrigatórios")
+    }
 
+    //Caso todos os campos necessários estiverem preenchidos, então parte para as validações individuais
+    else {
       // Verificar se as senhas coincidem
       if (password !== confirmPassword) {
         return alert("As senhas não coincidem!");
       }
 
+      //Validar se a senha possui um mínimo de 8 caracteres
       if (validarSenha(password)) {
-
+        
+        if (role === "Selecione") {
+          return alert ("É necessário informar a função do usuário!")
+        }
         //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
         if (usuario) {
           //console.log(data)
@@ -120,13 +128,11 @@ export default function Usuarios({ usuario }) {
         </div>
 
         <div className="flex flex-col space-y-1">
-          <InputField
-              label="Função"
-              value={funcao}
-              onChange={setFuncao}
-              type="text"
-              id="funcao"
-              //required
+          <SelectFuncao
+          label="Função"
+          onChange={setRole}
+          id="selectFuncao"
+          //required
           />
           <ImageUpload
             label="Imagem"

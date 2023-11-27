@@ -20,7 +20,8 @@ export const validarData = (data, required) => {
     for (const key in data) {
         if (required.includes(key)) {
           if (!data[key]) {
-            return alert(`O campo ${key} precisa ser preenchido!`);
+            // return alert(`O campo ${key} precisa ser preenchido!`);
+            return false 
           }
         }
       }

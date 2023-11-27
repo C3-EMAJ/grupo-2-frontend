@@ -18,7 +18,7 @@ export const useExcluirAssistido = () => {
       setExcluindo(false);
     } catch (error) {
       setExcluindo(false);
-      alert("Ocorreu um erro ao excluir o Assistido\n\n", "Código do erro: ", error.message);
+      alert(`Ocorreu um erro ao excluir o Assistido\n\n Código do erro: ${error.message}`);
     }
   };
 

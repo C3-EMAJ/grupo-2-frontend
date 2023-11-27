@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 
 //Componentes
-import { InputField, ButtonCadastrar, CheckboxSimNao } from './Items';
+import { InputField, ButtonCadastrar, CheckboxSimNao, SelectEstadoCivil } from './Items';
 import Loader from '../../Loader';
 
 //Hooks personalizados
 import { useCadastrarAssistido } from '../../../Services/cadastrarAssistido'
 import { useEditarAssistido } from '../../../Services/editarAssistido';
 
+//Validadores
+import { validarData } from '../../../Utils/validadores';
 
 //Função contendo os componentes necessários para o cadastro de assistidos
 export default function Assistidos({assistido}) {
@@ -57,32 +59,47 @@ export default function Assistidos({assistido}) {
     const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
     //se caso não for marcada a opção de cadastrar representado então dataRepresentado não é enviado no objeto
     isChecked ? console.log("possui representado") : delete data.dataRepresentado;
-    //console.log(data);
-    
-    //Dados do assistido verificados se foram preenchidos
-    if (!data.name || !data.cpf || !data.rg || !data.date || !data.estadoCivil || !data.telefone1) {
-      return alert("Todos os dados pessoais e pelo menos um número de telefone são necessários!")
+    console.log(data);
+
+    //dados para comparar o que está preenchido
+    const required = ['name', 'cpf', 'rg', 'date', 'estadoCivil', 'telefone1']
+    const requiredRepresentado = ['nameRepresentado', 'cpfRepresentado', 'rgRepresentado', 'dateRepresentado', 'estadoCivilRepresentado']
+
+    // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
+    if (!validarData(data, required)){
+      return alert("Todos os dados pessoais e pelo menos o Telefone 1 são necessários!")
     }
 
-    //Dados do representado (caso tenha) verificados se foram preenchidos
-    if (isChecked) {
-      if (!dataRepresentado.nameRepresentado || !dataRepresentado.cpfRepresentado || !dataRepresentado.rgRepresentado || !dataRepresentado.dateRepresentado || !dataRepresentado.estadoCivilRepresentado) {
-        return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado");
+    if (estadoCivil === "Selecione"){
+      return alert("É necessário informar o Estado Civil!")
+    }
+
+    //Caso todos os campos necessários estiverem preenchidos, então parte para as validações individuais
+    else {
+
+      //Dados do representado (caso tenha) verificados se foram preenchidos
+      if (isChecked) {
+        if (!validarData(dataRepresentado, requiredRepresentado)) {
+          return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado!");
+        }
+        if (estadoCivilRepresentado === "Selecione") {
+          return alert ("É necessário informar o Estado Civil do Representado!")
+        }
       }
-    }
-    
-    //Se o assistido foi selecionado para edição então chama o hook de edição de assistido
-    if (assistido) {
-      //console.log(data)
-      editarAssistido(data)
-    }
+      
+      //Se o assistido foi selecionado para edição então chama o hook de edição de assistido
+      if (assistido) {
+        //console.log(data)
+        editarAssistido(data)
+      }
 
-    //Se não, então chama o hook de cadastrar um novo assistido
-    else{
-      //console.log(data)
-      cadastrarAssistido(data);
-    }
+      //Se não, então chama o hook de cadastrar um novo assistido
+      else{
+        //console.log(data)
+        cadastrarAssistido(data);
+      }
   }
+}
 
   //Função para exibir o formulário de cadastrar um representado no modal
   function cadastroRepresentado(isChecked) {
@@ -122,14 +139,11 @@ export default function Assistidos({assistido}) {
             id="dateRepresentado"
             //required
           />
-          <InputField
+          <SelectEstadoCivil
             label="Estado Civil"
-            value={estadoCivilRepresentado}
             onChange={setEstadoCivilRepresentado}
-            type="text"
             id="estadoCivilRepresentado"
-            //required
-          />
+            />
         </div>
       ); 
     }
@@ -181,14 +195,12 @@ export default function Assistidos({assistido}) {
             id="date"
             //required
           />
-          <InputField
+          <SelectEstadoCivil
             label="Estado Civil"
-            value={estadoCivil}
             onChange={setEstadoCivil}
-            type="text"
             id="estadoCivil"
             //required
-          />
+            />
         </div>
 
         <div className="justify-center flex flex-col space-y-1">

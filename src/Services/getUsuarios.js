@@ -19,7 +19,7 @@ export const useUsuarios = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        alert("Ocorreu um erro ao carregar a lista de Usuários\n\n", "Código do erro: ", error.message);
+        alert(`Ocorreu um erro ao carregar a lista de Usuários\n\n Código do erro: ${error.message}`);
       }
     }
 
