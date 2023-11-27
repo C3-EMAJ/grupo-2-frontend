@@ -7,6 +7,7 @@ export const useExcluirUsuario = () => {
   const [excluindo, setExcluindo] = useState(false);
 
   const excluirUsuario = async (data) => {
+    console.log(data)
     try {
       setExcluindo(true);
 
