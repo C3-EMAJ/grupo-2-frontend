@@ -10,7 +10,7 @@ export const useEditarAssistido = () => {
     try {
       setEditando(true);
 
-      const response = await Api.put("/MinhaRotaDeEdicao", data);
+      const response = await Api.put("/editAssistido", data);
 
       // Aqui a resposta do servidor pode ser tratada
       // Por exemplo, se o servidor retornar um ID após o cadastro, pode ser feito algo com ele

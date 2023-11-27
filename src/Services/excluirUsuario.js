@@ -10,7 +10,7 @@ export const useExcluirUsuario = () => {
     try {
       setExcluindo(true);
 
-      const response = await Api.post("/MinhaRotaDeExclusao/", userId);
+      const response = await Api.post("/deleteUser", userId);
 
       // Aqui a resposta do servidor pode ser tratada
       // pode verificar se o usuário foi excluído com sucesso
