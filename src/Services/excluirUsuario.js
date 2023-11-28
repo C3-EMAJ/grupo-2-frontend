@@ -11,7 +11,7 @@ export const useExcluirUsuario = () => {
     try {
       setExcluindo(true);
 
-      const response = await Api.post("/deleteUser", data);
+      const response = await Api.post("/deleteUser/", data);
       console.log(response)
 
       // Aqui a resposta do servidor pode ser tratada
