@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 //Componentes
 import Loader from "../../Loader";
@@ -8,6 +9,8 @@ import { useExcluirUsuario } from '../../../Services/excluirUsuario';
 import ButtonExcluir from "./Items";
 
 export default function Usuarios({usuario}){
+    
+    const navigate = useNavigate();
     //console.log(usuario)
     const { excluirUsuario, excluindo } = useExcluirUsuario();
 
@@ -19,13 +22,14 @@ export default function Usuarios({usuario}){
       };
     
     //função para chamar a requisição de excluir usuário
-    function handleDeleteUsuario(e, id) {
+    const handleDeleteUsuario = async(e, id_uuid) =>  {
         e.preventDefault();
 
-        const data = {"id_uuid": id};
-        console.log("selecionado o usuário de id", id, " e nome: ", usuario.name)
+        const data = {"id_uuid": id_uuid};
+        //console.log("selecionado o usuário de id", id_uuid, " e nome: ", usuario.name)
 
-        excluirUsuario(data);
+        await excluirUsuario(data);
+        navigate("/usuarios")
     }
 
     return (

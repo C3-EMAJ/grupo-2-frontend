@@ -11,7 +11,7 @@ export const useUsuarios = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await Api.get("/getUser");
+        const response = await Api.get("/users");
 
         const data = response.data;
 

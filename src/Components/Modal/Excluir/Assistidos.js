@@ -19,11 +19,11 @@ export default function Assistidos ({assistido}){
       };
     
     //função para chamar a requisição de excluir assistido
-    function handleDeleteAssistido(e, id) {
+    function handleDeleteAssistido(e, id_uuid) {
         e.preventDefault();
 
-        const data = {"id_uuid": id};
-        console.log("selecionado o assistido de id: ", id, " e nome: ", assistido.name)
+        const data = {"id_uuid": id_uuid};
+        //console.log("selecionado o assistido de id: ", id_uuid, " e nome: ", assistido.name)
         
         excluirAssistido(data);
     }
