@@ -15,7 +15,7 @@ export const useAssistidos = () => {
 
         const data = response.data;
 
-        setListaAsstidos(data);
+        setListaAsstidos(data ? data : []);
         setLoading(false);
       } catch (error) {
         setLoading(false);

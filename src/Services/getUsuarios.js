@@ -15,7 +15,7 @@ export const useUsuarios = () => {
 
         const data = response.data;
 
-        setListaUsuarios(data);
+        setListaUsuarios(data ? data : []);
         setLoading(false);
       } catch (error) {
         setLoading(false);
