@@ -22,7 +22,7 @@ export default function Usuarios({usuario}){
       };
     
     //função para chamar a requisição de excluir usuário
-    const handleDeleteUsuario = async(e, id_uuid) =>  {
+    const handleDeleteUsuario = async (e, id_uuid) =>  {
         e.preventDefault();
 
         const data = {"id_uuid": id_uuid};

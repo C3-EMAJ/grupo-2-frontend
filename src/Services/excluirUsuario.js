@@ -7,18 +7,14 @@ export const useExcluirUsuario = () => {
   const [excluindo, setExcluindo] = useState(false);
 
   const excluirUsuario = async (data) => {
-    console.log(data)
+    //console.log(data)
     try {
       setExcluindo(true);
-
       const response = await Api.post("/deleteUser/", data);
       setExcluindo(false);
       return response.data.success === true ? alert(response.data.message) : null
-
-      // Aqui a resposta do servidor pode ser tratada
-      // pode verificar se o usuário foi excluído com sucesso
-
-    } catch (error) {
+    } 
+    catch (error) {
       setExcluindo(false);
       return alert(`Ocorreu um erro ao excluir o Usuário\n\n Código do erro: ${error.message}`);
     }

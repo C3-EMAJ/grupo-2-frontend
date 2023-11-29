@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 //Componentes
 import Loader from "../../Loader";
@@ -8,6 +9,8 @@ import { useExcluirAssistido } from "../../../Services/excluirAssistido";
 import ButtonExcluir from "./Items";
 
 export default function Assistidos ({assistido}){
+    
+    const navigate = useNavigate();
     //console.log(assistido)
     const { excluirAssistido, excluindo } = useExcluirAssistido();
     
@@ -19,13 +22,14 @@ export default function Assistidos ({assistido}){
       };
     
     //função para chamar a requisição de excluir assistido
-    function handleDeleteAssistido(e, id_uuid) {
+    const handleDeleteAssistido = async (e, id_uuid) => {
         e.preventDefault();
 
         const data = {"id_uuid": id_uuid};
         //console.log("selecionado o assistido de id: ", id_uuid, " e nome: ", assistido.name)
         
-        excluirAssistido(data);
+        await excluirAssistido(data);
+        navigate("/assistidos")
     }
 
     return (

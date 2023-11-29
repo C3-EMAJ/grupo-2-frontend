@@ -15,9 +15,10 @@ export const useAssistidos = () => {
 
         const data = response.data;
 
-        setListaAsstidos(data ? data : []);
+        setListaAsstidos(data);
         setLoading(false);
-      } catch (error) {
+      } 
+      catch (error) {
         setLoading(false);
         alert(`Ocorreu um erro ao carregar a lista de Assistidos\n\n Código do erro: ${error.message}`);
       }
