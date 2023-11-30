@@ -11,7 +11,7 @@ export const useLogin = () => {
     try {
       setLoading(true);
 
-      const response = await axios.get("https://emaj-2-backend.onrender.com/login/", data);
+      const response = await axios.post("https://emaj-2-backend.onrender.com/login/", data);
 
       if (response) {
         setLoading(false);
