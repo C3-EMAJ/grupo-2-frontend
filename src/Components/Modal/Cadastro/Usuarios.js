@@ -14,7 +14,6 @@ import { validarData, validarSenha } from '../../../Utils/validadores';
 
 //Função contendo os componentes necessários para o cadastro de usuários
 export default function Usuarios({ usuario }) {
-  usuario ? console.log(usuario.id_uuid) : console.log("não tem usuário")
   const { cadastrarUsuario, cadastrando } = useCadastrarUsuario();
   const { editarUsuario, editando } = useEditarUsuario();
 
@@ -26,6 +25,7 @@ export default function Usuarios({ usuario }) {
   };
 
   // Dados do Usuário
+  const id_uuid = usuario ? usuario.id_uuid : null
   const [name, setName] = useState(usuario ? usuario.name : "");
   const [email, setEmail] = useState(usuario ? usuario.email : "");
   const [username, setUsername] = useState(usuario ? usuario.username : "");
@@ -40,6 +40,7 @@ export default function Usuarios({ usuario }) {
 
     //objeto contendo as informações do usuário
     const data = { name, email, username, password, confirmPassword, role, image };
+    const dataEdit = { id_uuid, name, email, username, password, confirmPassword, role, image };
 
     const required = [ 'name', 'email', 'username', 'password', 'confirmPassword', 'role' ]
 
@@ -63,8 +64,8 @@ export default function Usuarios({ usuario }) {
         }
         //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
         if (usuario) {
-          //console.log(data)
-          editarUsuario(data);
+          console.log(dataEdit);
+          editarUsuario(dataEdit);
         }
     
         //Se não, então chama o hook de cadastrar um novo usuário
