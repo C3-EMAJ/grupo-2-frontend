@@ -9,7 +9,7 @@ export const useLogin = () => {
   const login = async (data) => {
     try {
       setLoading(true);
-      
+
       const response = await Api.get("/login/", data);
 
       if (response) {
@@ -27,9 +27,9 @@ export const useLogin = () => {
       }
 
     } catch (error) {
-      //console.log(error);
+      console.log(error);
       setLoading(false);
-      alert("Ocorreu um erro ao fazer login\n\n", "Código do erro: ", error.message);
+      alert(`Ocorreu um erro ao fazer login \n\n Código do erro: ${error.message}`);
     }
   };
 
