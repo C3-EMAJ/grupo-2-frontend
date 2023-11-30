@@ -6,7 +6,7 @@ import Sidebar from "../../Components/Sidebar";
 
 export default function Assistidos (){
     return(
-        <div class="flex h-full h-screen w-full">
+        <div class="flex h-full h-screen w-full overflow-y-auto">
             <Sidebar />
             <Tela ListName="Lista Assistidos" BtnName="Adicionar Assistido" page="Assistidos"/>
         </div>

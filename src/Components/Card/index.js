@@ -57,15 +57,15 @@ function CardAssistido({search}) {
       {filteredAssistidos &&
         filteredAssistidos.map((assistido, id_uuid) => (
           <div key={id_uuid} onClick={() => openEditModal(assistido)} className="grid grid-cols-7 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs cursor-pointer">
-            <div className=" flex items-center">
+            <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
-            <div className=" flex items-center">{assistido.name}</div>
-            <div className=" flex items-center">{assistido.email}</div>
-            <div className=" flex items-center">{assistido.telefone}</div>
-            <div className=" flex items-center">{assistido.cpf}</div>
-            <div className=" flex items-center">{assistido.date}</div>
-            <div className=" flex items-center justify-end pr-16">
+            <div className="flex items-center">{assistido.name}</div>
+            <div className="flex items-center">{assistido.email}</div>
+            <div className="flex items-center">{assistido.telefone}</div>
+            <div className="flex items-center">{assistido.cpf}</div>
+            <div className="flex items-center">{assistido.date}</div>
+            <div className="flex items-center justify-end pr-16">
               <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
                 onClick={(e) => {
                   e.stopPropagation();
@@ -118,7 +118,7 @@ function CardUsuario({search}) {
     <div>
       {loader()}
       <div className="grid grid-cols-6 mx-3 my-3 font-semibold text-sm text-black">
-        <div className=" col-start-2">Nome</div>
+        <div className="col-start-2">Nome</div>
         <div>E-mail</div>
         <div>Função</div>
         <div>Usuário</div>
@@ -126,14 +126,14 @@ function CardUsuario({search}) {
       {filteredUsuarios &&
         filteredUsuarios.map((usuario, id) => (
           <div key={id} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs">
-            <div className=" flex items-center">
+            <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
-            <div className=" flex items-center">{usuario.name}</div>
-            <div className=" flex items-center">{usuario.email}</div>
-            <div className=" flex items-center">{usuario.role}</div>
-            <div className=" flex items-center">{usuario.username}</div>
-            <div className=" flex items-center justify-end pr-16">
+            <div className="flex items-center">{usuario.name}</div>
+            <div className="flex items-center">{usuario.email}</div>
+            <div className="flex items-center">{usuario.role}</div>
+            <div className="flex items-center">{usuario.username}</div>
+            <div className="flex items-center justify-end pr-16">
               <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
                 onClick={(e) => {
                   e.stopPropagation();
