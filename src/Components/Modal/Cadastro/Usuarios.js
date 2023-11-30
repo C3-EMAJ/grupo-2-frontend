@@ -35,7 +35,7 @@ export default function Usuarios({ usuario }) {
   const [image, setImage] = useState(usuario ? usuario.image : "");
 
   //função que faz a requisição para submeter o formulário
-  function handleSubmit(event) { 
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
     //objeto contendo as informações do usuário
@@ -65,14 +65,16 @@ export default function Usuarios({ usuario }) {
         }
         //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
         if (usuario) {
-          console.log(dataEdit);
-          editarUsuario(dataEdit);
+          //console.log(dataEdit);
+          await editarUsuario(dataEdit);
+          window.location.reload();
         }
     
         //Se não, então chama o hook de cadastrar um novo usuário
         else{
           //console.log(data)
-          cadastrarUsuario(data);
+          await cadastrarUsuario(data);
+          window.location.reload();
         }
 
       }
