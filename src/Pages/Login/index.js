@@ -60,7 +60,7 @@ export default function PageLogin() {
           <img src={img_Login} alt="" />
 
           <div className="flex flex-col w-full px-2">
-            <label className="text-xs">Email</label>
+            <label className="text-xs">E-mail</label>
             <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className="border py-1 rounded" />
           </div>
 
