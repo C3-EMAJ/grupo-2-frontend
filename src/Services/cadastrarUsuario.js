@@ -5,21 +5,29 @@ import Api from "./config";
 
 export const useCadastrarUsuario = () => {
   const [cadastrando, setCadastrando] = useState(false);
-  const [response, setResponse] = useState();
 
   const cadastrarUsuario = async (data) => {
+
     try {
       setCadastrando(true);
+      const response = await Api.post("/user/", data);
 
-      setResponse(await Api.post("/user", data));
-      setCadastrando(false);
-      return response.data.success === true ? alert(response.data.message) : null
-    }
+      if (response.data.success && response.data.success === false){
+        setCadastrando(false);
+        return alert(response.data.message)
+      }
+
+      else if(response.data.success && response.data.success === true){
+        setCadastrando(false);
+        return alert(response.data.message)
+      }
+    } 
 
     catch (error) {
       setCadastrando(false);
-      return response.data.success === false ? alert(response.data.message) : null
+      return alert(`Ocorreu um erro ao cadastrar o usuário. \n\n Código do erro: ${error.message}`)
     }
+
   };
 
   return { cadastrarUsuario, cadastrando };

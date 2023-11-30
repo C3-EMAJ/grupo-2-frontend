@@ -5,21 +5,29 @@ import Api from "./config";
 
 export const useCadastrarAssistido = () => {
   const [cadastrando, setCadastrando] = useState(false);
-  const [response, setResponse] = useState();
 
   const cadastrarAssistido = async (data) => {
+
     try {
       setCadastrando(true);
+      const response = await Api.post("/assistido/", data);
 
-      setResponse(await Api.post("/assistido", data));
-      setCadastrando(false);
-      return response.data.success === true ? alert(response.data.message) : null
-    }
+      if (response.data.success && response.data.success === false){
+        setCadastrando(false);
+        return alert(response.data.message)
+      }
+
+      else if(response.data.success && response.data.success === true){
+        setCadastrando(false);
+        return alert(response.data.message)
+      }
+    } 
 
     catch (error) {
       setCadastrando(false);
-      return response.data.success === false ? alert(response.data.message) : null
+      return alert(`Ocorreu um erro ao cadastrar o assistido. \n\n Código do erro: ${error.message}`)
     }
+  
   };
 
   return { cadastrarAssistido, cadastrando };
