@@ -5,27 +5,33 @@ import Api from "./config";
 
 // Criar um hook personalizado para buscar todos os assistidos
 export const useAssistidos = () => {
-  const [listaAssistidos, setListaAsstidos] = useState([]);
+  const [listaAssistidos, setListaAssistidos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const[response, setResponse] = useState();
 
   useEffect(() => {
-    async function fetchData() {
-
-      try {
-        setResponse(await Api.get("/getAssistido"));
-        
-        setLoading(false);
-        return response.data.success === true ? setListaAsstidos(response.data) : null
+      async function fetchData() {
+      
+        try{
+          setLoading(true)
+          const response = await Api.get("/getAssistido");
+          
+          if (response.data.success && response.data.success === false){
+            setLoading(false);
+            return response.data.success === false ? alert(response.data.message) : null
+          }
+          
+          else{
+            setLoading(false);
+            setListaAssistidos(response.data);
+          }
+        }
+  
+        catch(error){
+          alert(`Ocorreu um erro ao carregar a lista de assistidos. \n\n Código do erro: ${error.message}`)
+        }
       }
-
-      catch (error) {
-        setLoading(false);
-        return response.data.success === false ? alert(response.data.message) : null
-      }
-    }
-
-    fetchData();
+  
+      fetchData();
   }, []);
 
   return { listaAssistidos, loading };
