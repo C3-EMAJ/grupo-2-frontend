@@ -115,7 +115,7 @@ function CardUsuario({search}) {
   });
   //console.log("teste no card",search)
   return (
-    <div>
+    <div className='border-2 border-orange'>
       {loader()}
       <div className="grid grid-cols-6 mx-3 my-3 font-semibold text-sm text-black">
         <div className=" col-start-2">Nome</div>
