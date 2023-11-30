@@ -18,7 +18,7 @@ export const useAssistidos = () => {
         if (response.data.success && response.data.success === false){
           setLoading(false);
           alert(response.data.message)
-          //return
+          return
         }
         
         else{
