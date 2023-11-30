@@ -21,7 +21,7 @@ export default function Tela({ListName, BtnName, page}) {
     const [search, setSearch] = useState(""); // Estado para a pesquisa
     
     return (
-        <div className="rounded-lg w-full overflow-y-auto">
+        <div className="rounded-lg w-full overflow-y-auto border-2">
             <Header search={search} setSearch={setSearch}/>
             <Modal isOpen={openModal} isClose={() => setOpenModal(!openModal)} page={page} />
             <div className="mx-1.5 bg-medium_grey rounded">
