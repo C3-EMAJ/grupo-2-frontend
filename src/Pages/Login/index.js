@@ -31,7 +31,8 @@ export default function PageLogin() {
     e.preventDefault()
 
     const data = {email, password}
-
+    console.log(data)
+    
     //dados que são obrigatórios o preenchimento
     const required = ['email', 'password']
     
