@@ -131,7 +131,7 @@ function CardUsuario({search}) {
             </div>
             <div className=" flex items-center">{usuario.name}</div>
             <div className=" flex items-center">{usuario.email}</div>
-            <div className=" flex items-center">{usuario.funcao}</div>
+            <div className=" flex items-center">{usuario.role}</div>
             <div className=" flex items-center">{usuario.username}</div>
             <div className=" flex items-center justify-end pr-16">
               <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
