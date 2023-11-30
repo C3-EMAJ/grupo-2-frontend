@@ -10,16 +10,7 @@ import ButtonExcluir from "./Items";
 
 export default function Assistidos ({assistido}){
     
-    const navigate = useNavigate();
-    //console.log(assistido)
     const { excluirAssistido, excluindo } = useExcluirAssistido();
-    
-    //const para exibir o loader
-    const loader = () => {
-        if (excluindo) {
-          return <Loader />;
-        }
-      };
     
     //função para chamar a requisição de excluir assistido
     const handleDeleteAssistido = async (e, id_uuid) => {
@@ -29,12 +20,12 @@ export default function Assistidos ({assistido}){
         //console.log("selecionado o assistido de id: ", id_uuid, " e nome: ", assistido.name)
         
         await excluirAssistido(data);
-        navigate("/assistidos")
+        window.location.reload();
     }
 
     return (
         <>
-            {loader()}
+            {excluindo === true ? <Loader /> : null}
             <form onSubmit={(e) => handleDeleteAssistido(e, assistido.id_uuid)} className="flex flex-col">
                 <p className="text-sm">
                     Você realmente deseja excluir o assistido <span className="font-semibold text-red">{assistido.name}</span>? Ao excluir o assistido você exclui todos os processos vinculados a ele.
