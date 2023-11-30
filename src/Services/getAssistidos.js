@@ -27,9 +27,9 @@ export const useAssistidos = () => {
         }
       }
 
-      catch(error){
+      catch(response){
         setLoading(false);
-        alert(`Ocorreu um erro ao carregar a lista de assistidos. \n\n Código do erro: ${error.message}`)
+        alert(`Ocorreu um erro ao carregar a lista de assistidos. \n\n Código do erro: ${response.data.message}`)
       }
     }
   
