@@ -50,7 +50,7 @@ export default function Assistidos({assistido}) {
   const [estadoCivilRepresentado, setEstadoCivilRepresentado] = useState("")
 
   //função que faz a requisição para submeter o formulário
-  function handleSubmit(event) {
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
     //objeto contendo as informações do representado (caso tenha)
@@ -90,13 +90,15 @@ export default function Assistidos({assistido}) {
       //Se o assistido foi selecionado para edição então chama o hook de edição de assistido
       if (assistido) {
         //console.log(data)
-        editarAssistido(data)
+        await editarAssistido(data)
+        window.location.reload();
       }
 
       //Se não, então chama o hook de cadastrar um novo assistido
       else{
         //console.log(data)
-        cadastrarAssistido(data);
+        await cadastrarAssistido(data);
+        window.location.reload();
       }
   }
 }
