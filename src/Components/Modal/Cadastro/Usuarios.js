@@ -39,13 +39,14 @@ export default function Usuarios({ usuario }) {
     event.preventDefault();
 
     //objeto contendo as informações do usuário
-    const data = { name, email, username, password, confirmPassword, role, image };
-    const dataEdit = { id_uuid, name, email, username, password, confirmPassword, role, image };
+    const data = { name, email, username, password, role, image };
+    const dataEdit = { id_uuid, name, email, username, password, role, image };
 
+    const dataRequired = { name, email, username, password, confirmPassword, role, image }
     const required = [ 'name', 'email', 'username', 'password', 'confirmPassword', 'role' ]
 
     // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
-    if (!validarData(data, required)){
+    if (!validarData(dataRequired, required)){
       return alert("Todos os campos, exceto a imagem são obrigatórios")
     }
 
