@@ -17,9 +17,9 @@ export const useUsuarios = () => {
         
         if (response.data.success && response.data.success === false){
           setLoading(false);
-          return response.data.success === false ? alert(response.data.message) : null
+          return alert(response.data.message)
         }
-        
+
         else{
           setLoading(false);
           setListaUsuarios(response.data);

@@ -5,20 +5,29 @@ import Api from "./config";
 
 export const useExcluirUsuario = () => {
   const [excluindo, setExcluindo] = useState(false);
-  const [response, setResponse] = useState();
 
   const excluirUsuario = async (data) => {
-    //console.log(data)
+    
     try {
       setExcluindo(true);
-      setResponse(await Api.post("/deleteUser/", data));
-      setExcluindo(false);
-      return response.data.success === true ? alert(response.data.message) : null
+      const response = await Api.post("/deleteUser/", data);
+
+      if (response.data.success && response.data.success === false){
+        setExcluindo(false);
+        return alert(response.data.message)
+      }
+
+      else if(response.data.success && response.data.success === true){
+        setExcluindo(false);
+        return alert(response.data.message)
+      }
     } 
+
     catch (error) {
       setExcluindo(false);
-      return response.data.success === false ? alert(response.data.message) : null
+      return alert(`Ocorreu um erro ao excluir o usuário. \n\n Código do erro: ${error.message}`)
     }
+    
   };
 
   return { excluirUsuario, excluindo };
