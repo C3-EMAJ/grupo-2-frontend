@@ -23,12 +23,11 @@ export const useLogin = () => {
         localStorage.setItem("image", response.data.image);
         //localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", response.data.username);
-
-        alert(response.data.message)
+        
       }
 
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       setLoading(false);
       alert(`Ocorreu um erro ao fazer login \n\n Código do erro: ${error.message}`);
     }

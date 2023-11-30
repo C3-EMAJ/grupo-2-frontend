@@ -3,7 +3,6 @@ export const autenticado = () => {
     //return token && token !== undefined  ? true : false
 
     //ESTAMOS UTILIZANDO O USERNAME COMO UM "TOKEN" ENQUANTO AINDA NÃO TEMOS UM TOKEN SENDO GERADO DE FATO
-    return true
     const username = localStorage.getItem("username");
     return username && username !== undefined ? true : false
   }
