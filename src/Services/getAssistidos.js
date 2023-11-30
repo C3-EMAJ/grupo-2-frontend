@@ -7,20 +7,21 @@ import Api from "./config";
 export const useAssistidos = () => {
   const [listaAssistidos, setListaAsstidos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const[response, setResponse] = useState();
 
   useEffect(() => {
     async function fetchData() {
+
       try {
-        const response = await Api.get("/getAssistido");
-
-        const data = response.data;
-
-        setListaAsstidos(data);
+        setResponse(await Api.get("/getAssistido"));
+        
         setLoading(false);
-      } 
+        return response.data.success === true ? setListaAsstidos(response.data) : null
+      }
+
       catch (error) {
         setLoading(false);
-        alert(`Ocorreu um erro ao carregar a lista de Assistidos\n\n Código do erro: ${error.message}`);
+        return response.data.success === false ? alert(response.data.message) : null
       }
     }
 

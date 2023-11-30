@@ -7,20 +7,21 @@ import Api from "./config";
 export const useUsuarios = () => {
   const [listaUsuarios, setListaUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
+  const[response, setResponse] = useState();
 
   useEffect(() => {
     async function fetchData() {
+
       try {
-        const response = await Api.get("/getUser");
+        setResponse(await Api.get("/getUser"));
 
-        const data = response.data;
-
-        setListaUsuarios(data);
         setLoading(false);
-      } 
+        return response.data.success === true ? setListaUsuarios(response.data) : null
+      }
+
       catch (error) {
         setLoading(false);
-        alert(`Ocorreu um erro ao carregar a lista de Usuários\n\n Código do erro: ${error.message}`);
+        return response.data.success === false ? alert(response.data.message) : null
       }
     }
 
