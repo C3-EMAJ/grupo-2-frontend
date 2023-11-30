@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 //BaseURL da API
-//import Api from "./config";
-import axios from "axios";
+import Api from "./config";
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -11,20 +10,20 @@ export const useLogin = () => {
     try {
       setLoading(true);
 
-      const response = await axios.post("https://reqres.in/api/login", data);
+      const response = await Api.get("/login/", data);
 
       if (response) {
         setLoading(false);
 
         //console.log(response.data)
 
-        localStorage.setItem("name", response.data.name)
-        //localStorage.setItem("email", response.data.email)
-        localStorage.setItem("role", response.data.role)
-        localStorage.setItem("image", response.data.image)
-        localStorage.setItem("token", response.data.token)
+        localStorage.setItem("name", response.data.name);
+        localStorage.setItem("role", response.data.role);
+        localStorage.setItem("image", response.data.image);
+        //localStorage.setItem("token", response.data.token);
+        localStorage.setItem("username", response.data.username);
 
-        //alert("Usuário logado com sucesso!")
+        alert(response.data.message)
       }
 
     } catch (error) {

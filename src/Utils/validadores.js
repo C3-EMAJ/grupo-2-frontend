@@ -1,11 +1,11 @@
 export const autenticado = () => {
-    const token = localStorage.getItem("token");
-    return token && token !== undefined  ? true : false
-  }
+    //const token = localStorage.getItem("token");
+    //return token && token !== undefined  ? true : false
 
-export const ehAdmin = () => {
-    return localStorage.getItem("funcao") === "professor" ? true : false
-}
+    //ESTAMOS UTILIZANDO O USERNAME COMO UM "TOKEN" ENQUANTO AINDA NÃO TEMOS UM TOKEN SENDO GERADO DE FATO
+    const username = localStorage.getItem("username");
+    return username && username !== undefined ? true : false
+  }
 
 export const validarEmailFurg = (email) => {
     //return email?.toString().includes('@furg.br') ? true : alert("É necessário que o e-mail seja um e-mail Furg!")
