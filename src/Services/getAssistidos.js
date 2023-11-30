@@ -13,7 +13,7 @@ export const useAssistidos = () => {
     
       try{
         setLoading(true)
-        const response = await Api.get("/getAssistido");
+        const response = await Api.get("/getAssistido/");
         
         if (response.data.success && response.data.success === false){
           setLoading(false);

@@ -13,7 +13,7 @@ export const useUsuarios = () => {
       
       try{
         setLoading(true)
-        const response = await Api.get("/getUser");
+        const response = await Api.get("/getUser/");
         
         if (response.data.success && response.data.success === false){
           setLoading(false);
