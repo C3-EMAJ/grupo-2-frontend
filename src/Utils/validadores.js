@@ -8,8 +8,8 @@ export const autenticado = () => {
   }
 
 export const validarEmailFurg = (email) => {
-    //return email?.toString().includes('@furg.br') ? true : alert("É necessário que o e-mail seja um e-mail Furg!")
-    return true
+    return email?.toString().includes('@furg.br') ? true : alert("É necessário que o e-mail seja um e-mail Furg!")
+    //return true
 }
 
 export const validarSenha = (password) => {
