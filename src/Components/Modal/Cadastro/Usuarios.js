@@ -14,7 +14,7 @@ import { validarData, validarSenha } from '../../../Utils/validadores';
 
 //Função contendo os componentes necessários para o cadastro de usuários
 export default function Usuarios({ usuario }) {
-  console.log(usuario.id_uuid)
+  usuario ? console.log(usuario.id_uuid) : console.log("não tem usuário")
   const { cadastrarUsuario, cadastrando } = useCadastrarUsuario();
   const { editarUsuario, editando } = useEditarUsuario();
 
