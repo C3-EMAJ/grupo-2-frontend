@@ -7,21 +7,21 @@ import Api from "./config";
 export const useUsuarios = () => {
   const [listaUsuarios, setListaUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
-  const[response, setResponse] = useState();
 
   useEffect(() => {
     async function fetchData() {
-
-      try {
-        setResponse(await Api.get("/getUser"));
-
-        setLoading(false);
-        return response.data.success === true ? setListaUsuarios(response.data) : null
-      }
-
-      catch (error) {
+      
+      setLoading(true)
+      const response = await Api.get("/getUser");
+      
+      if (response.data.success === false){
         setLoading(false);
         return response.data.success === false ? alert(response.data.message) : null
+      }
+      
+      else{
+        setLoading(false);
+        setListaUsuarios(response.data);
       }
     }
 
