@@ -9,29 +9,29 @@ export const useAssistidos = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      async function fetchData() {
-      
-        try{
-          setLoading(true)
-          const response = await Api.get("/getAssistido");
-          
-          if (response.data.success && response.data.success === false){
-            setLoading(false);
-            return response.data.success === false ? alert(response.data.message) : null
-          }
-          
-          else{
-            setLoading(false);
-            setListaAssistidos(response.data);
-          }
+    async function fetchData() {
+    
+      try{
+        setLoading(true)
+        const response = await Api.get("/getAssistido");
+        
+        if (response.data.success && response.data.success === false){
+          setLoading(false);
+          return alert(response.data.message)
         }
-  
-        catch(error){
-          alert(`Ocorreu um erro ao carregar a lista de assistidos. \n\n Código do erro: ${error.message}`)
+        
+        else{
+          setLoading(false);
+          setListaAssistidos(response.data);
         }
       }
+
+      catch(error){
+        alert(`Ocorreu um erro ao carregar a lista de assistidos. \n\n Código do erro: ${error.message}`)
+      }
+    }
   
-      fetchData();
+    fetchData();
   }, []);
 
   return { listaAssistidos, loading };

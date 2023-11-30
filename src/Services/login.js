@@ -20,8 +20,8 @@ export const useLogin = () => {
 
         localStorage.setItem("name", response.data.name)
         //localStorage.setItem("email", response.data.email)
-        localStorage.setItem("funcao", response.data.funcao)
-        //localStorage.setItem("image", response.data.image)
+        localStorage.setItem("role", response.data.role)
+        localStorage.setItem("image", response.data.image)
         localStorage.setItem("token", response.data.token)
 
         //alert("Usuário logado com sucesso!")

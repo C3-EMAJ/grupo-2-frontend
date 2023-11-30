@@ -36,8 +36,11 @@ export default function PageLogin() {
     const required = ['email', 'password']
     
     //Valiação dos dados antes de efetuar o login
-    if (validarData(data, required)){
-      if (validarEmailFurg(data.email)) {
+    if (validarData(data, required) === false){
+      return alert("O e-mail e a senha devem ser preenchidos!")
+    }
+    else{
+      if (validarEmailFurg(data.email) === true) {
         await login(data)
         autenticado() === true ? navigate("/demandas") : navigate("/")
       }
@@ -77,7 +80,7 @@ export default function PageLogin() {
               Esqueci minha senha
             </button>
           </div>
-          
+
         </form>
 
       </div>

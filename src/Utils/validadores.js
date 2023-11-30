@@ -8,7 +8,7 @@ export const ehAdmin = () => {
 }
 
 export const validarEmailFurg = (email) => {
-    //return email?.toString().includes('@furg.') ? true : alert("É necessário que o e-mail seja um e-mail Furg!")
+    //return email?.toString().includes('@furg.br') ? true : alert("É necessário que o e-mail seja um e-mail Furg!")
     return true
 }
 

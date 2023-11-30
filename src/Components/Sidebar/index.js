@@ -28,7 +28,7 @@ export default function Sidebar() {
                 <p className="text-orange">I </p>
                 <p className="text-black">EMAJ</p>
             </div>
-            <InfosUsuario foto={localStorage.getItem("image")} nome={localStorage.getItem("name")} funcao={localStorage.getItem("funcao")} />
+            <InfosUsuario foto={localStorage.getItem("image")} nome={localStorage.getItem("name")} funcao={localStorage.getItem("role")} />
             <ul className="space-y-2 mx-2">
                 <Button route="/demandas" img={img_Demandas} text="Demandas" alt=""/>
                 <Button route="/usuarios" img={img_AdicionarUsuario} text="Usuários" alt="" />
