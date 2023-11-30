@@ -23,7 +23,7 @@ export default function Sidebar() {
     <>
         <ModalSair isOpen={openModalSair} isClose={() => setOpenModalSair(false)}/>
         <aside className="flex h-screen">
-        <div className=" px-2 py-2 overflow-y-auto w-40 bg-high_grey">
+        <div className=" px-2 py-2 w-44 bg-high_grey">
             <div className="flex font-bold text-sm">
                 <p className="text-orange">I </p>
                 <p className="text-black">EMAJ</p>
