@@ -9,7 +9,7 @@ export const useLogin = () => {
   const login = async (data) => {
     try {
       setLoading(true);
-      console.log(data)
+      
       const response = await Api.get("/login/", data);
 
       if (response) {
