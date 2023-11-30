@@ -30,7 +30,7 @@ export default function PageLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const data = { email, password }
+    const data = { "email":email, "password":password }
     console.log(data)
 
     //dados que são obrigatórios o preenchimento
