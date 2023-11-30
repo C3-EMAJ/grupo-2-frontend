@@ -27,6 +27,7 @@ export const useUsuarios = () => {
       }
 
       catch(error){
+        setLoading(false);
         alert(`Ocorreu um erro ao carregar a lista de usuários. \n\n Código do erro: ${error.message}`)
       }
     }

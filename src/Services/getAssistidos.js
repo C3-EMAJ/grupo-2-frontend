@@ -14,7 +14,7 @@ export const useAssistidos = () => {
       try{
         setLoading(true)
         const response = await Api.get("/getAssistido/");
-        
+        console.log(response)
         if (response.data.success && response.data.success === false){
           setLoading(false);
           return alert(response.data.message)
@@ -27,6 +27,7 @@ export const useAssistidos = () => {
       }
 
       catch(error){
+        setLoading(false);
         alert(`Ocorreu um erro ao carregar a lista de assistidos. \n\n Código do erro: ${error.message}`)
       }
     }
