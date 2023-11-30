@@ -23,10 +23,10 @@ function InfosUsuario ({foto, nome, funcao}){
                 <img src={foto ? foto : foto_perfil} class="rounded-full scale-75" alt=""/>
             </div>
             <div className="my-3">
-                <div className="text-center text-black font-semibold text-xs">
+                <div className="text-center text-black font-semibold text-sm">
                     <p>{nome && nome !== undefined ? nome : "Nome do Usuário"}</p>
                 </div>
-                <div className="text-center text-orange font-medium text-xs">
+                <div className="text-center text-orange font-medium text-sm">
                     <p>{funcao && funcao !== undefined ? funcao : "Função"}</p>
                 </div>
             </div>
