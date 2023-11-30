@@ -9,7 +9,7 @@ import { useCadastrarUsuario } from '../../../Services/cadastrarUsuario'
 import { useEditarUsuario } from '../../../Services/editarUsuario';
 
 //validadores
-import { validarData, validarSenha } from '../../../Utils/validadores';
+import { validarData, validarEmailFurg, validarSenha } from '../../../Utils/validadores';
 
 
 //Função contendo os componentes necessários para o cadastro de usuários
@@ -56,7 +56,10 @@ export default function Usuarios({ usuario }) {
       if (password !== confirmPassword) {
         return alert("As senhas não coincidem!");
       }
-
+      //Valiar se o e-mail é um email FURG
+      if (validarEmailFurg === false) {
+        return alert("O e-mail precisa ser um e-mail FURG (@furg.br).")
+      }
       //Validar se a senha possui um mínimo de 8 caracteres
       if (validarSenha(password)) {
         
@@ -69,18 +72,14 @@ export default function Usuarios({ usuario }) {
           await editarUsuario(dataEdit);
           window.location.reload();
         }
-    
         //Se não, então chama o hook de cadastrar um novo usuário
         else{
           //console.log(data)
           await cadastrarUsuario(data);
           window.location.reload();
         }
-
       }
-
     }
-
   }
 
   return (
