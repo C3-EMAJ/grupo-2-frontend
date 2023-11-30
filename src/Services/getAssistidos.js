@@ -8,7 +8,7 @@ export const useAssistidos = () => {
   const [listaAssistidos, setListaAssistidos] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  
     async function fetchData() {
     
       try{
@@ -18,7 +18,6 @@ export const useAssistidos = () => {
         if (response.data.success && response.data.success === false){
           setLoading(false);
           alert(response.data.message)
-          return
         }
         
         else{
@@ -32,9 +31,8 @@ export const useAssistidos = () => {
         alert(`Ocorreu um erro ao carregar a lista de assistidos. \n\n Código do erro: ${response.data.message}`)
       }
     }
-  
+
     fetchData();
-  }, []);
 
   return { listaAssistidos, loading };
 };
