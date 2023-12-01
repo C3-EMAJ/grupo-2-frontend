@@ -6,7 +6,7 @@ import Sidebar from "../../Components/Sidebar";
 
 export default function Usuarios (){
     return(
-        <div class="flex h-full overflow-y-auto">
+        <div class="flex h-full h-screen">
             <Sidebar />
             <Tela ListName="Lista Usuários" BtnName="Adicionar Usuário" page="Usuarios" />
         </div>
