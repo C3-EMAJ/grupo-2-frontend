@@ -18,20 +18,15 @@ function CardAssistido({search}) {
   const [selectedAssistido, setSelectedAssistido] = useState(null);
   const { listaAssistidos, loading } = useAssistidos();
 
-  const loader = () => {
-    if (loading) {
-      return <Loader />;
-    }
-  };
-
   const openDeleteModal = (assistido) => {
     setSelectedAssistido(assistido);
     setOpenModalExcluir(true);
   };
+
   const openEditModal = (assistido) => {
     setSelectedAssistido(assistido);
     setOpenModal(true);
-  }
+  };
 
   // Função para filtrar assistidos com base na pesquisa
   const filteredAssistidos = listaAssistidos.filter((assistido) => {
@@ -43,19 +38,21 @@ function CardAssistido({search}) {
     }
     return false;
   });
-  
+
   return (
-    <div>
-      {loader()}
-      <div className="grid grid-cols-7 mx-3 my-3 font-semibold text-sm text-black">
-        <div className=" col-start-2">Nome</div>
-        <div>E-mail</div>
-        <div>Telefone</div>
-        <div>CPF</div>
-        <div>Data de Nascimento</div>
+    <>
+      {loading ? <Loader /> : null}
+
+      <div className="grid grid-cols-7 mx-3 my-3 font-semibold text-black">
+        <p className="col-start-2">Nome</p>
+        <p>E-mail</p>
+        <p>Telefone</p>
+        <p>CPF</p>
+        <p>Data de Nascimento</p>
       </div>
-      {filteredAssistidos &&
-        filteredAssistidos.map((assistido, id_uuid) => (
+
+      {filteredAssistidos && filteredAssistidos.map((assistido, id_uuid) => (
+
           <div key={id_uuid} onClick={() => openEditModal(assistido)} className="grid grid-cols-7 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs cursor-pointer">
             <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
@@ -73,10 +70,12 @@ function CardAssistido({search}) {
                   }} />
             </div>
           </div>
+
         ))}
+
       <ModalExcluir isOpen={openModalExcluir} isClose={() => setOpenModalExcluir(false)} page={'Assistidos'} assistido={selectedAssistido} />
       <Modal isOpen={openModal} isClose={() => setOpenModal(!openModal)} page="Assistidos" assistido={selectedAssistido} />
-    </div>
+    </>
   );
 }
 
@@ -88,20 +87,15 @@ function CardUsuario({search}) {
   const [selectedUsuario, setSelectedUsuario] = useState(null);
   const { listaUsuarios, loading } = useUsuarios();
 
-  const loader = () => {
-    if (loading) {
-      return <Loader />;
-    }
-  };
-
   const openDeleteModal = (usuario) => {
     setSelectedUsuario(usuario);
     setOpenModalExcluir(true);
   };
+
   const openEditModal = (usuario) => {
     setSelectedUsuario(usuario);
     setOpenModal(true);
-  }
+  };
 
   // Função para filtrar Usuarios com base na pesquisa
   const filteredUsuarios = listaUsuarios.filter((usuario) => {
@@ -113,19 +107,21 @@ function CardUsuario({search}) {
     }
     return false;
   });
-  //console.log("teste no card",search)
+
   return (
-    <div>
-      {loader()}
-      <div className="grid grid-cols-6 mx-3 my-3 font-semibold text-sm text-black">
-        <div className="col-start-2">Nome</div>
-        <div>E-mail</div>
-        <div>Função</div>
-        <div>Usuário</div>
+    <>
+      {loading ? <Loader /> : null}
+
+      <div className="grid grid-cols-6 mx-3 my-3 font-semibold text-black">
+        <p className="col-start-2">Nome</p>
+        <p>E-mail</p>
+        <p>Função</p>
+        <p>Usuário</p>
       </div>
-      {filteredUsuarios &&
-        filteredUsuarios.map((usuario, id) => (
-          <div key={id} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs">
+
+      {filteredUsuarios && filteredUsuarios.map((usuario, id_uuid) => (
+
+          <div key={id_uuid} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs">
             <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
@@ -141,12 +137,14 @@ function CardUsuario({search}) {
                   }} />
             </div>
           </div>
+
         ))}
+
       <ModalExcluir isOpen={openModalExcluir} isClose={() => setOpenModalExcluir(false)} page={'Usuarios'} usuario={selectedUsuario} />
       <Modal isOpen={openModal} isClose={() => setOpenModal(!openModal)} page="Usuarios" usuario={selectedUsuario} />
-    </div>
+    </>
   );
 }
 
 
-export {CardUsuario, CardAssistido}
+export { CardUsuario, CardAssistido }
