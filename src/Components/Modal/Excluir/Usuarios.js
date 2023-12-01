@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
 
 //Componentes
 import Loader from "../../Loader";
@@ -7,6 +6,9 @@ import Loader from "../../Loader";
 //Hooks personalizados
 import { useExcluirUsuario } from '../../../Services/excluirUsuario';
 import ButtonExcluir from "./Items";
+
+//Validadores
+import { validarProfessor } from "../../../Utils/validadores";
 
 export default function Usuarios({usuario}){
     
@@ -16,8 +18,12 @@ export default function Usuarios({usuario}){
     const handleDeleteUsuario = async (e, id_uuid) =>  {
         e.preventDefault();
 
-        const data = {"id_uuid": id_uuid};
-        //console.log("selecionado o usuário de id", id_uuid, " e nome: ", usuario.name)
+        if (!validarProfessor(localStorage.getItem("role"))) {
+            return
+        }
+
+        const data = {id_uuid};
+        //console.log(data)
 
         await excluirUsuario(data);
         window.location.reload();
@@ -25,7 +31,7 @@ export default function Usuarios({usuario}){
 
     return (
         <>
-            {excluindo === true ? <Loader /> : null}
+            {excluindo ? <Loader /> : null}
             <form onSubmit={(e) => handleDeleteUsuario(e, usuario.id_uuid)} className="flex flex-col">
                 <p className="text-sm">
                     Você realmente deseja excluir o Usuário <span className="font-semibold text-red">{usuario.name}</span>? Ao excluir o usuário você exclui todo o histórico de alterações do mesmo.

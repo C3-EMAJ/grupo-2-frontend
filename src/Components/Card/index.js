@@ -60,11 +60,11 @@ function CardAssistido({search}) {
             <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
-            <div className="flex items-center">{assistido.name}</div>
-            <div className="flex items-center">{assistido.email}</div>
-            <div className="flex items-center">{assistido.telefone}</div>
-            <div className="flex items-center">{assistido.cpf}</div>
-            <div className="flex items-center">{assistido.date}</div>
+            <p className="flex items-center">{assistido.name}</p>
+            <p className="flex items-center">{assistido.email}</p>
+            <p className="flex items-center">{assistido.telefone}</p>
+            <p className="flex items-center">{assistido.cpf}</p>
+            <p className="flex items-center">{assistido.date}</p>
             <div className="flex items-center justify-end pr-16">
               <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
                 onClick={(e) => {
@@ -129,10 +129,10 @@ function CardUsuario({search}) {
             <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
-            <div className="flex items-center">{usuario.name}</div>
-            <div className="flex items-center">{usuario.email}</div>
-            <div className="flex items-center">{usuario.role}</div>
-            <div className="flex items-center">{usuario.username}</div>
+            <p className="flex items-center">{usuario.name}</p>
+            <p className="flex items-center">{usuario.email}</p>
+            <p className="flex items-center">{usuario.role}</p>
+            <p className="flex items-center">{usuario.username}</p>
             <div className="flex items-center justify-end pr-16">
               <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
                 onClick={(e) => {

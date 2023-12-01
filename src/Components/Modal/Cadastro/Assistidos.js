@@ -17,13 +17,6 @@ export default function Assistidos({assistido}) {
   const {cadastrarAssistido, cadastrando} = useCadastrarAssistido();
   const {editarAssistido, editando} = useEditarAssistido();
 
-  //const para exibir o loader
-  const loader = () => {
-    if (cadastrando || editando) {
-      return <Loader />;
-    }
-  };
-
   //Dados Pessoais
   const [name, setName] = useState(assistido ? assistido.name : "")
   const [cpf, setCpf] = useState(assistido ? assistido.cpf : "")
@@ -154,7 +147,7 @@ export default function Assistidos({assistido}) {
   //Componentes referentes ao cadastro de assistidos
   return (
     <>
-      {loader()}
+      {cadastrando || editando ? <Loader /> : null}
       <form className="grid grid-rows-2 grid-cols-2 gap-y-5 pl-16" onSubmit={handleSubmit}>
 
         <div className="flex flex-col space-y-1">

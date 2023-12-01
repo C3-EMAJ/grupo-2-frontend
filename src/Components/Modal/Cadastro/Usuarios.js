@@ -9,20 +9,13 @@ import { useCadastrarUsuario } from '../../../Services/cadastrarUsuario'
 import { useEditarUsuario } from '../../../Services/editarUsuario';
 
 //validadores
-import { validarData, validarEmailFurg, validarSenha } from '../../../Utils/validadores';
+import { validarData, validarEmailFurg, validarLenPassword, validarRole, validarPassword, validarProfessor } from '../../../Utils/validadores';
 
 
 //Função contendo os componentes necessários para o cadastro de usuários
 export default function Usuarios({ usuario }) {
   const { cadastrarUsuario, cadastrando } = useCadastrarUsuario();
   const { editarUsuario, editando } = useEditarUsuario();
-
-  //const para exibir o loader
-  const loader = () => {
-    if (cadastrando || editando) {
-      return <Loader />;
-    }
-  };
 
   // Dados do Usuário
   const id_uuid = usuario ? usuario.id_uuid : null
@@ -39,52 +32,55 @@ export default function Usuarios({ usuario }) {
     event.preventDefault();
 
     //objeto contendo as informações do usuário
-    const data = { name, email, username, password, role, image };
-    const dataEdit = { id_uuid, name, email, username, password, role, image };
+    const data = {id_uuid, name, email, username, password, role, image };
+    usuario ? console.log("Está sendo editado") : delete data.id_uuid;
+    const dataRequired = {name, email, username, password, confirmPassword, role};
+    console.log(data)
+    //console.log(dataRequired)
 
-    const dataRequired = { name, email, username, password, confirmPassword, role, image }
     const required = [ 'name', 'email', 'username', 'password', 'confirmPassword', 'role' ]
 
     // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
     if (!validarData(dataRequired, required)){
       return alert("Todos os campos, exceto a imagem são obrigatórios")
     }
-
-    //Caso todos os campos necessários estiverem preenchidos, então parte para as validações individuais
-    else {
-      // Verificar se as senhas coincidem
-      if (password !== confirmPassword) {
-        return alert("As senhas não coincidem!");
-      }
-      //Valiar se o e-mail é um email FURG
-      if (validarEmailFurg === false) {
-        return alert("O e-mail precisa ser um e-mail FURG (@furg.br).")
-      }
-      //Validar se a senha possui um mínimo de 8 caracteres
-      if (validarSenha(password)) {
-        
-        if (role === "Selecione") {
-          return alert ("É necessário informar a função do usuário!")
-        }
-        //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
-        if (usuario) {
-          //console.log(dataEdit);
-          await editarUsuario(dataEdit);
-          window.location.reload();
-        }
-        //Se não, então chama o hook de cadastrar um novo usuário
-        else{
-          //console.log(data)
-          await cadastrarUsuario(data);
-          window.location.reload();
-        }
-      }
+    //Validar se o usuário possui o cargo de Professor
+    if (!validarProfessor(localStorage.getItem("role"))){
+      return
+    }
+    //Valiar se o e-mail é um email FURG
+    if (!validarEmailFurg(data.email)){
+      return
+    }
+    //Validar se a senha possui um mínimo de 8 caracteres
+    if (!validarLenPassword(password)){
+      return
+    }
+    // Verificar se as senhas coincidem
+    if (!validarPassword(password, confirmPassword)){
+      return
+    }
+    //Validando se o cargo foi preenchido
+    if (!validarRole(data.role)){
+      return
+    }
+    //Se o usuário foi selecionado para edição então chama o hook de edição de usuário
+    if (usuario) {
+      //console.log(dataEdit);
+      await editarUsuario(data);
+      window.location.reload();
+    }
+    //Se não, então chama o hook de cadastrar um novo usuário
+    else{
+      //console.log(data)
+      await cadastrarUsuario(data);
+      window.location.reload();
     }
   }
 
   return (
     <>
-      {loader()}
+      {editando || cadastrando ? <Loader /> : null}
       <form className="grid grid-cols-2 pt-10 pl-16 pb-16" onSubmit={handleSubmit}>
 
         <div className="flex flex-col space-y-2">

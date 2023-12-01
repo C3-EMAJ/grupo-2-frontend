@@ -2,7 +2,6 @@ import { useState } from "react";
 
 //BaseURL da API
 import Api from "./config";
-import axios from "axios";
 
 export const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -11,7 +10,7 @@ export const useLogin = () => {
     try {
       setLoading(true);
 
-      const response = await axios.post("https://emaj-2-backend.onrender.com/login/", data);
+      const response = await Api.post("/login/", data);
 
       if (response) {
         setLoading(false);
