@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 //Componentes
-import { InputField, ButtonCadastrar, ImageUpload, SelectFuncao } from './Items';
+import { InputField, ButtonCadastrar, SelectFuncao } from './Items';
 import Loader from '../../Loader';
 
 //Hooks personalizados
@@ -77,13 +77,15 @@ export default function Usuarios({ usuario }) {
       window.location.reload();
     }
   }
+  
+  const columStyle = "flex flex-col space-y-3"
 
   return (
     <>
       {editando || cadastrando ? <Loader /> : null}
       <form className="grid grid-cols-2 pt-10 pl-16 pb-16" onSubmit={handleSubmit}>
 
-        <div className="flex flex-col space-y-2">
+        <div className={columStyle}>
           <InputField
             label="Nome"
             value={name}
@@ -126,16 +128,20 @@ export default function Usuarios({ usuario }) {
           />
         </div>
 
-        <div className="flex flex-col space-y-1">
+        <div className={columStyle}>
           <SelectFuncao
           label="Função"
           onChange={setRole}
           id="selectFuncao"
           //required
           />
-          <ImageUpload
-            label="Imagem"
+          <InputField
+            label="Imagem (Insira a URL da sua imagem)"
+            value={image}
             onChange={setImage}
+            type="text"
+            id="image"
+            //required
           />
           
           <ButtonCadastrar label={usuario ? "Editar" : "Cadastrar"}/>

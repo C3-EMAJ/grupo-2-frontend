@@ -31,6 +31,9 @@ export const validarRole = (role) => {
   return role === "Selecione" ? alert ("É necessário informar a função do usuário!") : true
 }
 
+export const validarEstadoCivil = (estadoCivil) => {
+  return estadoCivil === "Selecione" ? alert ("É necessário informar o estado civil!") : true
+}
 
 export const validarData = (data, required) => {
     for (const key in data) {

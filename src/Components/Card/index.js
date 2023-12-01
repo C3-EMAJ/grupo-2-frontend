@@ -53,7 +53,7 @@ function CardAssistido({search}) {
 
       {filteredAssistidos && filteredAssistidos.map((assistido, id_uuid) => (
 
-          <div key={id_uuid} onClick={() => openEditModal(assistido)} className="grid grid-cols-7 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs cursor-pointer">
+          <div key={id_uuid} onClick={() => openEditModal(assistido)} className="grid grid-cols-7 h-20 mx-3 my-1.5 rounded bg-white hover:border text-sm cursor-pointer">
             <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
@@ -67,7 +67,7 @@ function CardAssistido({search}) {
                 onClick={(e) => {
                   e.stopPropagation();
                   openDeleteModal(assistido);
-                  }} />
+                }} />
             </div>
           </div>
 
@@ -121,7 +121,7 @@ function CardUsuario({search}) {
 
       {filteredUsuarios && filteredUsuarios.map((usuario, id_uuid) => (
 
-          <div key={id_uuid} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 rounded bg-white hover:border text-xs">
+          <div key={id_uuid} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 rounded bg-white hover:border text-sm cursor-pointer">
             <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
@@ -130,11 +130,11 @@ function CardUsuario({search}) {
             <p className="flex items-center">{usuario.role}</p>
             <p className="flex items-center">{usuario.username}</p>
             <div className="flex items-center justify-end pr-16">
-              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
+              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt="" 
                 onClick={(e) => {
                   e.stopPropagation();
                   openDeleteModal(usuario)
-                  }} />
+                }} />
             </div>
           </div>
 
