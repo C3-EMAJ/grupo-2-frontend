@@ -3,6 +3,7 @@ import React from 'react';
 //Componentes
 import Assistidos from './Assistidos';
 import Usuarios from './Usuarios';
+import { BgBlur } from '../../BgBlur';
 
 
 export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido }) {
@@ -36,7 +37,7 @@ export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido
     if (isOpen) {
         
         return (
-            <div className="fixed inset-0 flex bg-[rgba(0,0,0,0.1)] backdrop-blur-sm items-center justify-center">
+            <BgBlur> {
                 <div className="bg-white w-96 h-40 rounded shadow-2xl z-40 p-2">
                     <div className="flex justify-between pb-3">
                         {qualPag()}
@@ -44,7 +45,7 @@ export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido
                     </div>
                     {modalswitch()}
                 </div>
-            </div>
+            } </BgBlur>
         );
     }
 }

@@ -25,17 +25,13 @@ export const useLogin = () => {
         
       }
 
-    } catch (error) {
+    } 
+    catch (error) {
       //console.log(error);
       setLoading(false);
       alert(`Ocorreu um erro ao fazer login \n\n Código do erro: ${error.message}`);
     }
   };
 
-
   return { login, loading };
 }
-
-//E-mail: eve.holt@reqres.in
-//Senha: cityslicka
-//Token: QpwL5tke4Pnpja7X4

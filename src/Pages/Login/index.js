@@ -8,6 +8,7 @@ import ver from '../../images/ver.png';
 
 //Components
 import Loader from '../../Components/Loader';
+import ModalRecuperarSenha from '../../Components/Modal/RecuperarSenha';
 
 //Hooks de login
 import { useLogin } from '../../Services/login';
@@ -21,6 +22,12 @@ export default function PageLogin() {
   const {login, loading} = useLogin();
   const navigate = useNavigate();
 
+  const [openModalSenha, setOpenModalSenha] = useState(false);
+
+    const openModal = () => {
+        setOpenModalSenha(true)
+    }
+
   //const para setar a senha como visível ou não
   const [showPassword, setShowPassword] = useState(false);
   
@@ -31,7 +38,7 @@ export default function PageLogin() {
     e.preventDefault()
 
     const data = { "email":email, "password":password }
-    console.log(data)
+    //console.log(data)
 
     //dados que são obrigatórios o preenchimento
     const required = ['email', 'password']
@@ -50,7 +57,7 @@ export default function PageLogin() {
 
   return (
     <div className="fixed inset-0 flex bg-white justify-center items-center">
-      
+      <ModalRecuperarSenha isOpen={openModalSenha} isClose={() => setOpenModalSenha(false)} />
       {/* Definindo quando o loader é exibido */}
       {loading === true ? <Loader /> : null}
       
@@ -77,7 +84,7 @@ export default function PageLogin() {
             <button type="submit" className="bg-orange text-white text-center font-semibold w-full rounded shadow-lg hover:scale-105 py-1 duration-75">
               Entrar
             </button>
-            <button className="border-b w-1/2 text-high_grey text-xs hover:scale-105 py-1 duration-75">
+            <button type="button" onClick={() => openModal()} className="border-b w-1/2 text-high_grey text-xs hover:scale-105 py-1 duration-75">
               Esqueci minha senha
             </button>
           </div>
