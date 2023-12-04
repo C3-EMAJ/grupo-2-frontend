@@ -50,7 +50,7 @@ export default function Assistidos({assistido}) {
     event.preventDefault();
 
     //objeto contendo as informações do representado (caso tenha)
-    const representado = { nameRepresentado, cpfRepresentado, rgRepresentado, dataNascRepresentado, estadoCivilRepresentado };
+    const representado = { "name":nameRepresentado, "cpf":cpfRepresentado, "rg":rgRepresentado, "dataNasc":dataNascRepresentado, "estadoCivil":estadoCivilRepresentado };
     //objeto contendo ad informações do assistido
     const data = { id_uuid, name, cpf, rg, dataNasc, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, representado: isChecked ? representado : {} };
     assistido ? console.log("Está sendo editado") : delete data.id_uuid;
