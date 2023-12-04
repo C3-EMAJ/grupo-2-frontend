@@ -50,9 +50,9 @@ export default function Assistidos({assistido}) {
     event.preventDefault();
 
     //objeto contendo as informações do representado (caso tenha)
-    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dataNascRepresentado, estadoCivilRepresentado };
+    const representado = { nameRepresentado, cpfRepresentado, rgRepresentado, dataNascRepresentado, estadoCivilRepresentado };
     //objeto contendo ad informações do assistido
-    const data = { id_uuid, name, cpf, rg, dataNasc, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : {} };
+    const data = { id_uuid, name, cpf, rg, dataNasc, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, representado: isChecked ? representado : {} };
     assistido ? console.log("Está sendo editado") : delete data.id_uuid;
     //console.log(data);
 
@@ -72,10 +72,10 @@ export default function Assistidos({assistido}) {
 
     //Dados do representado (caso tenha) verificados se foram preenchidos
     if (isChecked) {
-      if (!validarData(dataRepresentado, requiredRepresentado)) {
+      if (!validarData(representado, requiredRepresentado)) {
         return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado!");
       }
-      if(!validarEstadoCivil(dataRepresentado.estadoCivilRepresentado)){
+      if(!validarEstadoCivil(representado.estadoCivilRepresentado)){
         return
       }
     }
