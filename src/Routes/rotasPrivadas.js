@@ -6,7 +6,7 @@ import { autenticado } from "../Utils/validadores";
 //Páginas
 import PageLogin from "../Pages/Login";
 
-export const ProtectedRoutes = ({children}) => {
+export const Private = ({children}) => {
     //console.log(autenticado())
     return autenticado() ? children : <PageLogin />
 }
