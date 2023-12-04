@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //Proteção das rotas
-import { ProtectedRoutes } from "./PrivateRoutes.js";
+import { Private } from "./rotasPrivadas.js";
 
 //Páginas
 import PageLogin from '../Pages/Login';
@@ -17,11 +17,11 @@ const Routering = () => {
     <Router>
         <Routes>
             <Route path="/" element={<PageLogin />} />
-            <Route path="/demandas" element={<ProtectedRoutes> <Demandas /> </ProtectedRoutes>} />
-            <Route path="/usuarios" element={<ProtectedRoutes> <Usuarios /> </ProtectedRoutes>} />
-            <Route path="/assistidos" element={<ProtectedRoutes> <Assistidos /> </ProtectedRoutes>} />
-            <Route path="/agendamentos" element={<ProtectedRoutes> <Agendamentos /> </ProtectedRoutes>} />
-            <Route path="/configuracoes" element={<ProtectedRoutes> <Configuracoes /> </ProtectedRoutes>} />
+            <Route path="/demandas" element={<Private> {<Demandas />} </Private>} />
+            <Route path="/usuarios" element={<Private> {<Usuarios />} </Private>} />
+            <Route path="/assistidos" element={<Private> {<Assistidos />} </Private>} />
+            <Route path="/agendamentos" element={<Private> {<Agendamentos />} </Private>} />
+            <Route path="/configuracoes" element={<Private> {<Configuracoes />} </Private>} />
         </Routes>
     </Router>
   );
