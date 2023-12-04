@@ -17,6 +17,9 @@ export default function Assistidos({assistido}) {
   const {cadastrarAssistido, cadastrando} = useCadastrarAssistido();
   const {editarAssistido, editando} = useEditarAssistido();
 
+  //id_uuid do assistido
+  const id_uuid = assistido ? assistido.id_uuid : null
+
   //Dados Pessoais
   const [name, setName] = useState(assistido ? assistido.name : "")
   const [cpf, setCpf] = useState(assistido ? assistido.cpf : "")
@@ -39,7 +42,7 @@ export default function Assistidos({assistido}) {
   const [nameRepresentado, setNameRepresentado] = useState("")
   const [cpfRepresentado, setCpfRepresentado] = useState("")
   const [rgRepresentado, setRgRepresentado] = useState("")
-  const [dateRepresentado, setDateRepresentado] = useState("")
+  const [dataNascRepresentado, setDataNascRepresentado] = useState("")
   const [estadoCivilRepresentado, setEstadoCivilRepresentado] = useState("")
 
   //função que faz a requisição para submeter o formulário
@@ -47,16 +50,15 @@ export default function Assistidos({assistido}) {
     event.preventDefault();
 
     //objeto contendo as informações do representado (caso tenha)
-    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dataNascRepresentado, estadoCivilRepresentado };
     //objeto contendo ad informações do assistido
-    const data = { name, cpf, rg, dataNasc, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
-    //se caso não for marcada a opção de cadastrar representado então dataRepresentado não é enviado no objeto
-    isChecked ? console.log("possui representado") : delete data.dataRepresentado;
-    console.log(data);
+    const data = { id_uuid, name, cpf, rg, dataNasc, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : {} };
+    assistido ? console.log("Está sendo editado") : delete data.id_uuid;
+    //console.log(data);
 
     //dados para comparar o que está preenchido
     const required = ['name', 'cpf', 'rg', 'date', 'estadoCivil', 'telefone1']
-    const requiredRepresentado = ['nameRepresentado', 'cpfRepresentado', 'rgRepresentado', 'dateRepresentado', 'estadoCivilRepresentado']
+    const requiredRepresentado = ['nameRepresentado', 'cpfRepresentado', 'rgRepresentado', 'dataNascRepresentado', 'estadoCivilRepresentado']
 
     // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
     if (!validarData(data, required)){
@@ -129,8 +131,8 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="Data de Nasimento"
-            value={dateRepresentado}
-            onChange={setDateRepresentado}
+            value={dataNascRepresentado}
+            onChange={setDataNascRepresentado}
             type="date"
             id="dateRepresentado"
             //required

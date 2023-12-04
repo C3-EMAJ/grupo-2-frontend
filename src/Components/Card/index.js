@@ -59,9 +59,9 @@ function CardAssistido({search}) {
             </div>
             <p className="flex items-center">{assistido.name}</p>
             <p className="flex items-center">{assistido.email}</p>
-            <p className="flex items-center">{assistido.telefone}</p>
+            <p className="flex items-center">{assistido.telefone1}</p>
             <p className="flex items-center">{assistido.cpf}</p>
-            <p className="flex items-center">{assistido.date}</p>
+            <p className="flex items-center">{assistido.dataNasc}</p>
             <div className="flex items-center justify-end pr-16">
               <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt=""
                 onClick={(e) => {
