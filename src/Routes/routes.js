@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 //Proteção das rotas
-import ProtectedRoutes from './ProtectedRoutes';
+import { ProtectedRoutes } from "./PrivateRoutes.js";
 
 //Páginas
 import PageLogin from '../Pages/Login';

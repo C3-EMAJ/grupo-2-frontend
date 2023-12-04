@@ -1,6 +1,9 @@
 import React from 'react';
+
+//Components
 import Usuarios from './Usuarios';
 import Assistidos from './Assistidos';
+import { BgBlur } from '../../BgBlur';
 
 //Função do modal, onde são renderizados os componentes de acordo com a página em que o usuário sem encontra
 export default function Modal({isOpen, isClose, page, usuario, assistido}) {
@@ -36,7 +39,7 @@ export default function Modal({isOpen, isClose, page, usuario, assistido}) {
     //Código do modal
     if(isOpen){
         return (
-            <div className="fixed inset-0 flex bg-[rgba(0,0,0,0.1)] backdrop-blur-sm items-center justify-center">
+            <BgBlur> {
                 <div className="bg-white w-1/2 max-h-full overflow-y-auto rounded-md shadow-2xl z-40">
                     <div className="flex justify-between pt-4 px-16 ">
                     {qualPag()}
@@ -44,7 +47,8 @@ export default function Modal({isOpen, isClose, page, usuario, assistido}) {
                     </div>
                     {modalswitch()}
                 </div>
-            </div>
+            } </BgBlur>
+            
         );
     }
 }

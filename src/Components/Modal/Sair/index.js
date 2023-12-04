@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+//Components
+import { BgBlur } from "../../BgBlur";
+
 export default function ModalSair ({isOpen, isClose}) {
     const navigate = useNavigate()
 
@@ -12,7 +15,7 @@ export default function ModalSair ({isOpen, isClose}) {
 
     if (isOpen) {
         return (
-            <div className="fixed inset-0 flex bg-[rgba(0,0,0,0.1)] backdrop-blur-sm items-center justify-center">
+            <BgBlur> {
                 <div className="bg-white w-80 h-35 rounded shadow-2xl z-40 p-3 space-y-3">
                     <div className="flex justify-between">
                         <h1 className=" text-xl font-semibold">Sair</h1>
@@ -25,7 +28,7 @@ export default function ModalSair ({isOpen, isClose}) {
                         <button type="button" onClick={(e) => handleLogout(e)} className="bg-red text-white text-sm font-semibold rounded hover:scale-105 duration-75 w-14 h-7">Sim</button>
                     </div>
                 </div>
-            </div>
+            } </BgBlur>
         );
     }
 }

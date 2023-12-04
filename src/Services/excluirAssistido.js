@@ -6,20 +6,28 @@ import Api from "./config";
 export const useExcluirAssistido = () => {
   const [excluindo, setExcluindo] = useState(false);
 
-  const excluirAssistido = async (assistidoId) => {
+  const excluirAssistido = async (data) => {
+
     try {
       setExcluindo(true);
+      const response = await Api.post("/deleteAssistido/", data);
 
-      const response = await Api.post("/MinhaRotaDeExclusao/", assistidoId);
+      if (response.data.success && response.data.success === false){
+        setExcluindo(false);
+        return alert(response.data.message)
+      }
 
-      // Aqui a resposta do servidor pode ser tratada
-      // pode verificar se o assistido foi excluído com sucesso
+      else if(response.data.success && response.data.success === true){
+        setExcluindo(false);
+        return alert(response.data.message)
+      }
+    } 
 
+    catch (error) {
       setExcluindo(false);
-    } catch (error) {
-      setExcluindo(false);
-      alert(`Ocorreu um erro ao excluir o Assistido\n\n Código do erro: ${error.message}`);
+      return alert(`Ocorreu um erro ao excluir o assistido. \n\n Código do erro: ${error.message}`)
     }
+    
   };
 
   return { excluirAssistido, excluindo };

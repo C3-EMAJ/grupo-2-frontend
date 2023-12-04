@@ -6,20 +6,28 @@ import Api from "./config";
 export const useExcluirUsuario = () => {
   const [excluindo, setExcluindo] = useState(false);
 
-  const excluirUsuario = async (userId) => {
+  const excluirUsuario = async (data) => {
+    
     try {
       setExcluindo(true);
+      const response = await Api.post("/deleteUser/", data);
 
-      const response = await Api.post("/MinhaRotaDeExclusao/", userId);
+      if (response.data.success && response.data.success === false){
+        setExcluindo(false);
+        return alert(response.data.message)
+      }
 
-      // Aqui a resposta do servidor pode ser tratada
-      // pode verificar se o usuário foi excluído com sucesso
+      else if(response.data.success && response.data.success === true){
+        setExcluindo(false);
+        return alert(response.data.message)
+      }
+    } 
 
+    catch (error) {
       setExcluindo(false);
-    } catch (error) {
-      setExcluindo(false);
-      alert(`Ocorreu um erro ao excluir o Usuário\n\n Código do erro: ${error.message}`);
+      return alert(`Ocorreu um erro ao excluir o usuário. \n\n Código do erro: ${error.message}`)
     }
+    
   };
 
   return { excluirUsuario, excluindo };

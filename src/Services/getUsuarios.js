@@ -10,16 +10,25 @@ export const useUsuarios = () => {
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const response = await Api.get("/users");
+      
+      try{
+        setLoading(true)
+        const response = await Api.get("/getUser/");
+        
+        if (response.data.success && response.data.success === false){
+          setLoading(false);
+          return alert(response.data.message)
+        }
 
-        const data = response.data;
+        else{
+          setLoading(false);
+          setListaUsuarios(response.data);
+        }
+      }
 
-        setListaUsuarios(data);
+      catch(error){
         setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        alert(`Ocorreu um erro ao carregar a lista de Usuários\n\n Código do erro: ${error.message}`);
+        alert(`Ocorreu um erro ao carregar a lista de usuários. \n\n Código do erro: ${error.message}`)
       }
     }
 

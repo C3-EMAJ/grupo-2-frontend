@@ -9,7 +9,7 @@ import { useCadastrarAssistido } from '../../../Services/cadastrarAssistido'
 import { useEditarAssistido } from '../../../Services/editarAssistido';
 
 //Validadores
-import { validarData } from '../../../Utils/validadores';
+import { validarData, validarEstadoCivil, validarProfessor } from '../../../Utils/validadores';
 
 //Função contendo os componentes necessários para o cadastro de assistidos
 export default function Assistidos({assistido}) {
@@ -17,18 +17,14 @@ export default function Assistidos({assistido}) {
   const {cadastrarAssistido, cadastrando} = useCadastrarAssistido();
   const {editarAssistido, editando} = useEditarAssistido();
 
-  //const para exibir o loader
-  const loader = () => {
-    if (cadastrando || editando) {
-      return <Loader />;
-    }
-  };
+  //id_uuid do assistido
+  const id_uuid = assistido ? assistido.id_uuid : null
 
   //Dados Pessoais
   const [name, setName] = useState(assistido ? assistido.name : "")
   const [cpf, setCpf] = useState(assistido ? assistido.cpf : "")
   const [rg, setRg] = useState(assistido ? assistido.rg : "")
-  const [date, setDate] = useState(assistido ? assistido.date : "")
+  const [dataNasc, setDataNasc] = useState(assistido ? assistido.dataNasc : "")
   const [isChecked, setIsChecked] = useState(false);
   const [estadoCivil, setEstadoCivil] = useState(assistido ? assistido.estadoCivil : "")
   
@@ -46,59 +42,61 @@ export default function Assistidos({assistido}) {
   const [nameRepresentado, setNameRepresentado] = useState("")
   const [cpfRepresentado, setCpfRepresentado] = useState("")
   const [rgRepresentado, setRgRepresentado] = useState("")
-  const [dateRepresentado, setDateRepresentado] = useState("")
+  const [dataNascRepresentado, setDataNascRepresentado] = useState("")
   const [estadoCivilRepresentado, setEstadoCivilRepresentado] = useState("")
 
   //função que faz a requisição para submeter o formulário
-  function handleSubmit(event) {
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
     //objeto contendo as informações do representado (caso tenha)
-    const dataRepresentado = { nameRepresentado, cpfRepresentado, rgRepresentado, dateRepresentado, estadoCivilRepresentado };
+    const representado = { "name":nameRepresentado, "cpf":cpfRepresentado, "rg":rgRepresentado, "dataNasc":dataNascRepresentado, "estadoCivil":estadoCivilRepresentado };
     //objeto contendo ad informações do assistido
-    const data = { name, cpf, rg, date, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, dataRepresentado: isChecked ? dataRepresentado : null };
-    //se caso não for marcada a opção de cadastrar representado então dataRepresentado não é enviado no objeto
-    isChecked ? console.log("possui representado") : delete data.dataRepresentado;
-    console.log(data);
+    const data = { id_uuid, name, cpf, rg, dataNasc, estadoCivil, telefone1, telefone2, email, profissao, renda, dependentes, representado: isChecked ? representado : {} };
+    assistido ? console.log("Está sendo editado") : delete data.id_uuid;
+    //console.log(data);
 
     //dados para comparar o que está preenchido
     const required = ['name', 'cpf', 'rg', 'date', 'estadoCivil', 'telefone1']
-    const requiredRepresentado = ['nameRepresentado', 'cpfRepresentado', 'rgRepresentado', 'dateRepresentado', 'estadoCivilRepresentado']
+    const requiredRepresentado = ['nameRepresentado', 'cpfRepresentado', 'rgRepresentado', 'dataNascRepresentado', 'estadoCivilRepresentado']
 
     // Pelo menos um dos campos é uma string vazia, exiba um alerta na tela.
     if (!validarData(data, required)){
       return alert("Todos os dados pessoais e pelo menos o Telefone 1 são necessários!")
     }
 
-    if (estadoCivil === "Selecione"){
-      return alert("É necessário informar o Estado Civil!")
+    //Validando se o estado civil está preenchido corretamente
+    if (!validarEstadoCivil(data.estadoCivil)){
+      return
     }
 
-    //Caso todos os campos necessários estiverem preenchidos, então parte para as validações individuais
-    else {
+    //Dados do representado (caso tenha) verificados se foram preenchidos
+    if (isChecked) {
+      if (!validarData(representado, requiredRepresentado)) {
+        return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado!");
+      }
+      if(!validarEstadoCivil(representado.estadoCivilRepresentado)){
+        return
+      }
+    }
+    
+    //Se o assistido foi selecionado para edição então chama o hook de edição de assistido
+    if (assistido) {
+      //console.log(data)
+      if (!validarProfessor(localStorage.getItem("role"))){
+        return
+      }
+      await editarAssistido(data)
+      window.location.reload();
+    }
 
-      //Dados do representado (caso tenha) verificados se foram preenchidos
-      if (isChecked) {
-        if (!validarData(dataRepresentado, requiredRepresentado)) {
-          return alert("Se a opção Cadastrar Representado estiver marcada é necessário o preenchimento dos dados do representado!");
-        }
-        if (estadoCivilRepresentado === "Selecione") {
-          return alert ("É necessário informar o Estado Civil do Representado!")
-        }
-      }
-      
-      //Se o assistido foi selecionado para edição então chama o hook de edição de assistido
-      if (assistido) {
-        //console.log(data)
-        editarAssistido(data)
-      }
-
-      //Se não, então chama o hook de cadastrar um novo assistido
-      else{
-        //console.log(data)
-        cadastrarAssistido(data);
-      }
-  }
+    //Se não, então chama o hook de cadastrar um novo assistido
+    else{
+      //console.log(data)
+      await cadastrarAssistido(data);
+      window.location.reload();
+    }
+  
 }
 
   //Função para exibir o formulário de cadastrar um representado no modal
@@ -133,8 +131,8 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="Data de Nasimento"
-            value={dateRepresentado}
-            onChange={setDateRepresentado}
+            value={dataNascRepresentado}
+            onChange={setDataNascRepresentado}
             type="date"
             id="dateRepresentado"
             //required
@@ -152,7 +150,7 @@ export default function Assistidos({assistido}) {
   //Componentes referentes ao cadastro de assistidos
   return (
     <>
-      {loader()}
+      {cadastrando || editando ? <Loader /> : null}
       <form className="grid grid-rows-2 grid-cols-2 gap-y-5 pl-16" onSubmit={handleSubmit}>
 
         <div className="flex flex-col space-y-1">
@@ -189,8 +187,8 @@ export default function Assistidos({assistido}) {
           />
           <InputField
             label="Data de Nasimento"
-            value={date}
-            onChange={setDate}
+            value={dataNasc}
+            onChange={setDataNasc}
             type="date"
             id="date"
             //required

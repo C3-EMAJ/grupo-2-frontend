@@ -22,13 +22,13 @@ export default function Sidebar() {
     return (
     <>
         <ModalSair isOpen={openModalSair} isClose={() => setOpenModalSair(false)}/>
-        <aside className="flex h-screen">
-        <div className=" px-2 py-2 overflow-y-auto w-40 bg-high_grey">
+        <aside className="flex h-screen overflow-y-auto">
+        <div className="px-1 py-2 w-44 bg-high_grey">
             <div className="flex font-bold text-sm">
                 <p className="text-orange">I </p>
                 <p className="text-black">EMAJ</p>
             </div>
-            <InfosUsuario foto={localStorage.getItem("image")} nome={localStorage.getItem("name")} funcao={localStorage.getItem("funcao")} />
+            <InfosUsuario foto={localStorage.getItem("image")} nome={localStorage.getItem("name")} funcao={localStorage.getItem("role")} />
             <ul className="space-y-2 mx-2">
                 <Button route="/demandas" img={img_Demandas} text="Demandas" alt=""/>
                 <Button route="/usuarios" img={img_AdicionarUsuario} text="Usuários" alt="" />

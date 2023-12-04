@@ -9,6 +9,3 @@ const Api  = axios.create({
 });
 
 export default Api;
-
-//API com a lista e usuários: https://jsonplaceholder.typicode.com
-//API de login: https://reqres.in/api/

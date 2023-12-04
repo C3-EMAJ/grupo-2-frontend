@@ -7,31 +7,32 @@ import Loader from "../../Loader";
 import { useExcluirAssistido } from "../../../Services/excluirAssistido";
 import ButtonExcluir from "./Items";
 
+//Validadores
+import { validarProfessor } from "../../../Utils/validadores";
+
 export default function Assistidos ({assistido}){
-    //console.log(assistido)
+    
     const { excluirAssistido, excluindo } = useExcluirAssistido();
     
-    //const para exibir o loader
-    const loader = () => {
-        if (excluindo) {
-          return <Loader />;
-        }
-      };
-    
     //função para chamar a requisição de excluir assistido
-    function handleDeleteAssistido(e, id) {
+    const handleDeleteAssistido = async (e, id_uuid) => {
         e.preventDefault();
-
-        const jsonId = {"id": id};
-        console.log("selecionado o assistido de id: ", id, " e nome: ", assistido.name)
         
-        excluirAssistido(jsonId);
+        if (!validarProfessor(localStorage.getItem("role"))){
+            return
+        }
+
+        const data = {id_uuid};
+        //console.log(data)
+        
+        await excluirAssistido(data);
+        window.location.reload();
     }
 
     return (
         <>
-            {loader()}
-            <form onSubmit={(e) => handleDeleteAssistido(e, assistido.id)} className="flex flex-col">
+            {excluindo ? <Loader /> : null}
+            <form onSubmit={(e) => handleDeleteAssistido(e, assistido.id_uuid)} className="flex flex-col">
                 <p className="text-sm">
                     Você realmente deseja excluir o assistido <span className="font-semibold text-red">{assistido.name}</span>? Ao excluir o assistido você exclui todos os processos vinculados a ele.
                 </p>
