@@ -3,10 +3,11 @@ import React from 'react';
 //Componentes
 import Assistidos from './Assistidos';
 import Usuarios from './Usuarios';
+import Demandas from './Demandas';
 import { BgBlur } from '../../BgBlur';
 
 
-export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido }) {
+export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido, demanda }) {
     
     //função para definir o título do modal
     function qualPag() {
@@ -20,6 +21,9 @@ export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido
         else if (page === "Usuarios") {
             return <h1 className={tituloModal}>Excluir Usuário</h1>;
         }
+        else if (page === "Demandas") {
+            return <h1 className={tituloModal}>Excluir Demanda</h1>;
+        }
     }
     
     //função para exibir ou o modal de assistidos ou de usuários
@@ -31,6 +35,9 @@ export default function ModalExcluir({ isOpen, isClose, page, usuario, assistido
     
         else if (page === "Assistidos" && assistido && assistido.name) {
             return <Assistidos assistido={assistido}/>
+        }
+        else if (page === "Demandas" && demanda && demanda.titulo) {
+            return <Demandas demanda={demanda}/>
         }
     }
 

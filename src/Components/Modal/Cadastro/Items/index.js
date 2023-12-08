@@ -6,12 +6,30 @@ function InputField({ label, value, onChange, type, id, required }) {
     <div className="flex flex-col text-sm">
       <label className="" htmlFor={id}>{label}</label>
       <input
-        className="border rounded w-3/4"
+        className="border rounded w-3/4 px-1"
         value={value}
         onChange={(event) => onChange(event.target.value)}
         type={type}
         id={id}
         required={required}
+      />
+    </div>
+  );
+}
+
+//Componente de input dos dados
+function InputText({ label, value, onChange, type, id, required }) {
+  return (
+    <div className="flex flex-col text-sm">
+      <label className="" htmlFor={id}>{label}</label>
+      <textarea
+        className="border rounded w-4/5 p-1"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        type={type}
+        id={id}
+        required={required}
+        rows="10"
       />
     </div>
   );
@@ -104,4 +122,6 @@ function SelectFuncao ({label, onChange, id, required}) {
   );
 }
 
-export {InputField, ButtonCadastrar, CheckboxSimNao, ImageUpload, SelectEstadoCivil, SelectFuncao};
+
+
+export {InputField, InputText, ButtonCadastrar, CheckboxSimNao, ImageUpload, SelectEstadoCivil, SelectFuncao};

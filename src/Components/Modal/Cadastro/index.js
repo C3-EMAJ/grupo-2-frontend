@@ -3,18 +3,22 @@ import React from 'react';
 //Components
 import Usuarios from './Usuarios';
 import Assistidos from './Assistidos';
+import Demandas from './Demandas';
 import { BgBlur } from '../../BgBlur';
 
 //Função do modal, onde são renderizados os componentes de acordo com a página em que o usuário sem encontra
-export default function Modal({isOpen, isClose, page, usuario, assistido}) {
+export default function Modal({isOpen, isClose, page, usuario, assistido, demanda}) {
     
     //Função que retorna o modal de cadastro de acordo com a página em que o usuário se encontra (pagina de usuários ou assistidos)
     function modalswitch(){
         if (page === "Usuarios"){
-            return <Usuarios usuario={usuario}/>
+            return <Usuarios usuario={usuario} />
         }
         else if (page === "Assistidos"){
-            return <Assistidos assistido={assistido}/>
+            return <Assistidos assistido={assistido} />
+        }
+        else if (page === "Demandas") {
+            return <Demandas demanda={demanda} />
         }
     }
     
@@ -33,6 +37,12 @@ export default function Modal({isOpen, isClose, page, usuario, assistido}) {
                 return <h1 className={tituloModal}>Editar Usuário</h1>
             }
             return <h1 className={tituloModal}>Cadastrar Usuário</h1>
+        }
+        else if (page === "Demandas"){
+            if (demanda) {
+                return <h1 className={tituloModal}>Editar Demanda</h1>
+            }
+            return <h1 className={tituloModal}>Cadastrar demanda</h1>
         }
     }
 

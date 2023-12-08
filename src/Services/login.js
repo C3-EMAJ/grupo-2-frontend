@@ -22,6 +22,7 @@ export const useLogin = () => {
         localStorage.setItem("image", response.data.image);
         //localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", response.data.username);
+        localStorage.setItem("user_id_uuid", response.data.id_uuid);
         
       }
 

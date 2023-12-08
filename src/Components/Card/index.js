@@ -6,6 +6,7 @@ import ModalExcluir from '../Modal/Excluir';
 import Loader from '../Loader';
 import { useAssistidos } from '../../Services/getAssistidos';
 import { useUsuarios } from '../../Services/getUsuarios';
+import { useDemandas } from '../../Services/getDemandas'
 
 //Imagens
 import profile from '../../images/profile.png';
@@ -146,5 +147,65 @@ function CardUsuario({search}) {
   );
 }
 
+function CardDemanda({search}) {
 
-export { CardUsuario, CardAssistido }
+  const [openModal, setOpenModal] = useState(false);
+  const [openModalExcluir, setOpenModalExcluir] = useState(false);
+  const [selectedDemanda, setSelectedDemanda] = useState(null);
+  const { listaDemandas, loading } = useDemandas();
+
+  const openDeleteModal = (demanda) => {
+    setSelectedDemanda(demanda);
+    setOpenModalExcluir(true);
+  };
+
+  const openEditModal = (demanda) => {
+    setSelectedDemanda(demanda);
+    setOpenModal(true);
+  };
+
+  // Função para filtrar Usuarios com base na pesquisa
+  const filteredDemandas = listaDemandas.filter((demanda) => {
+    if (!search) {
+      return true; // Retorna todos os Usuarios se a pesquisa estiver vazia
+    }
+    if (demanda && demanda.titulo && typeof demanda.titulo === 'string') {
+      return demanda.titulo.toLowerCase().includes(search.toLowerCase());
+    }
+    return false;
+  });
+
+  return (
+    <>
+      {loading ? <Loader /> : null}
+
+      <div className="grid grid-cols-4 mx-3 my-3 font-semibold text-black">
+        <p>Título</p>
+        <p>Assistido</p>
+        <p>Usuário Responsável</p>
+      </div>
+
+      {filteredDemandas && filteredDemandas.map((demanda, id_uuid) => (
+
+          <div key={id_uuid} onClick={() => openEditModal(demanda)} className="grid grid-cols-4 h-20 mx-3 my-1.5 rounded bg-white hover:border text-sm cursor-pointer">
+            <p className="flex items-center">{demanda.titulo}</p>
+            <p className="flex items-center">{demanda.assistido}</p>
+            <p className="flex items-center">{demanda.usuario}</p>
+            <div className="flex items-center justify-end pr-16">
+              <img className="hover:scale-110 duration-75 cursor-pointer" src={lixeira} alt="" 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openDeleteModal(demanda)
+                }} />
+            </div>
+          </div>
+
+        ))}
+
+      <ModalExcluir isOpen={openModalExcluir} isClose={() => setOpenModalExcluir(false)} page={'Demandas'} demanda={selectedDemanda} />
+      <Modal isOpen={openModal} isClose={() => setOpenModal(!openModal)} page="Demandas" demanda={selectedDemanda} />
+    </>
+  );
+}
+
+export { CardUsuario, CardAssistido, CardDemanda }

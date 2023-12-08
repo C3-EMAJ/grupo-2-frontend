@@ -4,7 +4,7 @@ import { useState } from "react";
 //Componentes
 import Header from '../Header';
 import Modal from '../Modal/Cadastro';
-import { CardUsuario, CardAssistido } from '../Card';
+import { CardUsuario, CardAssistido, CardDemanda } from '../Card';
 
 export default function Tela({ListName, BtnName, page}) {
     
@@ -14,6 +14,9 @@ export default function Tela({ListName, BtnName, page}) {
       }
       else if (page === "Assistidos"){
         return <CardAssistido search={search} />;
+      }
+      else if(page === "Demandas"){
+        return <CardDemanda search={search} />
       }
     }
   
