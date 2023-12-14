@@ -44,7 +44,7 @@ function CardAssistido({search}) {
     <>
       {loading ? <Loader /> : null}
 
-      <div className="grid grid-cols-7 mx-3 my-3 font-semibold text-black">
+      <div className="grid grid-cols-7 mx-3 my-3 px-4 font-semibold text-black">
         <p className="col-start-2">Nome</p>
         <p>E-mail</p>
         <p>Telefone</p>
@@ -54,7 +54,7 @@ function CardAssistido({search}) {
 
       {filteredAssistidos && filteredAssistidos.map((assistido, id_uuid) => (
 
-          <div key={id_uuid} onClick={() => openEditModal(assistido)} className="grid grid-cols-7 h-20 mx-3 my-1.5 rounded bg-white hover:border text-sm cursor-pointer">
+          <div key={id_uuid} onClick={() => openEditModal(assistido)} className="grid grid-cols-7 h-20 mx-3 my-1.5 px-4 rounded bg-white hover:border text-sm cursor-pointer">
             <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
@@ -113,7 +113,7 @@ function CardUsuario({search}) {
     <>
       {loading ? <Loader /> : null}
 
-      <div className="grid grid-cols-6 mx-3 my-3 font-semibold text-black">
+      <div className="grid grid-cols-6 mx-3 my-3 px-4 font-semibold text-black">
         <p className="col-start-2">Nome</p>
         <p>E-mail</p>
         <p>Função</p>
@@ -122,7 +122,7 @@ function CardUsuario({search}) {
 
       {filteredUsuarios && filteredUsuarios.map((usuario, id_uuid) => (
 
-          <div key={id_uuid} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 rounded bg-white hover:border text-sm cursor-pointer">
+          <div key={id_uuid} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 px-4 rounded bg-white hover:border text-sm cursor-pointer">
             <div className="flex items-center">
               <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
@@ -187,7 +187,7 @@ function CardDemanda({search}) {
 
       {filteredDemandas && filteredDemandas.map((demanda, id_uuid) => (
 
-          <div key={id_uuid} onClick={() => openEditModal(demanda)} className="grid grid-cols-4 h-20 mx-3 my-1.5 rounded bg-white hover:border text-sm cursor-pointer">
+          <div key={id_uuid} onClick={() => openEditModal(demanda)} className="grid grid-cols-4 h-20 mx-3 my-1.5  px-4 rounded bg-white hover:border text-sm cursor-pointer">
             <p className="flex items-center">{demanda.titulo}</p>
             <p className="flex items-center">{demanda.assistido}</p>
             <p className="flex items-center">{demanda.usuario}</p>
