@@ -124,7 +124,7 @@ function CardUsuario({search}) {
 
           <div key={id_uuid} onClick={() => openEditModal(usuario)} className="grid grid-cols-6 h-20 mx-3 my-1.5 px-4 rounded bg-white hover:border text-sm cursor-pointer">
             <div className="flex items-center">
-              <img src={usuario.image !== ""? usuario.image : profile} className="rounded-full" alt="foto do perfil" />
+              <img src={profile} className="rounded-full" alt="foto do perfil" />
             </div>
             <p className="flex items-center">{usuario.name}</p>
             <p className="flex items-center">{usuario.email}</p>
