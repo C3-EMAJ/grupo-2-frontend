@@ -69,13 +69,13 @@ export default function PageLogin() {
 
           <div className="flex flex-col w-full px-2">
             <label className="text-xs">E-mail</label>
-            <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className="border py-1 rounded" />
+            <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} className="border py-1 px-2 rounded" />
           </div>
 
           <div className="flex flex-col w-full px-2">
             <label className="text-xs">Senha</label>
             <div className="flex justify-between space-x-1.5 items-center">
-              <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="border py-1 w-full rounded" />
+              <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="border py-1 px-2 w-full rounded" />
               <img src={showPassword ? ver : ocultar} alt="" className="w-5 h-5 hover:scale-110 cursor-pointer" onClick={() => setShowPassword(!showPassword)} />
             </div>
           </div>
