@@ -23,7 +23,7 @@ export default function Demandas({ demanda }) {
   const [titulo, setTitulo] = useState(demanda ? demanda.titulo : "");
   const [assistido, setAssistido] = useState(demanda ? demanda.assistido : "");
   const [descricao, setDescricao] = useState(demanda ? demanda.descricao : "");
-  const [image, setImage] = useState(usuario ? usuario.image : "");
+  const [image, setImage] = useState(demanda ? demanda.image : "");
 
   //função que faz a requisição para submeter o formulário
   const handleSubmit = async(event) => {
